@@ -31,8 +31,8 @@ function draw() {
     // Draw a pyramid
     // How many levels for the pyramid
     const levels = 13;
-    //push();
-    // fill(120, 120, 120)
+    push();
+    fill(120, 120, 120)
     // Loop through every level (backwards)
     for (let level = levels; level > 0; level--) {
         // Draw this layer
