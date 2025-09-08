@@ -1,5 +1,5 @@
 /**
- * Debugging Instructions
+ * Debugging Instructions with pink bug
  * Emile Bedard
  * 
  * Is meant to display a bug. But doesn't. Because it has bugs.
@@ -50,7 +50,7 @@ function drawBody() {
  * Draws the legs of the bug!
  */
 function drawLegs() {
-    console.log('draws the legs!');
+
     push();
     stroke(0);
     strokeWeight(10);
