@@ -22,7 +22,7 @@ function setup() {
 */
 function draw() {
     // Pink background
-    background(255, 150);
+    background('pink');
 
     // Draw the bug
     drawInsect();
@@ -50,6 +50,7 @@ function drawBody() {
  * Draws the legs of the bug!
  */
 function drawLegs() {
+    console.log('draws the legs!');
     push();
     stroke(0);
     strokeWeight(10);
