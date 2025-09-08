@@ -60,7 +60,7 @@ function drawGround() {
     // The ground
     push();
     noStroke();
-    fill(0, 180, 100);
+    fill('forestgreen');
     rect(0, 400, 640, 480);
     pop();
 }
