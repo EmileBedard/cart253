@@ -19,21 +19,53 @@ function setup() {
 }
 
 /**
- * Draws a house
+ * Draws a house and it's environment
  */
 function draw() {
     // The sky
     background(150, 200, 250);
 
     drawCloud();
+    drawGround();
+    drawHouse();
 
+
+
+}
+
+
+/**
+ * draws a fluffy white cloud
+ */
+function drawCloud() {
+    // A cloud
+    push();
+    noStroke();
+    // Note: using a single number for a colour will be greyscale
+    // (As if you used the same number for R, G, and B)
+    // So this is white:
+    fill(255);
+    ellipse(100, 100, 100, 100);
+    ellipse(180, 80, 100, 100);
+    ellipse(160, 120, 60, 60);
+    ellipse(190, 130, 60, 60);
+    ellipse(220, 120, 60, 60);
+    pop();
+}
+
+/**
+ * draws a green lawn
+ */
+function drawGround() {
     // The ground
     push();
     noStroke();
-    fill(200);
+    fill(0, 180, 100);
     rect(0, 400, 640, 480);
     pop();
+}
 
+function drawHouse() {
     // The main body of the house
     push();
     noStroke();
@@ -73,21 +105,5 @@ function draw() {
     noStroke();
     fill(255, 215, 0);
     ellipse(340, 360, 10, 10);
-    pop();
-}
-
-function drawCloud() {
-    // A cloud
-    push();
-    noStroke();
-    // Note: using a single number for a colour will be greyscale
-    // (As if you used the same number for R, G, and B)
-    // So this is white:
-    fill(255);
-    ellipse(100, 100, 100, 100);
-    ellipse(180, 80, 100, 100);
-    ellipse(160, 120, 60, 60);
-    ellipse(190, 130, 60, 60);
-    ellipse(220, 120, 60, 60);
     pop();
 }
