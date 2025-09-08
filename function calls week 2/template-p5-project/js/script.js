@@ -17,4 +17,5 @@ function setup() {
 function draw() {
     // happens every frame! ;)
     background(255, 255, 120);
+    rect(180, 120, 300, 300,)
 }
