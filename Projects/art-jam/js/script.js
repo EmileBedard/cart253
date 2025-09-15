@@ -19,6 +19,11 @@ let road = {
     h: 700,
 }
 
+let bike = {
+    frameColor: "white",
+    frameWeight: 15,
+}
+
 
 /**
  * Creates canvas
@@ -42,7 +47,9 @@ function draw() {
 }
 
 
-// draws the grey road
+/** 
+ *  draws the grey road
+*/
 function drawRoad() {
     push();
     fill(road.color);
@@ -51,13 +58,38 @@ function drawRoad() {
     pop();
 }
 
-// draws the cyclist and his beloved bike
+/** 
+ * Combines the cyclist drawing function and 
+ * his beloved bike drawing function 
+*/
 function drawCyclist() {
     drawBikeFrame();
     drawBikeWheels();
     drawCyclistBody();
     drawCyclistHead();
     drawCyclistLeg();
+
+}
+/**
+ * draws the bike frame 
+ */
+function drawBikeFrame() {
+    push();
+    stroke(bike.frameColor);
+    strokeWeight(bike.frameWeight);
+    strokeCap(SQUARE);
+
+    //draws the essential lines of the bike frame
+
+    //center frame triangle
+    line(300, 240, 420, 240);
+    line(300, 240, 330, 330);
+    line(330, 330, 420, 240);
+    //fork
+    line(420, 240, 450, 320);
+    //rear wheel support
+    line(300, 240, 250, 320);
+    line(250, 320, 330, 330);
 
 }
 
