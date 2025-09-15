@@ -20,8 +20,10 @@ let road = {
 }
 
 let bike = {
-    frameColor: "white",
-    frameWeight: 15,
+    frameColor: "orange",
+    frameWeight: 13,
+    wheelsColor: "white",
+    wheelsDiameter: 120,
 }
 
 
@@ -44,6 +46,8 @@ function draw() {
     drawRoad();
     drawCyclist();
 
+
+
 }
 
 
@@ -63,13 +67,14 @@ function drawRoad() {
  * his beloved bike drawing function 
 */
 function drawCyclist() {
-    drawBikeFrame();
     drawBikeWheels();
+    drawBikeFrame();
     drawCyclistBody();
     drawCyclistHead();
     drawCyclistLeg();
 
 }
+
 /**
  * draws the bike frame 
  */
@@ -91,5 +96,22 @@ function drawBikeFrame() {
     line(300, 240, 250, 320);
     line(250, 320, 330, 330);
 
+    pop();
+
 }
 
+/**
+ * draws the bike wheels 
+ */
+function drawBikeWheels() {
+    push();
+    fill(bike.wheelsColor);
+    noStroke();
+
+    // draws the two wheels according to bike object
+    ellipse(450, 320, bike.wheelsDiameter);
+    ellipse(250, 320, bike.wheelsDiameter);
+
+    pop();
+
+}
