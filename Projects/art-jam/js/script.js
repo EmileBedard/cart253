@@ -14,7 +14,7 @@ let road = {
     color: 85,
     angle: 0,
     x: 0,
-    y: 200,
+    y: 480 * 0.75,
 }
 
 
@@ -22,7 +22,7 @@ let road = {
  * Creates canvas
 */
 function setup() {
-    createCanvas(600, 480);
+    createCanvas(800, 480);
 
     // draws flat background one time
     background(0)
@@ -38,7 +38,7 @@ function draw() {
     push();
     fill(road.color);
     noStroke();
-    rect(road.x, road.y, 2300, 800)
+    rect(road.x, road.y, height, 800)
     pop();
 
 }
