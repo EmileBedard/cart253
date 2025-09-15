@@ -26,4 +26,11 @@ function setup() {
 */
 function draw() {
 
+    // draws the grey road
+    push();
+    fill(40);
+    noStroke();
+    rect(0, 700, 2300, 800)
+    pop();
+
 }
