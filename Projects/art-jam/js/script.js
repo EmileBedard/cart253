@@ -10,11 +10,19 @@
 
 "use strict";
 
+let road = {
+    color: 85,
+    angle: 0,
+    x: 0,
+    y: 200,
+}
+
+
 /**
  * Creates canvas
 */
 function setup() {
-    createCanvas(1920, 1080);
+    createCanvas(600, 480);
 
     // draws flat background one time
     background(0)
@@ -28,9 +36,9 @@ function draw() {
 
     // draws the grey road
     push();
-    fill(40);
+    fill(road.color);
     noStroke();
-    rect(0, 700, 2300, 800)
+    rect(road.x, road.y, 2300, 800)
     pop();
 
 }
