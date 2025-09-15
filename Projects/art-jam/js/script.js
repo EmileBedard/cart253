@@ -15,6 +15,8 @@ let road = {
     angle: 0,
     x: 0,
     y: 480 * 0.75,
+    w: 900,
+    h: 700,
 }
 
 
@@ -34,11 +36,28 @@ function setup() {
 */
 function draw() {
 
-    // draws the grey road
+    drawRoad();
+    drawCyclist();
+
+}
+
+
+// draws the grey road
+function drawRoad() {
     push();
     fill(road.color);
     noStroke();
-    rect(road.x, road.y, height, 800)
+    rect(road.x, road.y, road.w, road.h)
     pop();
+}
+
+// draws the cyclist and his beloved bike
+function drawCyclist() {
+    drawBikeFrame();
+    drawBikeWheels();
+    drawCyclistBody();
+    drawCyclistHead();
+    drawCyclistLeg();
 
 }
+
