@@ -13,6 +13,9 @@ let mrFurious = {
     x: 200,
     y: 200,
     size: 50,
+    minSize: 50,
+    maxSize: 450,
+    growth: 2,
     // Colour
     fill: {
         r: 50,
@@ -105,12 +108,16 @@ function draw() {
     bird.velocity.x = constrain(bird.velocity.x, bird.minVelocity.x, bird.maxVelocity.x);
     bird.x = bird.x + bird.velocity.x;
 
-    // making the sjaking ramp up slowly over time
+    // making the shaking ramp up slowly over time
     mrFurious.x = random(rage.l, rage.r);
     rage.l += -0.2;
     rage.r += 0.2;
     rage.l = constrain(rage.l, rage.min.l, rage.max.l);
     rage.r = constrain(rage.r, rage.min.r, rage.max.r);
+
+    // added mrfurious size growth
+    mrFurious.size += mrFurious.growth;
+    mrFurious.size = constrain(mrFurious.size, mrFurious.minSize, mrFurious.maxSize);
 
 
 
