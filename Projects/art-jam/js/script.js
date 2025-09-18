@@ -10,6 +10,7 @@
 
 "use strict";
 
+// a variable to control the road that the cyclist is using
 let road = {
     color: 85,
     angle: 0,
@@ -19,12 +20,26 @@ let road = {
     h: 700,
 }
 
+// a variable to set and organize the cyclist's bike
 let bike = {
-    frameColor: "orange",
+    frameColor: "blue",
     frameWeight: 13,
     wheelsColor: "white",
     wheelsDiameter: 120,
 }
+
+// a variable to define the different parameters of the cyclist
+let cyclist = {
+    bodyColor: "white",
+    headColor: "white",
+    knee = {
+        x: 338,
+        y: 298,
+    }
+
+}
+
+
 
 
 /**
@@ -34,7 +49,7 @@ function setup() {
     createCanvas(800, 480);
 
     // draws flat background one time
-    background(0)
+    background(0);
 }
 
 
@@ -46,6 +61,7 @@ function draw() {
     drawRoad();
     drawCyclist();
 
+    cyclist.knee.y += pedalingSpeed;
 
 
 }
@@ -114,4 +130,62 @@ function drawBikeWheels() {
 
     pop();
 
+}
+
+/**
+ * draws the cyclist body
+ */
+function drawCyclistBody() {
+    push();
+    fill(cyclist.bodyColor);
+    noStroke();
+
+    // draws the cyclist body in a blocky/geometric style
+    beginShape();
+
+    vertex(295, 175);
+    vertex(429, 150);
+    vertex(440, 192);
+    vertex(417, 219);
+    vertex(449, 238);
+    vertex(437, 250);
+    vertex(390, 229);
+    vertex(400, 207);
+    vertex(338, 223);
+    vertex(305, 268);
+    vertex(266, 213);
+
+    endShape(CLOSE);
+    pop();
+}
+
+/**
+ * draws the cyclist leg to after animate it
+ */
+function drawCyclistLeg() {
+
+    push();
+    strokeWeight(43);
+    stroke(cyclist.bodyColor);
+    strokeCap(SQUARE);
+    strokeJoin(ROUND);
+    noFill();
+
+    beginShape();
+
+    vertex(305, 235);
+    vertex(357, 268);
+    vertex(320, 328);
+
+    endShape();
+    pop();
+
+}
+
+function drawCyclistHead() {
+    push();
+    fill(cyclist.bodyColor)
+    noStroke();
+    ellipse(474, 170, 53);
+    pop();
 }
