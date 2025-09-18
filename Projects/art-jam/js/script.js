@@ -35,7 +35,11 @@ let cyclist = {
     knee: {
         x: 357,
         y: 285,
-    }
+    },
+    feet: {
+        x: 320,
+        y: 360,
+    },
 
 }
 
@@ -49,8 +53,7 @@ let pedalingSpeed = 1;
 function setup() {
     createCanvas(800, 480);
 
-    // draws flat background one time
-    background(0);
+
 }
 
 
@@ -58,17 +61,23 @@ function setup() {
  * draws the road and the cyclist
 */
 function draw() {
-
+    // draws flat background one time
+    background(0);
     drawRoad();
     drawCyclist();
 
 
-    //     console.log(cyclist.knee.y);
+    console.log(cyclist.knee.y);
 
-    //     if (cyclist.knee.y >= 285)
-    //         cyclist.knee.y += pedalingSpeed;
-    //     if (cyclist.knee.y >= 330)
-    //         cyclist.knee.y -= pedalingSpeed;
+    // if (cyclist.knee.y >= 285)
+    //     cyclist.knee.y += pedalingSpeed;
+    // if (cyclist.knee.y >= 330)
+    //     cyclist.knee.y -= pedalingSpeed;
+
+    cyclist.knee.y = 30 * sin(frameCount * 0.05) + 270;
+    cyclist.feet.y = 20 * sin(frameCount * 0.05) + 330;
+
+
 }
 
 
@@ -177,10 +186,10 @@ function drawCyclistLeg() {
     noFill();
 
     beginShape();
-
+    // 3 point line to draw the leg
     vertex(305, 235);
     vertex(cyclist.knee.x, cyclist.knee.y);
-    vertex(320, 328);
+    vertex(cyclist.feet.x, cyclist.feet.y);
 
     endShape();
     pop();
