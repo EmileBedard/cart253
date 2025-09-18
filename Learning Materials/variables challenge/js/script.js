@@ -12,7 +12,7 @@ let mrFurious = {
     // Position and size
     x: 200,
     y: 200,
-    size: 100,
+    size: 50,
     // Colour
     fill: {
         r: 50,
@@ -21,7 +21,11 @@ let mrFurious = {
     }
 };
 
-let angriness = 1;
+let angriness = {
+    value: 1,
+    min: 50,
+    max: 255,
+}
 
 let skyShade = {
     r: 140,
@@ -53,6 +57,21 @@ let bird = {
     }
 };
 
+let rage = {
+    l: 200,
+    r: 200,
+    min: {
+        l: 180,
+        r: 200,
+    },
+    max: {
+        l: 200,
+        r: 220,
+    },
+
+
+};
+
 
 
 /**
@@ -70,8 +89,11 @@ function draw() {
     drawMrFurious();
     drawSky();
     drawBird();
-    // making mrfurious angrier and angrier
-    mrFurious.fill.r += angriness;
+
+    // making mrfurious angrier and angrier and constraining the red color
+    mrFurious.fill.r += angriness.value;
+    mrFurious.fill.r = constrain(mrFurious.fill.r, angriness.min, angriness.max)
+
     // slowly making the sky darker over time
     skyShade.r += darkSky;
     skyShade.g += darkSky;
@@ -83,7 +105,12 @@ function draw() {
     bird.velocity.x = constrain(bird.velocity.x, bird.minVelocity.x, bird.maxVelocity.x);
     bird.x = bird.x + bird.velocity.x;
 
-    mrFurious.x = random(180, 220);
+    // making the sjaking ramp up slowly over time
+    mrFurious.x = random(rage.l, rage.r);
+    rage.l += -0.2;
+    rage.r += 0.2;
+    rage.l = constrain(rage.l, rage.min.l, rage.max.l);
+    rage.r = constrain(rage.r, rage.min.r, rage.max.r);
 
 
 
