@@ -63,12 +63,12 @@ function draw() {
     drawCyclist();
 
 
-    console.log(cyclist.knee.y);
+    //     console.log(cyclist.knee.y);
 
-    if (cyclist.knee.y >= 285)
-        cyclist.knee.y += pedalingSpeed;
-    else if (cyclist.knee.y >= 330)
-        cyclist.knee.y -= pedalingSpeed;
+    //     if (cyclist.knee.y >= 285)
+    //         cyclist.knee.y += pedalingSpeed;
+    //     if (cyclist.knee.y >= 330)
+    //         cyclist.knee.y -= pedalingSpeed;
 }
 
 
