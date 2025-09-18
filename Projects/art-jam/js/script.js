@@ -32,13 +32,14 @@ let bike = {
 let cyclist = {
     bodyColor: "white",
     headColor: "white",
-    knee = {
-        x: 338,
-        y: 298,
+    knee: {
+        x: 357,
+        y: 285,
     }
 
 }
 
+let pedalingSpeed = 1;
 
 
 
@@ -61,9 +62,13 @@ function draw() {
     drawRoad();
     drawCyclist();
 
-    cyclist.knee.y += pedalingSpeed;
 
+    console.log(cyclist.knee.y);
 
+    if (cyclist.knee.y >= 285)
+        cyclist.knee.y += pedalingSpeed;
+    else if (cyclist.knee.y >= 330)
+        cyclist.knee.y -= pedalingSpeed;
 }
 
 
@@ -174,7 +179,7 @@ function drawCyclistLeg() {
     beginShape();
 
     vertex(305, 235);
-    vertex(357, 268);
+    vertex(cyclist.knee.x, cyclist.knee.y);
     vertex(320, 328);
 
     endShape();
