@@ -69,11 +69,7 @@ function draw() {
 
     console.log(cyclist.knee.y);
 
-    // if (cyclist.knee.y >= 285)
-    //     cyclist.knee.y += pedalingSpeed;
-    // if (cyclist.knee.y >= 330)
-    //     cyclist.knee.y -= pedalingSpeed;
-
+    // animates the leg animation
     cyclist.knee.y = 30 * sin(frameCount * 0.05) + 270;
     cyclist.feet.y = 20 * sin(frameCount * 0.05) + 330;
 
