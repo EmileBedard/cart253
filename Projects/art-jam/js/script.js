@@ -24,21 +24,30 @@ let road = {
 let bike = {
     frameColor: "blue",
     frameWeight: 13,
-    wheelsColor: "white",
+    wheelsColor: (255),
     wheelsDiameter: 120,
 }
 
-// a variable to define the different parameters of the cyclist
+// JS object for everything about the cyclist, visual aspects and dynamic parameters
 let cyclist = {
-    bodyColor: "white",
-    headColor: "white",
+    bodyColor: (255),
+    leftLegColor: (180),
+    headColor: (255),
     pedalingSpeed: 0.25,
     pedalingAmplitude: 30,
-    knee: {
+    kneeR: {
         x: 357,
         y: 285,
     },
-    feet: {
+    kneeL: {
+        x: 357,
+        y: 285,
+    },
+    feetR: {
+        x: 320,
+        y: 360,
+    },
+    feetL: {
         x: 320,
         y: 360,
     },
@@ -59,20 +68,25 @@ function setup() {
 
 
 /**
- * draws the road and the cyclist
+ * draws the road and the cyclist after redrawing the background every frame
 */
 function draw() {
     // draws flat background one time
     background(0);
+
     drawRoad();
     drawCyclist();
 
 
-    console.log(cyclist.knee.y);
+    console.log(cyclist.kneeR.y);
 
-    // animates the leg animation
-    cyclist.knee.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 270;
-    cyclist.feet.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 330;
+    // animates the leg animation for the cyclist's RIGHT leg
+    cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 270;
+    cyclist.feetR.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 330;
+
+    // animates the leg animation for the cyclist's LEFT leg
+    cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 270;
+    cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 330;
 
 
 }
@@ -94,11 +108,13 @@ function drawRoad() {
  * his beloved bike drawing function 
 */
 function drawCyclist() {
+    drawCyclistLegL();
     drawBikeWheels();
     drawBikeFrame();
     drawCyclistBody();
     drawCyclistHead();
-    drawCyclistLeg();
+    drawCyclistLegR();
+
 
 }
 
@@ -171,9 +187,9 @@ function drawCyclistBody() {
 }
 
 /**
- * draws the cyclist leg to after animate it
+ * draws and sets the main lines for the RIGHT leg of the cyclist
  */
-function drawCyclistLeg() {
+function drawCyclistLegR() {
 
     push();
     strokeWeight(43);
@@ -185,8 +201,30 @@ function drawCyclistLeg() {
     beginShape();
     // 3 point line to draw the leg
     vertex(305, 235);
-    vertex(cyclist.knee.x, cyclist.knee.y);
-    vertex(cyclist.feet.x, cyclist.feet.y);
+    vertex(cyclist.kneeR.x, cyclist.kneeR.y);
+    vertex(cyclist.feetR.x, cyclist.feetR.y);
+
+    endShape();
+    pop();
+
+}
+/**
+ * draws and sets the main lines for the LEFT leg of the cyclist
+ */
+function drawCyclistLegL() {
+
+    push();
+    strokeWeight(43);
+    stroke(cyclist.leftLegColor);
+    strokeCap(SQUARE);
+    strokeJoin(ROUND);
+    noFill();
+
+    beginShape();
+    // 3 point line to draw the leg
+    vertex(305, 235);
+    vertex(cyclist.kneeL.x, cyclist.kneeL.y);
+    vertex(cyclist.feetL.x, cyclist.feetL.y);
 
     endShape();
     pop();
