@@ -32,6 +32,8 @@ let bike = {
 let cyclist = {
     bodyColor: "white",
     headColor: "white",
+    pedalingSpeed: 0.25,
+    pedalingAmplitude: 30,
     knee: {
         x: 357,
         y: 285,
@@ -43,7 +45,6 @@ let cyclist = {
 
 }
 
-let pedalingSpeed = 1;
 
 
 
@@ -70,8 +71,8 @@ function draw() {
     console.log(cyclist.knee.y);
 
     // animates the leg animation
-    cyclist.knee.y = 30 * sin(frameCount * 0.05) + 270;
-    cyclist.feet.y = 20 * sin(frameCount * 0.05) + 330;
+    cyclist.knee.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 270;
+    cyclist.feet.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 330;
 
 
 }
@@ -154,7 +155,7 @@ function drawCyclistBody() {
     beginShape();
 
     vertex(295, 175);
-    vertex(429, 150);
+    vertex(410, 160);
     vertex(440, 192);
     vertex(417, 219);
     vertex(449, 238);
@@ -196,6 +197,6 @@ function drawCyclistHead() {
     push();
     fill(cyclist.bodyColor)
     noStroke();
-    ellipse(474, 170, 53);
+    ellipse(470, 170, 50);
     pop();
 }
