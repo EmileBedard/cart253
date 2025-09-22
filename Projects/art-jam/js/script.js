@@ -14,9 +14,9 @@
 let road = {
     color: 85,
     angle: 0,
-    x: 0,
-    y: 480 * 0.75,
-    w: 900,
+    x: -750,
+    y: -20,
+    w: 1500,
     h: 700,
 }
 
@@ -33,7 +33,7 @@ let cyclist = {
     bodyColor: (255),
     leftLegColor: (180),
     headColor: (255),
-    pedalingSpeed: 0.25,
+    pedalingSpeed: 12,
     pedalingAmplitude: 30,
     kneeR: {
         x: 357,
@@ -62,6 +62,7 @@ let cyclist = {
 */
 function setup() {
     createCanvas(800, 480);
+    angleMode(DEGREES);
 
 
 }
@@ -78,7 +79,6 @@ function draw() {
     drawCyclist();
 
 
-    console.log(cyclist.kneeR.y);
 
     // animates the leg animation for the cyclist's RIGHT leg
     cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 270;
@@ -87,6 +87,8 @@ function draw() {
     // animates the leg animation for the cyclist's LEFT leg
     cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 270;
     cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 330;
+
+
 
 
 }
@@ -99,6 +101,12 @@ function drawRoad() {
     push();
     fill(road.color);
     noStroke();
+
+    //sets the origin of the road
+    translate(400, 380);
+
+
+    rotate(mouseX);
     rect(road.x, road.y, road.w, road.h)
     pop();
 }
@@ -108,6 +116,13 @@ function drawRoad() {
  * his beloved bike drawing function 
 */
 function drawCyclist() {
+    push();
+
+    //sets the origin of the cyclist on the center bottom of the cyclist composition for rotation
+    translate(400, 380);
+    //rotates the horizon line for changing the cyclist rode slope
+    rotate(mouseX);
+
     drawCyclistLegL();
     drawBikeWheels();
     drawBikeFrame();
@@ -115,6 +130,7 @@ function drawCyclist() {
     drawCyclistHead();
     drawCyclistLegR();
 
+    pop();
 
 }
 
@@ -126,7 +142,7 @@ function drawBikeFrame() {
     stroke(bike.frameColor);
     strokeWeight(bike.frameWeight);
     strokeCap(SQUARE);
-
+    translate(-350, -380);
     //draws the essential lines of the bike frame
 
     //center frame triangle
@@ -150,7 +166,7 @@ function drawBikeWheels() {
     push();
     fill(bike.wheelsColor);
     noStroke();
-
+    translate(-350, -380);
     // draws the two wheels according to bike object
     ellipse(450, 320, bike.wheelsDiameter);
     ellipse(250, 320, bike.wheelsDiameter);
@@ -167,11 +183,15 @@ function drawCyclistBody() {
     fill(cyclist.bodyColor);
     noStroke();
 
+    translate(-350, -380);
+
     // draws the cyclist body in a blocky/geometric style
     beginShape();
 
+    //back
     vertex(295, 175);
     vertex(410, 160);
+
     vertex(440, 192);
     vertex(417, 219);
     vertex(449, 238);
@@ -179,8 +199,8 @@ function drawCyclistBody() {
     vertex(390, 229);
     vertex(400, 207);
     vertex(338, 223);
-    vertex(305, 268);
-    vertex(266, 213);
+    vertex(320, 260);
+    vertex(266, 240);
 
     endShape(CLOSE);
     pop();
@@ -197,10 +217,11 @@ function drawCyclistLegR() {
     strokeCap(SQUARE);
     strokeJoin(ROUND);
     noFill();
+    translate(-350, -380);
 
     beginShape();
     // 3 point line to draw the leg
-    vertex(305, 235);
+    vertex(315, 235);
     vertex(cyclist.kneeR.x, cyclist.kneeR.y);
     vertex(cyclist.feetR.x, cyclist.feetR.y);
 
@@ -219,10 +240,11 @@ function drawCyclistLegL() {
     strokeCap(SQUARE);
     strokeJoin(ROUND);
     noFill();
+    translate(-350, -380);
 
     beginShape();
     // 3 point line to draw the leg
-    vertex(305, 235);
+    vertex(315, 235);
     vertex(cyclist.kneeL.x, cyclist.kneeL.y);
     vertex(cyclist.feetL.x, cyclist.feetL.y);
 
@@ -233,6 +255,7 @@ function drawCyclistLegL() {
 
 function drawCyclistHead() {
     push();
+    translate(-350, -380);
     fill(cyclist.bodyColor)
     noStroke();
     ellipse(470, 170, 50);
