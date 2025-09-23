@@ -54,6 +54,11 @@ let cyclist = {
 
 }
 
+//sets the original value of "allrotate" to 0
+let allRotate = 0
+
+
+
 
 
 
@@ -75,9 +80,11 @@ function draw() {
     // draws flat background one time
     background(0);
 
+    allRotate = map(mouseX, 0, 800, -15, 15, true);
+    console.log(allRotate);
+
     drawRoad();
     drawCyclist();
-
 
 
     // animates the leg animation for the cyclist's RIGHT leg
@@ -102,11 +109,12 @@ function drawRoad() {
     fill(road.color);
     noStroke();
 
-    //sets the origin of the road
+    //sets the origin of the road for the interactive rotation
     translate(400, 380);
 
 
-    rotate(mouseX);
+    rotate(allRotate);
+
     rect(road.x, road.y, road.w, road.h)
     pop();
 }
@@ -118,10 +126,11 @@ function drawRoad() {
 function drawCyclist() {
     push();
 
-    //sets the origin of the cyclist on the center bottom of the cyclist composition for rotation
+    //sets the origin of the cyclist on the center bottom of the cyclist composition for interactive rotation
     translate(400, 380);
-    //rotates the horizon line for changing the cyclist rode slope
-    rotate(mouseX);
+
+    //rotates the horizon line for changing the interactive cyclist rode slope
+    rotate(allRotate);
 
     drawCyclistLegL();
     drawBikeWheels();
