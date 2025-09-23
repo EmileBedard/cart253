@@ -57,6 +57,8 @@ let cyclist = {
 //sets the original value of "allrotate" to 0
 let allRotate = 0
 
+let delayTime = 0
+
 
 
 
@@ -81,7 +83,7 @@ function draw() {
     background(0);
 
     allRotate = map(mouseX, 0, 800, -15, 15, true);
-    console.log(allRotate);
+
 
     drawRoad();
     drawCyclist();
@@ -131,6 +133,13 @@ function drawCyclist() {
 
     //rotates the horizon line for changing the interactive cyclist rode slope
     rotate(allRotate);
+
+
+    translate(allRotate * 10, 0,);
+
+
+
+
 
     drawCyclistLegL();
     drawBikeWheels();
