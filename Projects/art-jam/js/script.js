@@ -33,6 +33,7 @@ let cyclist = {
     bodyColor: (255),
     leftLegColor: (180),
     headColor: (255),
+    pedalingAngle: 0,
     pedalingSpeed: 12,
     pedalingAmplitude: 30,
     kneeR: {
@@ -81,29 +82,20 @@ function setup() {
  * draws the road and the cyclist after redrawing the background every frame
 */
 function draw() {
-    // draws flat background one time
+
+    // draws flat background every frame
     background(0);
 
-    slopeAngle = map(mouseX, 0, 800, 0, 0.05)
     allRotate = map(mouseX, 0, 800, -15, 15, true);
+
+    cyclist.pedalingAngle += 1;
 
     drawRoad();
     drawCyclist();
 
-
-    // //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
-    // cyclist.pedalingSpeed += slopeAngle
-
-
-    // animates the leg animation for the cyclist's RIGHT leg
-    cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 270;
-    cyclist.feetR.y = cyclist.pedalingAmplitude * sin(frameCount * cyclist.pedalingSpeed) + 330;
-
-    // animates the leg animation for the cyclist's LEFT leg
-    cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 270;
-    cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 330;
-
-    console.log(cyclist.pedalingSpeed);
+    if (mouseMoved()) {
+        mouseMoved()
+    }
 
 
 
@@ -146,15 +138,26 @@ function drawCyclist() {
     translate(allRotate * 10, 0,);
 
 
-
-
-
     drawCyclistLegL();
     drawBikeWheels();
     drawBikeFrame();
     drawCyclistBody();
     drawCyclistHead();
     drawCyclistLegR();
+
+
+
+    // //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
+    cyclist.pedalingSpeed = map(mouseX, 0, width, 12, 30, true);
+
+
+    // animates the leg animation for the cyclist's RIGHT leg
+    cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+    cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+    // animates the leg animation for the cyclist's LEFT leg
+    cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+    cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
 
     pop();
 
@@ -286,4 +289,22 @@ function drawCyclistHead() {
     noStroke();
     ellipse(470, 170, 50);
     pop();
+}
+
+// function checkIfSlopeAngleChanged() {
+
+//     if (mouseMoved()) {
+//         cyclist.pedalingSpeed = cyclist.pedalingSpeed * 0
+//     }
+//     else {
+//         cyclist.pedalingSpeed = cyclist.pedalingSpeed * 1
+//     }
+// }
+
+function mouseMoved() {
+    cyclist.pedalingSpeed = cyclist.pedalingSpeed * 0
+}
+
+function mousestatic() {
+    cyclist.pedalingSpeed = cyclist.pedalingSpeed * 1
 }
