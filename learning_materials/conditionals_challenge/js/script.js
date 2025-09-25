@@ -103,7 +103,7 @@ function movePuck() {
 
 }
 /**
- * Checks if target is reached
+ * Checks if target is reached, if so, after 1 seconds move the target at a random place on the canvas
  */
 function checkTarget() {
     const targetDistance = dist(puck.x, puck.y, target.x, target.y);
@@ -136,7 +136,7 @@ function checkTarget() {
 //         target.y = random(100, 300)
 
 /**
- * starts a 2 second timer when the if statement of puck and target is true
+ * starts the rolling time when the function is called
  */
 function startTimer() {
     startTime = millis()
