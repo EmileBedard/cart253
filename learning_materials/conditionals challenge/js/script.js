@@ -20,11 +20,28 @@ const user = {
     fill: "#000000"
 };
 
+let target = {
+    x: 100,
+    y: 100,
+    size: 120,
+    fill: {
+        r: 0,
+        g: 0,
+        b: 255,
+    }
+}
+
+const targetThreshold = 50
+let startTime = undefined
+
+
+
 /**
  * Create the canvas
  */
 function setup() {
     createCanvas(400, 400);
+
 }
 
 /**
@@ -40,9 +57,13 @@ function draw() {
     movePuck();
 
     // Draw the user and puck
+    drawTarget();
     drawUser();
     drawPuck();
-    drawTarget();
+    checkTarget();
+
+
+
 }
 
 /**
@@ -81,6 +102,49 @@ function movePuck() {
     }
 
 }
+/**
+ * Checks if target is reached
+ */
+function checkTarget() {
+    const targetDistance = dist(puck.x, puck.y, target.x, target.y);
+    const targetOverlap = (targetDistance < targetThreshold);
+
+    if (targetOverlap) {
+        target.fill.b = 0
+        target.fill.g = 255
+
+        if (startTime === undefined) {
+            startTimer()
+        }
+        else {
+            const finishedTime = startTime + 1000
+            if (millis() >= finishedTime) {
+                target.x = random(100, 300)
+                target.y = random(100, 300)
+                startTime = undefined
+            }
+        }
+
+    }
+    else {
+        target.fill.b = 255
+        target.fill.g = 0
+    }
+    console.log(startTime);
+}
+// target.x = random(100, 300)
+//         target.y = random(100, 300)
+
+/**
+ * starts a 2 second timer when the if statement of puck and target is true
+ */
+function startTimer() {
+    startTime = millis()
+
+
+    console.log(startTime,)
+}
+
 
 /**
  * Displays the user circle
@@ -107,10 +171,10 @@ function drawPuck() {
 /**
  * Displays a target
  */
-function drawPuck() {
+function drawTarget() {
     push();
     noStroke();
-    fill(puck.fill);
-    ellipse(puck.x, puck.y, puck.size);
+    fill(target.fill.r, target.fill.g, target.fill.b);
+    ellipse(target.x, target.y, target.size);
     pop();
 }
