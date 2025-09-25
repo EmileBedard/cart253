@@ -57,7 +57,9 @@ let cyclist = {
 //sets the original value of "allrotate" to 0
 let allRotate = 0
 
-let delayTime = 0
+let slopeAngle = 0
+
+
 
 
 
@@ -82,11 +84,15 @@ function draw() {
     // draws flat background one time
     background(0);
 
+    slopeAngle = map(mouseX, 0, 800, 0, 0.05)
     allRotate = map(mouseX, 0, 800, -15, 15, true);
-
 
     drawRoad();
     drawCyclist();
+
+
+    // //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
+    // cyclist.pedalingSpeed += slopeAngle
 
 
     // animates the leg animation for the cyclist's RIGHT leg
@@ -96,6 +102,8 @@ function draw() {
     // animates the leg animation for the cyclist's LEFT leg
     cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 270;
     cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(frameCount * cyclist.pedalingSpeed) + 330;
+
+    console.log(cyclist.pedalingSpeed);
 
 
 
