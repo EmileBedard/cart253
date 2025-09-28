@@ -55,10 +55,14 @@ let cyclist = {
 
 }
 
-//sets the original value of "allrotate" to 0
+//sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
 let allRotate = 0
 
+//sets the original value of the slope angle to 0 before defining it with the user mouse position on X
 let slopeAngle = 0
+
+let danseuseActive = undefined
+
 
 
 
@@ -83,19 +87,22 @@ function setup() {
 */
 function draw() {
 
+    //adds 1 everyframe to cyclist pedaling angle object to count frame #
+    cyclist.pedalingAngle += 1;
+
     // draws flat background every frame
     background(0);
 
     allRotate = map(mouseX, 0, 800, -15, 15, true);
 
-    cyclist.pedalingAngle += 1;
 
     drawRoad();
     drawCyclist();
 
-    if (mouseMoved()) {
-        mouseMoved()
-    }
+    checkUserChange();
+
+
+    console.log(key, danseuseActive);
 
 
 
@@ -134,21 +141,31 @@ function drawCyclist() {
     //rotates the horizon line for changing the interactive cyclist rode slope
     rotate(allRotate);
 
-
     translate(allRotate * 10, 0,);
 
 
-    drawCyclistLegL();
-    drawBikeWheels();
-    drawBikeFrame();
-    drawCyclistBody();
-    drawCyclistHead();
-    drawCyclistLegR();
+
+    //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
+    if (key === 'd') {
+        drawCyclistLegLDanseuse();
+        drawBikeWheels();
+        drawBikeFrame();
+        drawCyclistBodyDanseuse();
+        drawCyclistHead();
+        drawCyclistLegRDanseuse();
+        cyclist.pedalingSpeed += cyclist.pedalingSpeed
+    }
+    else {
+        drawCyclistLegL();
+        drawBikeWheels();
+        drawBikeFrame();
+        drawCyclistBody();
+        drawCyclistHead();
+        drawCyclistLegR();
+    }
 
 
 
-    // //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
-    cyclist.pedalingSpeed = map(mouseX, 0, width, 12, 30, true);
 
 
     // animates the leg animation for the cyclist's RIGHT leg
@@ -204,6 +221,7 @@ function drawBikeWheels() {
 
 }
 
+
 /**
  * draws the cyclist body
  */
@@ -236,6 +254,37 @@ function drawCyclistBody() {
 }
 
 /**
+ * draws the cyclist body in the danseuse configuration
+ */
+function drawCyclistBodyDanseuse() {
+    push();
+    fill(cyclist.bodyColor);
+    noStroke();
+
+    translate(-350, -380);
+
+    // draws the cyclist body in a blocky/geometric style
+    beginShape();
+
+    //back
+    vertex(295, 145);
+    vertex(410, 160);
+
+    vertex(440, 192);
+    vertex(417, 219);
+    vertex(449, 238);
+    vertex(437, 250);
+    vertex(390, 229);
+    vertex(400, 207);
+    vertex(338, 213);
+    vertex(320, 250);
+    vertex(266, 200);
+
+    endShape(CLOSE);
+    pop();
+}
+
+/**
  * draws and sets the main lines for the RIGHT leg of the cyclist
  */
 function drawCyclistLegR() {
@@ -251,6 +300,30 @@ function drawCyclistLegR() {
     beginShape();
     // 3 point line to draw the leg
     vertex(315, 235);
+    vertex(cyclist.kneeR.x, cyclist.kneeR.y);
+    vertex(cyclist.feetR.x, cyclist.feetR.y);
+
+    endShape();
+    pop();
+
+}
+
+/**
+ * draws and sets the main lines for the RIGHT leg of the cyclist in the danseuse configuration
+ */
+function drawCyclistLegRDanseuse() {
+
+    push();
+    strokeWeight(43);
+    stroke(cyclist.bodyColor);
+    strokeCap(SQUARE);
+    strokeJoin(ROUND);
+    noFill();
+    translate(-350, -380);
+
+    beginShape();
+    // 3 point line to draw the leg
+    vertex(312, 215);
     vertex(cyclist.kneeR.x, cyclist.kneeR.y);
     vertex(cyclist.feetR.x, cyclist.feetR.y);
 
@@ -282,6 +355,30 @@ function drawCyclistLegL() {
 
 }
 
+/**
+ * draws and sets the main lines for the LEFT leg of the cyclist in the danseuse configuration 
+ */
+function drawCyclistLegLDanseuse() {
+
+    push();
+    strokeWeight(43);
+    stroke(cyclist.leftLegColor);
+    strokeCap(SQUARE);
+    strokeJoin(ROUND);
+    noFill();
+    translate(-350, -380);
+
+    beginShape();
+    // 3 point line to draw the leg
+    vertex(315, 235);
+    vertex(cyclist.kneeL.x, cyclist.kneeL.y);
+    vertex(cyclist.feetL.x, cyclist.feetL.y);
+
+    endShape();
+    pop();
+
+}
+
 function drawCyclistHead() {
     push();
     translate(-350, -380);
@@ -291,20 +388,21 @@ function drawCyclistHead() {
     pop();
 }
 
-// function checkIfSlopeAngleChanged() {
 
-//     if (mouseMoved()) {
-//         cyclist.pedalingSpeed = cyclist.pedalingSpeed * 0
-//     }
-//     else {
-//         cyclist.pedalingSpeed = cyclist.pedalingSpeed * 1
-//     }
-// }
+/**
+ * This function checks every frame if the user changed position of his mouse on the x axis. If yes, then the cyclist is changing gear to adapt to the new slope angle and is not pedaling. If no, then the cyclist is pedlaing according to slope angle with a different speed is easier or harder slope.
+ */
+function checkUserChange() {
 
-function mouseMoved() {
-    cyclist.pedalingSpeed = cyclist.pedalingSpeed * 0
+    if (movedX !== 0) {
+        cyclist.pedalingSpeed = 0
+    }
+
+    else {
+
+        //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
+        cyclist.pedalingSpeed = map(mouseX, 0, width, 12, 30, true);
+    }
 }
 
-function mousestatic() {
-    cyclist.pedalingSpeed = cyclist.pedalingSpeed * 1
-}
+
