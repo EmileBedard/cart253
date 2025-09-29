@@ -22,7 +22,7 @@ let road = {
 
 // a variable to set and organize the cyclist's bike
 let bike = {
-    frameColor: "blue",
+    frameColor: '#E04029',
     frameWeight: 13,
     wheelsColor: (255),
     wheelsDiameter: 120,
@@ -70,7 +70,7 @@ let backdrop = {
     fillFurthestBuilding: 200,
     fillBuilding: 120,
     horizonLine: 100,
-    assets: '#E04029'
+    assets: '#125329'
 }
 
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
