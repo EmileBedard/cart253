@@ -36,6 +36,7 @@ let cyclist = {
     pedalingAngle: 0,
     pedalingSpeed: 12,
     pedalingAmplitude: 30,
+    headBounceAmplitude: 5,
     kneeR: {
         x: 357,
         y: 285,
@@ -52,6 +53,15 @@ let cyclist = {
         x: 320,
         y: 360,
     },
+    head: {
+        x: 470,
+        y: 170,
+        danseuse: {
+            x: 470,
+            y: 150,
+        }
+
+    },
 
 }
 
@@ -61,7 +71,6 @@ let allRotate = 0
 //sets the original value of the slope angle to 0 before defining it with the user mouse position on X
 let slopeAngle = 0
 
-let danseuseActive = undefined
 
 
 
@@ -100,12 +109,6 @@ function draw() {
     drawCyclist();
 
     checkUserChange();
-
-
-    console.log(key, danseuseActive);
-
-
-
 
 }
 
@@ -151,7 +154,7 @@ function drawCyclist() {
         drawBikeWheels();
         drawBikeFrame();
         drawCyclistBodyDanseuse();
-        drawCyclistHead();
+        drawCyclistHeadDanseuse();
         drawCyclistLegRDanseuse();
         cyclist.pedalingSpeed += cyclist.pedalingSpeed
     }
@@ -175,6 +178,10 @@ function drawCyclist() {
     // animates the leg animation for the cyclist's LEFT leg
     cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
     cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+    // animates the head bouncing animation for the cyclist's head in the danseuse configuration
+    cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
+
 
     pop();
 
@@ -378,13 +385,27 @@ function drawCyclistLegLDanseuse() {
     pop();
 
 }
-
+/**
+ * Draws the cyclist head 
+ */
 function drawCyclistHead() {
     push();
     translate(-350, -380);
     fill(cyclist.bodyColor)
     noStroke();
-    ellipse(470, 170, 50);
+    ellipse(cyclist.head.x, cyclist.head.y, 50);
+    pop();
+}
+
+/**
+ * Draws the cyclist head, bouncing according to pedaling speed in the danseuse configuration
+ */
+function drawCyclistHeadDanseuse() {
+    push();
+    translate(-350, -380);
+    fill(cyclist.bodyColor)
+    noStroke();
+    ellipse(cyclist.head.danseuse.x, cyclist.head.danseuse.y, 50);
     pop();
 }
 
