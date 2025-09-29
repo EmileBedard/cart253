@@ -44,3 +44,20 @@ function draw() {
     ellipse(ball.x, ball.y, ball.size);
     pop();
 }
+
+function keyPressed(event) {
+    if (event.key === "r") {
+        ball.fill = ball.fills.red;
+    }
+    else if (event.key === "b") {
+        ball.fill = ball.fills.blue;
+    }
+
+}
+
+function keyReleased(event) {
+    if (event.key === "b" || event.key === "r") {
+        ball.fill = ball.fills.white;
+    }
+}
+
