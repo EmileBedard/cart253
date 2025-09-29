@@ -62,7 +62,15 @@ let cyclist = {
         }
 
     },
+}
 
+let backdrop = {
+    fillMtRoyal: '#5CA655',
+    mtRoyalCross: 80,
+    fillFurthestBuilding: 200,
+    fillBuilding: 120,
+    horizonLine: 100,
+    assets: '#E04029'
 }
 
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
@@ -99,12 +107,12 @@ function draw() {
     //adds 1 everyframe to cyclist pedaling angle object to count frame #
     cyclist.pedalingAngle += 1;
 
-    // draws flat background every frame
-    background(0);
+
 
     allRotate = map(mouseX, 0, 800, -15, 15, true);
 
-
+    drawSky();
+    drawBackdrop();
     drawRoad();
     drawCyclist();
 
@@ -424,6 +432,102 @@ function checkUserChange() {
         //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
         cyclist.pedalingSpeed = map(mouseX, 0, width, 12, 30, true);
     }
+}
+
+
+/**
+ * a function that draws a beautiful blue sky, perfect for a good cycling day
+ */
+function drawSky() {
+    // draws flat background every frame
+    background(100, 165, 255);
+}
+
+
+/**
+ * a function that sets a grey rectangle in the bottom of the canvas to anchor all the background graphic elements so they are not floating whene the slope reveals them
+ */
+function drawHorizonLine() {
+    push();
+    noStroke();
+    fill(backdrop.horizonLine);
+
+    //draws a base rectangle to set the horizon line
+    rect(0, 410, 800, 120);
+    pop();
+}
+
+
+function drawBackdrop() {
+    drawFurthestBack();
+    drawFurtherBack();
+    drawStreetAssets();
+    drawHorizonLine();
+}
+
+function drawFurthestBack() {
+    push();
+    noStroke();
+    fill(backdrop.fillFurthestBuilding);
+
+    //draws the 4 lightest and furthest buildings
+    rect(150, 164, 60, 280);
+    rect(254, 192, 100, 250);
+    rect(660, 180, 58, 260);
+    rect(750, 155, 84, 286);
+    pop();
+
+    push();
+    noStroke();
+    fill(backdrop.fillMtRoyal);
+
+    //draws the mt royal
+    ellipse(540, 360, 375, 485);
+    pop();
+
+    // draws the mt royal cross
+    push();
+    stroke(backdrop.mtRoyalCross);
+    strokeWeight(10);
+    strokeCap(ROUND);
+    line(439, 131, 472, 131);
+    line(455, 115, 455, 164);
+    pop();
+
+}
+
+function drawFurtherBack() {
+    push();
+    noStroke();
+    fill(backdrop.fillBuilding);
+
+    //draws the 4 closest buildings
+    rect(15, 240, 170, 200);
+    rect(205, 284, 100, 156);
+    rect(484, 274, 84, 166);
+    rect(677, 240, 90, 200);
+    pop();
+}
+
+function drawStreetAssets() {
+    push();
+    noStroke();
+    fill(backdrop.assets);
+
+    translate(400, 1325);
+    rotate(cyclist.pedalingAngle * -1);
+    ellipse(-34, -1075, 260);
+    ellipse(917, 520, 180);
+    ellipse(-755, -837, 350);
+    rect(-1206, -105, 260, 20);
+    rect(-55, 950, 20, 170);
+    pop();
+
+
+
+
+
+
 }
 
 
