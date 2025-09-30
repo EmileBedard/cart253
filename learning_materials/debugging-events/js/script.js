@@ -30,7 +30,7 @@ const bug = {
 };
 
 // The game is 15 seconds long
-let gameDuration = 15;
+let gameDuration = 2 * 1000;
 // Is the game over?
 let gameOver = false;
 
@@ -41,10 +41,10 @@ function setup() {
     createCanvas(500, 500);
 
     // Listen for keyboard presses for the controls
-    document.addEventListener("keypress", controlsHandler);
+    document.addEventListener("keydown", controlsHandler);
 
     // End the game after its duration
-    setTime(endTheGame, gameDuration);
+    setTimeout(endTheGame, gameDuration);
 }
 
 /**
@@ -53,7 +53,7 @@ function setup() {
 function draw() {
     background("#87ceeb"); // Sky blue
 
-    // If the is running, grow move and draw the bug
+    // If the game is running, grow move and draw the bug
     if (!gameOver) {
         growBug();
         moveBug();
@@ -63,6 +63,7 @@ function draw() {
     else {
         drawGameOver();
     }
+
 }
 
 /**
@@ -98,8 +99,8 @@ function drawBug() {
 /**
  * Sets the game to be over
  */
-function endGame() {
-    gameOver === true;
+function endTheGame() {
+    gameOver = true;
 }
 
 /**
@@ -119,7 +120,9 @@ function drawGameOver() {
 /**
  * Arrow keys increase bug velocity in that direction (infinitely)
  */
-function controlsHandler() {
+function controlsHandler(event) {
+
+
     if (event.keyCode === LEFT_ARROW) {
         bug.velocity.x += -bug.speedUp;
     }
@@ -137,7 +140,8 @@ function controlsHandler() {
 /**
  * If the bug gets clicked it dies
  */
-function mouseIsPressed() {
+function mousePressed() {
+
     // Don't check clicks when the game is over
     if (gameOver) {
         return;
@@ -147,6 +151,8 @@ function mouseIsPressed() {
     const d = dist(mouseX, mouseY, bug.x, bug.y);
     const clicked = (d < bug.size / 2);
     // If so, shrink the bug
+
+
     if (clicked) {
         // Shrink the bug
         bug.size -= 2;
