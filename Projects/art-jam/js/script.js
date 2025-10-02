@@ -76,6 +76,7 @@ let backdrop = {
 
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
 let allRotate = 0
+const mobileAllRotate = 0
 
 //sets the original value of the slope angle to 0 before defining it with the user mouse position on X
 let slopeAngle = 0
@@ -157,8 +158,8 @@ function checkIsDeviceTurned() {
 
         constrain(rotationX, -20, 20);
         text(rotationX, 100, 100);
-        allRotate = map(rotationX, -20, 20, -15, 15, true);
-        text(allRotate, 100, 120);
+        mobileAllRotate = map(rotationX, -20, 20, -15, 15, true);
+        text(mobileAllRotate, 100, 120);
 
 
     }
