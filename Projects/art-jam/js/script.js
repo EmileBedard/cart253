@@ -152,14 +152,17 @@ function touchEnded() {
 function checkIsDeviceTurned() {
     if (deviceOrientation === LANDSCAPE) {
 
-        text(rotationX, 100, 100);
+
         constrain(rotationX, -20, 20);
+        text(rotationX, 100, 100);
         allRotate = map(rotationX, -20, 20, -15, 15, true);
+        text(allRotate, 100, 120);
 
 
     }
     else {
         allRotate = map(mouseX, 0, 800, -15, 15, true);
+        text(allRotate, 100, 200);
     }
 }
 
