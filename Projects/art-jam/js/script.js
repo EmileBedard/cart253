@@ -135,6 +135,7 @@ function rotateRoad() {
 function deviceTurned() {
     if (deviceOrientation === LANDSCAPE) {
         console.log(rotationX);
+        tint('red');
     }
     else {
         return;
