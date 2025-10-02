@@ -123,7 +123,6 @@ function draw() {
 
     }
     else {
-        return;
     }
 
     drawRoad();
@@ -199,42 +198,82 @@ function drawCyclist() {
     translate(400, 380);
 
     //rotates the horizon line for changing the interactive cyclist rode slope
-    rotate(allRotate);
+    if (rotationX > 0 || rotationX < 0) {
+
+        rotate(mobileAllRotate);
 
 
-    translate(allRotate * 10, 0,);
+        translate(mobileAllRotate * 10, 0,);
 
-    //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
+        //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
 
-    if (key === 'd' || isTouched === true) {
-        drawCyclistLegLDanseuse();
-        drawBikeWheels();
-        drawBikeFrame();
-        drawCyclistBodyDanseuse();
-        drawCyclistHeadDanseuse();
-        drawCyclistLegRDanseuse();
-        cyclist.pedalingSpeed += cyclist.pedalingSpeed
+        if (isTouched === true) {
+            drawCyclistLegLDanseuse();
+            drawBikeWheels();
+            drawBikeFrame();
+            drawCyclistBodyDanseuse();
+            drawCyclistHeadDanseuse();
+            drawCyclistLegRDanseuse();
+            cyclist.pedalingSpeed += cyclist.pedalingSpeed
+        }
+        else {
+            drawCyclistLegL();
+            drawBikeWheels();
+            drawBikeFrame();
+            drawCyclistBody();
+            drawCyclistHead();
+            drawCyclistLegR();
+        }
+
+        // animates the leg animation for the cyclist's RIGHT leg
+        cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+        cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+        // animates the leg animation for the cyclist's LEFT leg
+        cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+        cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+        // animates the head bouncing animation for the cyclist's head in the danseuse configuration
+        cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
+
     }
     else {
-        drawCyclistLegL();
-        drawBikeWheels();
-        drawBikeFrame();
-        drawCyclistBody();
-        drawCyclistHead();
-        drawCyclistLegR();
+        rotate(allRotate);
+
+
+        translate(allRotate * 10, 0,);
+
+        //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
+
+        if (key === 'd') {
+            drawCyclistLegLDanseuse();
+            drawBikeWheels();
+            drawBikeFrame();
+            drawCyclistBodyDanseuse();
+            drawCyclistHeadDanseuse();
+            drawCyclistLegRDanseuse();
+            cyclist.pedalingSpeed += cyclist.pedalingSpeed
+        }
+        else {
+            drawCyclistLegL();
+            drawBikeWheels();
+            drawBikeFrame();
+            drawCyclistBody();
+            drawCyclistHead();
+            drawCyclistLegR();
+        }
+
+        // animates the leg animation for the cyclist's RIGHT leg
+        cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+        cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+        // animates the leg animation for the cyclist's LEFT leg
+        cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+        cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+        // animates the head bouncing animation for the cyclist's head in the danseuse configuration
+        cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
     }
-
-    // animates the leg animation for the cyclist's RIGHT leg
-    cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
-    cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
-
-    // animates the leg animation for the cyclist's LEFT leg
-    cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
-    cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
-
-    // animates the head bouncing animation for the cyclist's head in the danseuse configuration
-    cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
-
 
     pop();
 
