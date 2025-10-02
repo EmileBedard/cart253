@@ -78,8 +78,9 @@ const instruction = {
     textColor: 'white',
     mainTitle: 'A CYCLIST STRUGGLE',
     subTitle: 'An interactive simulator',
-    text: 'press "D" (desktop) or touch (mobile) to toggle the Danseuse position',
+    text: 'press "D" (on desktop) or touch (on mobile) to toggle the Danseuse position',
     text2: 'press "H" to hide instructions',
+    active: true,
 }
 
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
@@ -143,10 +144,17 @@ function draw() {
     drawRoad();
     drawCyclist();
 
+    //check if the user pressed H to set the instructions to invisible
+    if (key === 'h') {
+        instruction.active = false;
+    }
+    else {
+        drawInstructions();
+    }
+    console.log(key);
+
     // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
     checkUserChange();
-
-    drawInstructions();
 }
 
 /**
@@ -513,7 +521,7 @@ function checkUserChange() {
  */
 function drawSky() {
     // draws flat background every frame
-    background(100, 165, 255);
+    background('#64A5FF');
 }
 
 
@@ -607,13 +615,42 @@ function drawStreetAssets() {
 }
 
 function drawInstructions() {
-    push();
-    fill(instruction.textColor);
-    textSize(40);
-    textAlign(CENTER, CENTER);
-    text(instruction.mainTitle, width / 2, 20);
-    noStroke();
-    pop();
+
+    if (instruction.active === true) {
+        fill(instruction.textColor);
+        noStroke();
+        textStyle(BOLD);
+        textAlign(CENTER, CENTER);
+        textFont('Courier New');
+
+        //main title
+        push();
+        textSize(40);
+        text(instruction.mainTitle, width / 2, 20);
+        pop();
+
+        //subtitle
+        push();
+        textSize(20);
+        text(instruction.subTitle, width / 2, 45);
+        pop();
+
+        //line 1 of the instructions
+        push();
+        textSize(15);
+        text(instruction.text, width / 2, 90);
+        pop();
+
+        //line 2 of the instructions
+        push();
+        textSize(15);
+        text(instruction.text2, width / 2, 110);
+        pop();
+    }
+    else {
+        return
+    }
+
 
 }
 
