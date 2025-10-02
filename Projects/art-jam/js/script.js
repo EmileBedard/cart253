@@ -121,7 +121,15 @@ function draw() {
 
     // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
     checkUserChange();
+    print(rotationX);
 
+    if (rotationX > 0 || rotationX < 0) {
+        checkIsDeviceTurned();
+
+    }
+    else {
+        return;
+    }
 }
 
 /**
@@ -141,7 +149,19 @@ function touchEnded() {
     isTouched = false;
 }
 
+function checkIsDeviceTurned() {
+    if (deviceOrientation === LANDSCAPE) {
 
+        text(rotationX, 100, 100);
+        constrain(rotationX, -20, 20);
+        allRotate = map(rotationX, -20, 20, -15, 15, true);
+
+
+    }
+    else {
+        allRotate = map(mouseX, 0, 800, -15, 15, true);
+    }
+}
 
 /** 
  *  draws the grey road
