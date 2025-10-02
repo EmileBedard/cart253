@@ -116,12 +116,6 @@ function draw() {
 
     drawSky();
     drawBackdrop();
-    drawRoad();
-    drawCyclist();
-
-    // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
-    checkUserChange();
-    print(rotationX);
 
     if (rotationX > 0 || rotationX < 0) {
         checkIsDeviceTurned();
@@ -130,6 +124,14 @@ function draw() {
     else {
         return;
     }
+
+    drawRoad();
+    drawCyclist();
+
+    // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
+    checkUserChange();
+
+
 }
 
 /**
