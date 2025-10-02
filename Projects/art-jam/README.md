@@ -8,6 +8,7 @@
 
 This cycling simulator let's you try for a brief how it's like to be a cyclist in Montreal, the ups and downs and the wonderful joy of sprinting.
 > This Program is interactive! Follow the instructions provided on main screen or try pressing 'd' on desktop to activate sprint
+
 > Try it on mobile! tilt phone to control slope angle. touch to activate sprint
 
 > This program is utilizing the [p5.js](https://p5js.org) functions [touchStarted] and [touchEnded] that are called when the mobile user is touching the phone's screen
