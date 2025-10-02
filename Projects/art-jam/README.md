@@ -11,7 +11,7 @@ This cycling simulator let's you try for a brief moment how it's like to be a cy
 
 > Try it on mobile! tilt phone to control slope angle. touch to activate sprint
 
-> This program is utilizing the [p5.js](https://p5js.org) functions [touchStarted] and [touchEnded] that are called when the mobile user is touching the phone's screen
+> This program is utilizing the [p5.js](https://p5js.org) functions [touchStarted] and [touchEnded] that are called when the mobile user is touching the phone's screen. Mobile capabilites are offering SO much more, this first dibble dabble was very interesting and only the beginning.
 
 ## Screenshot(s)
 
