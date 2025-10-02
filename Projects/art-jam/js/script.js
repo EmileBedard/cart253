@@ -135,7 +135,7 @@ function rotateRoad() {
 function deviceTurned() {
     if (deviceOrientation === LANDSCAPE) {
         console.log(rotationX);
-        tint('red');
+        cyclist.bodyColor = 0;
     }
     else {
         return;
@@ -551,12 +551,6 @@ function drawStreetAssets() {
     rect(-1206, -105, 260, 20);
     rect(-55, 950, 20, 170);
     pop();
-
-
-
-
-
-
 }
 
 
