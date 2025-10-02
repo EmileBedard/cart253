@@ -112,6 +112,7 @@ function draw() {
 
     //calls a function to rotate the road according to user position on x
     rotateRoad();
+    checkDeviceOrientation();
 
     drawSky();
     drawBackdrop();
@@ -132,7 +133,7 @@ function rotateRoad() {
     allRotate = map(mouseX, 0, 800, -15, 15, true);
 }
 
-function deviceTurned() {
+function checkDeviceOrientation() {
     if (deviceOrientation === LANDSCAPE) {
         console.log(rotationX);
         cyclist.bodyColor = 0;
