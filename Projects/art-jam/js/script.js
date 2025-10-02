@@ -70,7 +70,8 @@ let backdrop = {
     fillFurthestBuilding: 200,
     fillBuilding: 120,
     horizonLine: 100,
-    assets: '#125329'
+    assets: '#125329',
+    assetsRotationAngle: 1,
 }
 
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
@@ -78,6 +79,8 @@ let allRotate = 0
 
 //sets the original value of the slope angle to 0 before defining it with the user mouse position on X
 let slopeAngle = 0
+
+let deviceAngle = 0
 
 
 
@@ -89,7 +92,7 @@ let slopeAngle = 0
 
 
 /**
- * Creates canvas
+ * Creates canvas and sets the angle mode for further rotations
 */
 function setup() {
     createCanvas(800, 480);
@@ -100,26 +103,43 @@ function setup() {
 
 
 /**
- * draws the road and the cyclist after redrawing the background every frame
+ * draws the road, the cyclist and the background with background sky every frame
 */
 function draw() {
 
     //adds 1 everyframe to cyclist pedaling angle object to count frame #
     cyclist.pedalingAngle += 1;
 
-
-
-    allRotate = map(mouseX, 0, 800, -15, 15, true);
+    //calls a function to rotate the road according to user position on x
+    rotateRoad();
 
     drawSky();
     drawBackdrop();
     drawRoad();
     drawCyclist();
 
+    // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
     checkUserChange();
 
 }
 
+/**
+ * a function to rotate the road according to user position on x, compatible with mouseX for desktop user and touch for mobile user.
+ */
+function rotateRoad() {
+
+    // maps the mouse position on X to change the road angle from -15 to 15 degrees
+    allRotate = map(mouseX, 0, 800, -15, 15, true);
+}
+
+function deviceTurned() {
+    if (deviceOrientation === LANDSCAPE) {
+        console.log(rotationX);
+    }
+    else {
+        return;
+    }
+}
 
 /** 
  *  draws the grey road
@@ -132,9 +152,10 @@ function drawRoad() {
     //sets the origin of the road for the interactive rotation
     translate(400, 380);
 
-
+    // rotate the road according to the predefined allrotate variable
     rotate(allRotate);
 
+    //draws the grey rectangle of the road
     rect(road.x, road.y, road.w, road.h)
     pop();
 }
@@ -152,11 +173,11 @@ function drawCyclist() {
     //rotates the horizon line for changing the interactive cyclist rode slope
     rotate(allRotate);
 
+
     translate(allRotate * 10, 0,);
 
-
-
     //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
+
     if (key === 'd') {
         drawCyclistLegLDanseuse();
         drawBikeWheels();
@@ -174,10 +195,6 @@ function drawCyclist() {
         drawCyclistHead();
         drawCyclistLegR();
     }
-
-
-
-
 
     // animates the leg animation for the cyclist's RIGHT leg
     cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
@@ -419,18 +436,20 @@ function drawCyclistHeadDanseuse() {
 
 
 /**
- * This function checks every frame if the user changed position of his mouse on the x axis. If yes, then the cyclist is changing gear to adapt to the new slope angle and is not pedaling. If no, then the cyclist is pedlaing according to slope angle with a different speed is easier or harder slope.
+ * This function checks every frame if the user changed position of his mouse on the x axis. If yes, then the cyclist is changing gear to adapt to the new slope angle and is not pedaling. If no, then the cyclist is pedaling according to slope angle with a different speed if easier or harder slope.
  */
 function checkUserChange() {
 
     if (movedX !== 0) {
-        cyclist.pedalingSpeed = 0
+        cyclist.pedalingSpeed = 0;
+
+
     }
 
     else {
 
         //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
-        cyclist.pedalingSpeed = map(mouseX, 0, width, 12, 30, true);
+        cyclist.pedalingSpeed = map(mouseX, 0, width, 7, 25, true);
     }
 }
 
@@ -514,8 +533,17 @@ function drawStreetAssets() {
     noStroke();
     fill(backdrop.assets);
 
+    backdrop.assetsRotationAngle = cyclist.pedalingAngle;
+
+
+
+    //sets the origin of rotation of the rotating street assets
     translate(400, 1325);
-    rotate(cyclist.pedalingAngle * -1);
+
+    //rotates the street assets at a fixed speed equal to the framecount calculated with cyclist.pedalingAngle variable.
+    rotate(backdrop.assetsRotationAngle * -1);
+
+    //draws the different assets
     ellipse(-34, -1075, 260);
     ellipse(917, 520, 180);
     ellipse(-755, -837, 350);
