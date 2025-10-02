@@ -4,8 +4,8 @@
  * 
  * This project is about the everyday ups and downs of being
  * a cyclist in the city. It is interactive by responding to
- * the user mous position to change the cyclist effort to roll
- * down or climb up the hill.
+ * the user mouse position or mobile tilt angle to change the cyclist effort to roll
+ * down or climb up the hill. it also offers the user to switch on a sprint mode with D or HOLD on mobile
  */
 
 "use strict";
@@ -64,6 +64,7 @@ let cyclist = {
     },
 }
 
+// js object to control everything about the backdrop
 let backdrop = {
     fillMtRoyal: '#5CA655',
     mtRoyalCross: 80,
@@ -74,9 +75,10 @@ let backdrop = {
     assetsRotationAngle: 1,
 }
 
+// js object for all the info of the instructions
 const instruction = {
     textColor: 'white',
-    mainTitle: 'A CYCLIST STRUGGLE',
+    mainTitle: 'A CYCLIST STRUGGLES',
     subTitle: 'An interactive simulator',
     text: 'press "D" (on desktop) or touch (on mobile) to toggle the Danseuse position',
     text2: 'press "H" to hide instructions',
@@ -86,10 +88,13 @@ const instruction = {
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
 let allRotate = 0
 
+//sets the original value of "mobileAllrotate" to 0 for further mobile interaction of rotating the cyclist and his bike
 let mobileAllRotate = 0
 
+//sets the variable to initially undefined to determine after if the user's screen is touched
 let isTouched = undefined;
 
+//sets the variable to initially undefined to determine after if the user's device is either desktop or mobile
 let deviceType = undefined;
 
 
@@ -102,7 +107,7 @@ let deviceType = undefined;
 
 
 /**
- * Creates canvas and sets the angle mode for further rotations
+ * Creates canvas and sets the angle mode for further rotations. Also checks if the viewing device is either a desktop or a mobile. Only compatible with androids and iphones
 */
 function setup() {
     createCanvas(800, 480);
@@ -119,7 +124,7 @@ function setup() {
 
 
 /**
- * draws the road, the cyclist and the background with background sky every frame
+ * draws the road, the cyclist and the background with background sky every frame. Also includes the drawing of the instructions and the function calls to check if the user changed position on X
 */
 function draw() {
 
@@ -166,6 +171,9 @@ function rotateRoad() {
     allRotate = map(mouseX, 0, 800, -15, 15, true);
 }
 
+/**
+ * a pair of NEW functions used to activate the danseuse mode on mobile when touch is used by the user
+ */
 function touchStarted() {
     isTouched = true;
 }
@@ -174,17 +182,27 @@ function touchEnded() {
     isTouched = false;
 }
 
+
+/**
+ * a function to check if the device is a mobile, if yes, it then founds out if its in landscape or portrait orientation and changes the rotation axis used to interact with the cyclist.
+ */
 function checkIsDeviceTurned() {
     if (deviceType === "mobile") {
-        constrain(rotationX, -20, 20);
 
-        mobileAllRotate = map(rotationX, -20, 20, 15, -15, true);
+        if (deviceOrientation === LANDSCAPE) {
+            constrain(rotationX, -20, 20);
+            mobileAllRotate = map(rotationX, -20, 20, 15, -15, true);
+        }
+        else {
+            constrain(rotationY, -20, 20);
+            mobileAllRotate = map(rotationY, -20, 20, 15, -15, true);
+        }
     }
 
 }
 
 /** 
- *  draws the grey road
+ *  draws the grey road and rotates it along mouseX for desktop users or along rotationX for mobile users
 */
 function drawRoad() {
     push();
@@ -208,8 +226,7 @@ function drawRoad() {
 }
 
 /** 
- * Combines the cyclist drawing function and 
- * his beloved bike drawing function 
+ * Combines the cyclist drawing function and his beloved bike drawing function 
 */
 function drawCyclist() {
     push();
@@ -230,7 +247,7 @@ function drawCyclist() {
 
 
 
-    //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
+    //if no key is typed, draws the regular cyclist body. If 'd' key is typed or touch is, switch to danseuse position aka sprint position that double the pedaling speed.
 
     if (key === 'd' || isTouched === true) {
         drawCyclistLegLDanseuse();
@@ -490,7 +507,7 @@ function drawCyclistHeadDanseuse() {
 
 
 /**
- * This function checks every frame if the user changed position of his mouse on the x axis. If yes, then the cyclist is changing gear to adapt to the new slope angle and is not pedaling. If no, then the cyclist is pedaling according to slope angle with a different speed if easier or harder slope.
+ * This function checks every frame if the user changed position of his mouse on the x axis, or rotated their device with the corresponding axis. If yes, then the cyclist is changing gear to adapt to the new slope angle and is not pedaling. If no, then the cyclist is pedaling according to slope angle with a different speed if easier or harder slope.
  */
 function checkUserChange() {
 
@@ -524,6 +541,15 @@ function drawSky() {
     background('#64A5FF');
 }
 
+/**
+ * a function that combines all the backfrop elements together
+ */
+function drawBackdrop() {
+    drawFurthestBack();
+    drawFurtherBack();
+    drawStreetAssets();
+    drawHorizonLine();
+}
 
 /**
  * a function that sets a grey rectangle in the bottom of the canvas to anchor all the background graphic elements so they are not floating whene the slope reveals them
@@ -538,14 +564,9 @@ function drawHorizonLine() {
     pop();
 }
 
-
-function drawBackdrop() {
-    drawFurthestBack();
-    drawFurtherBack();
-    drawStreetAssets();
-    drawHorizonLine();
-}
-
+/**
+ * this function is drawing the mt royal in the background with 4 other buildings
+ */
 function drawFurthestBack() {
     push();
     noStroke();
@@ -577,6 +598,9 @@ function drawFurthestBack() {
 
 }
 
+/**
+ * this function draws the "closer" 4 buildings in front of the mountain
+ */
 function drawFurtherBack() {
     push();
     noStroke();
@@ -590,6 +614,9 @@ function drawFurtherBack() {
     pop();
 }
 
+/**
+ * this function is drawing some street elements and makes them rotate around an origin point placed very far under the canvas y axis
+ */
 function drawStreetAssets() {
     push();
     noStroke();
@@ -614,6 +641,9 @@ function drawStreetAssets() {
     pop();
 }
 
+/**
+ * this function is drawing the instruction lines on the composition, when inactive, it skips to show. The user can choose once to not display the instructions by pressing "h"
+ */
 function drawInstructions() {
 
     if (instruction.active === true) {
