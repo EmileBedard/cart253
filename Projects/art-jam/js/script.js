@@ -80,7 +80,7 @@ let allRotate = 0
 //sets the original value of the slope angle to 0 before defining it with the user mouse position on X
 let slopeAngle = 0
 
-let deviceAngle = 0
+let isTouched = undefined;
 
 
 
@@ -121,7 +121,6 @@ function draw() {
 
     // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
     checkUserChange();
-    checkDeviceOrientation();
 
 }
 
@@ -134,19 +133,15 @@ function rotateRoad() {
     allRotate = map(mouseX, 0, 800, -15, 15, true);
 }
 
-function checkDeviceOrientation() {
-    if (deviceOrientation === LANDSCAPE) {
-        console.log(rotationX);
-        cyclist.bodyColor = 0;
-        text(rotationX, 100, 100);
-
-
-    }
-    else {
-        cyclist.bodycolor = 255;
-
-    }
+function touchStarted() {
+    isTouched = true;
 }
+
+function touchEnded() {
+    isTouched = false;
+}
+
+
 
 /** 
  *  draws the grey road
@@ -185,7 +180,7 @@ function drawCyclist() {
 
     //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
 
-    if (key === 'd') {
+    if (key === 'd' || isTouched === true) {
         drawCyclistLegLDanseuse();
         drawBikeWheels();
         drawBikeFrame();
