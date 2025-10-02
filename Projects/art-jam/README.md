@@ -1,12 +1,12 @@
 # A Cyclist Struggles
-Émile Bédard
+by Émile Bédard
 
 
 [View this project online](https://emilebedard.github.io/cart253/Projects/art-jam/)
 
 ## Description
 
-This cycling simulator let's you try for a brief how it's like to be a cyclist in Montreal, the ups and downs and the wonderful joy of sprinting.
+This cycling simulator let's you try for a brief moment how it's like to be a cyclist in Montreal, the ups and downs and the wonderful joy of sprinting.
 > This Program is interactive! Follow the instructions provided on main screen or try pressing 'd' on desktop to activate sprint
 
 > Try it on mobile! tilt phone to control slope angle. touch to activate sprint
@@ -21,7 +21,6 @@ Still of the program running with the cyclist going uphill.
 
 ## Attribution
 
-> - This project uses [p5.js](https://p5js.org).
 > - This project uses [p5.js](https://p5js.org).
 > - The image is a screenshot of the program running
 
