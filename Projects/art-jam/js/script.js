@@ -137,6 +137,9 @@ function checkDeviceOrientation() {
     if (deviceOrientation === LANDSCAPE) {
         console.log(rotationX);
         cyclist.bodyColor = 0;
+        text(rotationX, 100, 100);
+
+
     }
     else {
         cyclist.bodycolor = 255;
