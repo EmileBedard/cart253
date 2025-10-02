@@ -11,16 +11,23 @@ Also hides overflow.
 
 body {
   padding: 0;
-  margin: 10px;
+  background-color: #64A5FF;
+  margin: 0px;
   display: grid;
   /* Set up the grid and justify/align to center */
   justify-content: center;
   align-content: center;
-
   height: 100vh;
   /* Body is the height of the viewport */
   overflow: hidden;
   /* Hide anything that goes off the window size */
+
+  /* scale differnece to visualize on mobile */
+  @media (max-width: 1000px) {
+    scale: 75%;
+
+
+  }
 
 
 }

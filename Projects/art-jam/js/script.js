@@ -74,14 +74,22 @@ let backdrop = {
     assetsRotationAngle: 1,
 }
 
+const instruction = {
+    textColor: 'white',
+    mainTitle: 'A CYCLIST STRUGGLE',
+    subTitle: 'An interactive simulator',
+    text: 'press "D" (desktop) or touch (mobile) to toggle the Danseuse position',
+    text2: 'press "H" to hide instructions',
+}
+
 //sets the original value of "allrotate" to 0 for further interaction of rotating the cyclist and his bike
 let allRotate = 0
-const mobileAllRotate = 0
 
-//sets the original value of the slope angle to 0 before defining it with the user mouse position on X
-let slopeAngle = 0
+let mobileAllRotate = 0
 
 let isTouched = undefined;
+
+let deviceType = undefined;
 
 
 
@@ -99,6 +107,12 @@ function setup() {
     createCanvas(800, 480);
     angleMode(DEGREES);
 
+    if (navigator.userAgent.match(/Android|iPhone/i)) {
+        deviceType = "mobile";
+    }
+    else {
+        deviceType = "desktop";
+    }
 
 }
 
@@ -118,11 +132,12 @@ function draw() {
     drawSky();
     drawBackdrop();
 
-    if (rotationX > 0 || rotationX < 0) {
+    if (deviceType === "mobile") {
         checkIsDeviceTurned();
 
     }
     else {
+
     }
 
     drawRoad();
@@ -131,7 +146,7 @@ function draw() {
     // checks every frame if the user changed mouse position on x to decide if cyclist should stop pedaling for a moment.
     checkUserChange();
 
-
+    drawInstructions();
 }
 
 /**
@@ -152,20 +167,12 @@ function touchEnded() {
 }
 
 function checkIsDeviceTurned() {
-    if (deviceOrientation === LANDSCAPE) {
-
-
+    if (deviceType === "mobile") {
         constrain(rotationX, -20, 20);
-        text(rotationX, 100, 100);
-        mobileAllRotate = map(rotationX, -20, 20, -15, 15, true);
-        text(mobileAllRotate, 100, 120);
 
+        mobileAllRotate = map(rotationX, -20, 20, 15, -15, true);
+    }
 
-    }
-    else {
-        allRotate = map(mouseX, 0, 800, -15, 15, true);
-        text(allRotate, 100, 200);
-    }
 }
 
 /** 
@@ -180,7 +187,12 @@ function drawRoad() {
     translate(400, 380);
 
     // rotate the road according to the predefined allrotate variable
-    rotate(allRotate);
+    if (deviceType === "mobile") {
+        rotate(mobileAllRotate);
+    }
+    else {
+        rotate(allRotate);
+    }
 
     //draws the grey rectangle of the road
     rect(road.x, road.y, road.w, road.h)
@@ -198,82 +210,49 @@ function drawCyclist() {
     translate(400, 380);
 
     //rotates the horizon line for changing the interactive cyclist rode slope
-    if (rotationX > 0 || rotationX < 0) {
-
+    if (deviceType === "mobile") {
         rotate(mobileAllRotate);
-
-
         translate(mobileAllRotate * 10, 0,);
-
-        //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
-
-        if (isTouched === true) {
-            drawCyclistLegLDanseuse();
-            drawBikeWheels();
-            drawBikeFrame();
-            drawCyclistBodyDanseuse();
-            drawCyclistHeadDanseuse();
-            drawCyclistLegRDanseuse();
-            cyclist.pedalingSpeed += cyclist.pedalingSpeed
-        }
-        else {
-            drawCyclistLegL();
-            drawBikeWheels();
-            drawBikeFrame();
-            drawCyclistBody();
-            drawCyclistHead();
-            drawCyclistLegR();
-        }
-
-        // animates the leg animation for the cyclist's RIGHT leg
-        cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
-        cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
-
-        // animates the leg animation for the cyclist's LEFT leg
-        cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
-        cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
-
-        // animates the head bouncing animation for the cyclist's head in the danseuse configuration
-        cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
-
     }
     else {
         rotate(allRotate);
-
-
         translate(allRotate * 10, 0,);
 
-        //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
-
-        if (key === 'd') {
-            drawCyclistLegLDanseuse();
-            drawBikeWheels();
-            drawBikeFrame();
-            drawCyclistBodyDanseuse();
-            drawCyclistHeadDanseuse();
-            drawCyclistLegRDanseuse();
-            cyclist.pedalingSpeed += cyclist.pedalingSpeed
-        }
-        else {
-            drawCyclistLegL();
-            drawBikeWheels();
-            drawBikeFrame();
-            drawCyclistBody();
-            drawCyclistHead();
-            drawCyclistLegR();
-        }
-
-        // animates the leg animation for the cyclist's RIGHT leg
-        cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
-        cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
-
-        // animates the leg animation for the cyclist's LEFT leg
-        cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
-        cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
-
-        // animates the head bouncing animation for the cyclist's head in the danseuse configuration
-        cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
     }
+
+
+
+    //if no key is typed, draws the regular cyclist body. If 'd' key is typed, switch to danseuse position aka sprint position that double the pedaling speed.
+
+    if (key === 'd' || isTouched === true) {
+        drawCyclistLegLDanseuse();
+        drawBikeWheels();
+        drawBikeFrame();
+        drawCyclistBodyDanseuse();
+        drawCyclistHeadDanseuse();
+        drawCyclistLegRDanseuse();
+        cyclist.pedalingSpeed += cyclist.pedalingSpeed
+    }
+    else {
+        drawCyclistLegL();
+        drawBikeWheels();
+        drawBikeFrame();
+        drawCyclistBody();
+        drawCyclistHead();
+        drawCyclistLegR();
+    }
+
+    // animates the leg animation for the cyclist's RIGHT leg
+    cyclist.kneeR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+    cyclist.feetR.y = cyclist.pedalingAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+    // animates the leg animation for the cyclist's LEFT leg
+    cyclist.kneeL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 270;
+    cyclist.feetL.y = (cyclist.pedalingAmplitude * -1) * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 330;
+
+    // animates the head bouncing animation for the cyclist's head in the danseuse configuration
+    cyclist.head.danseuse.y = cyclist.headBounceAmplitude * sin(cyclist.pedalingAngle * cyclist.pedalingSpeed) + 180;
+
 
     pop();
 
@@ -514,9 +493,17 @@ function checkUserChange() {
     }
 
     else {
+        if (deviceType === "mobile") {
+            //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
+            cyclist.pedalingSpeed = map(mobileAllRotate, -15, 15, 7, 25, true);
+        }
+        else {
+            //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
+            cyclist.pedalingSpeed = map(mouseX, 0, width, 7, 25, true);
 
-        //sets the pedaling speed according to slope angle, in cyclist language, it can be translated to difficulty
-        cyclist.pedalingSpeed = map(mouseX, 0, width, 7, 25, true);
+
+        }
+
     }
 }
 
@@ -619,4 +606,14 @@ function drawStreetAssets() {
     pop();
 }
 
+function drawInstructions() {
+    push();
+    fill(instruction.textColor);
+    textSize(40);
+    textAlign(CENTER, CENTER);
+    text(instruction.mainTitle, width / 2, 20);
+    noStroke();
+    pop();
+
+}
 
