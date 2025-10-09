@@ -1,6 +1,6 @@
 # Art jam response !
 > ### Jake Hayduk art jam, THE portrait!
-    link to his experience online: https://jakehayduk.github.io/cart253/art-jam/
+    [link to his experience online](https://jakehayduk.github.io/cart253/art-jam/)
     
     **response:**
     Jake's work is surprisingly simple and minimalist, yet powerful.
@@ -16,7 +16,7 @@
     code, I love that he embraced the canvas origin as his rotation point, a new approach to interaction.
     
 > ### Nerly Cadet art jam, a vocaloid unicorn? why not !
-    link to her experience online: https://nerlylli.github.io/cart253/topics/topics/art-jam/
+    [link to her experience online](https://nerlylli.github.io/cart253/topics/topics/art-jam/)
     
     **response:**
     Here is a new take on the self-portrait art jam that I find very compelling. Coming from a fine arts
@@ -31,7 +31,7 @@
     to the cool blue hues of the rest of the composition.
     
 > ### Liam St-Georges jam, a cool dude take on self portrait.
-    link to his experience online: https://liham19.github.io/cart253/topics/art-jam/
+    [link to his experience online](https://liham19.github.io/cart253/topics/art-jam/)
     
     **response:**
     Liam's portrait is joyful, kind, playful and so amusing with the dancing eyebrows. I definitely see how he
