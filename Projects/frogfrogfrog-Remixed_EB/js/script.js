@@ -9,6 +9,7 @@
  * - Move the frog with your mouse
  * - Click to launch the tongue
  * - Catch flies
+ *                                          TO MODIFY INSTRUCTIONS BEFORE SUBMISSION!
  * 
  * Made with p5
  * https://p5js.org/
@@ -49,6 +50,7 @@ const fly = {
  */
 function setup() {
     createCanvas(640, 480);
+    // gameState = intro // sets the initial state of the game to intro before starting the game
 
     // Give the fly its first random position
     resetFly();
