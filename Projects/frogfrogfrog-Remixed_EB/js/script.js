@@ -1,6 +1,7 @@
 /**
  * Frogfrogfrog
- * Pippin Barr
+ * new remixed version by Emile Bedard
+ * original game by Pippin Barr
  * 
  * A game of catching flies with your frog-tongue
  * 
@@ -163,7 +164,7 @@ function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size/2 + fly.size/2);
+    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         // Reset the fly
         resetFly();
