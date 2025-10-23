@@ -40,6 +40,9 @@ const frog = {
 // creates the gameState variable to later store what state are we in
 let gameState
 
+// creates the font variable for the custom font
+let spaceMonoFont
+
 
 // Our fly
 // Has a position, size, and speed of horizontal movement
@@ -50,6 +53,15 @@ const fly = {
     speed: 3
 };
 
+
+/**
+ * preload the specific font used for texts
+ */
+function preload() {
+    spaceMonoFont = loadFont('/assets/fonts/SpaceMono-Bold.ttf');
+}
+
+
 /**
  * Creates the canvas and initializes the fly
  */
@@ -59,7 +71,7 @@ function setup() {
     // sets the initial state of the game to intro before starting the game
     gameState = "intro";
 
-    drawTitleScreen(); // draws title screen to start
+
 
     // Give the fly its first random position
     resetFly();
@@ -81,9 +93,13 @@ function draw() {
     // if we are not in the game and or in the ending, we must be in the intro with the title screen
     else {
 
+        background("#87ceeb");
+        drawTitleScreen(); // draws title screen to start        
+        drawText();
         moveFrog();
         moveTongue();
         drawFrog();
+
     }
 
 }
@@ -204,4 +220,20 @@ function mousePressed() {
     if (frog.tongue.state === "idle") {
         frog.tongue.state = "outbound";
     }
+}
+
+function drawTitleScreen() {
+    drawText("MOVE WITH MOUSE / TOUCH", 320, 60, 25);
+    drawText("CLICK / RELEASE TO EAT", 320, 90, 25);
+
+}
+
+function drawText(string, x, y, s) {
+    push();
+    textAlign(CENTER, CENTER);
+    fill("#E66800");
+    textSize(s);
+    textFont(spaceMonoFont);
+    text(string, x, y);
+    pop();
 }
