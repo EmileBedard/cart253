@@ -37,11 +37,20 @@ const frog = {
     }
 };
 
+const bigFly = {
+    color: 'black',
+    size: 50,
+    wingColor: 300,
+    wingSize: 30,
+}
+
 // creates the gameState variable to later store what state are we in
 let gameState
 
 // creates the font variable for the custom font
 let spaceMonoFont
+
+
 
 
 // Our fly
@@ -94,7 +103,8 @@ function draw() {
     else {
 
         background("#87ceeb");
-        drawTitleScreen(); // draws title screen to start        
+        drawTitleScreen(); // draws title screen to start    
+        drawBigFly();
         drawText();
         moveFrog();
         moveTongue();
@@ -247,5 +257,29 @@ function drawText(string, x, y, s) {
     textSize(s);
     textFont(spaceMonoFont);
     text(string, x, y);
+    pop();
+}
+
+function drawBigFly() {
+
+    let wingBuzz = 6 * sin(frameCount * 1) + 240;
+
+    // draws the buzzing wings of the big fly
+    push();
+    fill(bigFly.wingColor);
+    noStroke();
+    ellipse(370, wingBuzz, bigFly.wingSize)
+    pop();
+
+    push();
+    fill(bigFly.wingColor);
+    noStroke();
+    ellipse(325, wingBuzz, bigFly.wingSize)
+    pop();
+
+    // draws the main body of the big fly
+    push();
+    fill(bigFly.color);
+    ellipse(348, 250, bigFly.size)
     pop();
 }
