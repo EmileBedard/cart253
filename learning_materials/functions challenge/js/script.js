@@ -55,14 +55,14 @@ function draw() {
  * Moves the paddle
  */
 function movePaddle(paddle) {
-
+    paddle.x = mouseX
 }
 
 /**
  * Moves the ball passed in as a parameter
  */
 function moveBall(ball) {
-
+    ball.y += ball.velocity.y
 }
 
 /**
