@@ -1,14 +1,14 @@
 /**
- * Frogfrogfrog
- * new remixed version by Emile Bedard
+ * Wood Frogfrogfrog
+ * new remixed version of frogfrogfrog by Emile Bedard
  * original game by Pippin Barr
  * 
- * A game of catching flies with your frog-tongue
+ * A game of catching insects with your frog-tongue to reach hibernation
  * 
  * Instructions:
  * - Move the frog with your mouse
  * - Click to launch the tongue
- * - Catch flies
+ * - Catch insects
  *                                          TO MODIFY INSTRUCTIONS BEFORE SUBMISSION!
  * 
  * Made with p5
@@ -23,7 +23,8 @@ const frog = {
     body: {
         x: 320,
         y: 520,
-        size: 150
+        size: 150,
+        color: "#8A5431",
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -35,6 +36,10 @@ const frog = {
         state: "idle" // State can be: idle, outbound, inbound
     }
 };
+
+// creates the gameState variable to later store what state are we in
+let gameState
+
 
 // Our fly
 // Has a position, size, and speed of horizontal movement
@@ -50,13 +55,15 @@ const fly = {
  */
 function setup() {
     createCanvas(640, 480);
-    // gameState = intro // sets the initial state of the game to intro before starting the game
+
 
     // Give the fly its first random position
     resetFly();
 }
 
 function draw() {
+
+    gameState = "intro" // sets the initial state of the game to intro before starting the game
     background("#87ceeb");
     moveFly();
     drawFly();
@@ -153,7 +160,7 @@ function drawFrog() {
 
     // Draw the frog's body
     push();
-    fill("#00ff00");
+    fill(frog.body.color);
     noStroke();
     ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
