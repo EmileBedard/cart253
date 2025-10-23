@@ -9,6 +9,7 @@
 "use strict";
 
 // Our ball
+
 const ball = {
     x: 300,
     y: 20,
@@ -17,6 +18,18 @@ const ball = {
     velocity: {
         x: 0,
         y: 10
+    }
+};
+
+// Our ball 2
+const ball2 = {
+    x: 400,
+    y: 20,
+    width: 10,
+    height: 10,
+    velocity: {
+        x: 0,
+        y: 5
     }
 };
 
@@ -44,11 +57,14 @@ function draw() {
 
     movePaddle(paddle);
     moveBall(ball);
+    moveBall(ball2);
 
     handleBounce(ball, paddle);
+    handleBounce(ball2, paddle);
 
     drawPaddle(paddle);
     drawBall(ball);
+    drawBall(ball2);
 }
 
 /**
@@ -69,6 +85,10 @@ function moveBall(ball) {
  * Bounces the provided ball off the provided paddle
  */
 function handleBounce(ball, paddle) {
+    if (checkOverlap(ball, paddle)) {
+        ball.velocity.y *= -1
+    }
+
 
 }
 
