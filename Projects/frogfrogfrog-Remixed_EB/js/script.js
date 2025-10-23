@@ -223,8 +223,20 @@ function mousePressed() {
 }
 
 function drawTitleScreen() {
-    drawText("MOVE WITH MOUSE / TOUCH", 320, 60, 25);
-    drawText("CLICK / RELEASE TO EAT", 320, 90, 25);
+
+    // first draw the instructions
+    drawText("MOVE WITH MOUSE / TOUCH", 320, 40, 25);
+    drawText("CLICK / RELEASE TO EAT", 320, 70, 25);
+
+    // draws the main title
+    drawText("wood", 320, 110, 30);
+    drawText("FROG", 320, 150, 90);
+    drawText("FR G", 320, 230, 90); // missing O here to place the big starting fly
+    drawText("FROG", 320, 310, 90);
+
+    // draws the call to action to start the game
+    drawText("EAT THE FLY TO START", 320, 410, 25);
+
 
 }
 
