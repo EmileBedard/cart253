@@ -22,8 +22,9 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 520,
-        size: 150,
+        y: 340,
+        w: 123,
+        h: 163,
         color: "#8A5431",
     },
     // The frog's tongue has a position, size, speed, and state
@@ -203,8 +204,19 @@ function drawFrog() {
     push();
     fill(frog.body.color);
     noStroke();
-    ellipse(frog.body.x, frog.body.y, frog.body.size);
+    ellipse(frog.body.x, frog.body.y, frog.body.w, frog.body.h); // frog main body
+    ellipse(frog.body.x + 57, frog.body.y - 17, 32, 57) // frog right arm
+    ellipse(frog.body.x - 57, frog.body.y - 17, 32, 57) // frog left arm
+    ellipse(frog.body.x + 40, frog.body.y + 40, 85) // frog right thigh
+    ellipse(frog.body.x - 40, frog.body.y + 40, 85) // frog left thigh
     pop();
+
+    // draw the frog's eyes
+
+
+
+
+
 }
 
 /**
