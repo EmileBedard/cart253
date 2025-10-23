@@ -56,6 +56,10 @@ const fly = {
 function setup() {
     createCanvas(640, 480);
 
+    // sets the initial state of the game to intro before starting the game
+    gameState = "intro";
+
+    drawTitleScreen(); // draws title screen to start
 
     // Give the fly its first random position
     resetFly();
@@ -63,14 +67,25 @@ function setup() {
 
 function draw() {
 
-    gameState = "intro" // sets the initial state of the game to intro before starting the game
-    background("#87ceeb");
-    moveFly();
-    drawFly();
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
+    if (gameState === "main") {
+        background("#87ceeb");
+        moveFly();
+        drawFly();
+        checkTongueFlyOverlap();
+    }
+
+    else if (gameState === "ending") {
+
+    }
+
+    // if we are not in the game and or in the ending, we must be in the intro with the title screen
+    else {
+
+        moveFrog();
+        moveTongue();
+        drawFrog();
+    }
+
 }
 
 /**
