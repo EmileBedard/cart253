@@ -22,7 +22,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 500,
+        y: 350,
         w: 123,
         h: 163,
         color: "#8A5431",
@@ -30,7 +30,7 @@ const frog = {
     // The frog's tongue has a position, size, speed, and state
     tongue: {
         x: undefined,
-        y: 480,
+        y: undefined,
         size: 20,
         speed: 20,
         // Determines how the tongue moves each frame
@@ -86,6 +86,9 @@ function setup() {
 
     // sets the initial state of the game to intro before starting the game
     gameState = "intro";
+
+    // sets the initial frog tongue y to its body location on y
+    frog.tongue.y = frog.body.y;
 };
 
 function draw() {
@@ -117,7 +120,7 @@ function draw() {
         checkTongueFlyOverlap(bigFly);
 
     };
-
+    console.log(frog.tongue.state);
 }
 
 /**
@@ -255,18 +258,23 @@ function checkTongueFlyOverlap(insect) {
             // Bring back the tongue
             frog.tongue.state = "inbound";
 
-            if (bigFly.y === frog.body.y) {
+            if (bigFly.y === frog.body.y && frog.tongue.y === frog.body.y) {
                 // sets the game state to main game
                 gameState = "main"
                 // Reset the first insect of the game
                 resetInsect();
+                //sets the frog tongue to idle because it reached back down
+                frog.tongue.state = "idle";
             }
         }
 
-        // Reset a new insect
-        resetInsect();
-        // Bring back the tongue
-        frog.tongue.state = "inbound";
+        else {
+
+            // Reset a new insect
+            resetInsect();
+            // Bring back the tongue
+            frog.tongue.state = "inbound";
+        }
     }
 }
 
