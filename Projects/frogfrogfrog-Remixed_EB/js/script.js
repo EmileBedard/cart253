@@ -279,7 +279,7 @@ function drawSpider() {
 function resetInsect(insect) {
 
     insect.x = 0;
-    insect.y = random(0, 300);
+    insect.y = random(5, frog.body.y - 100);
     insect.speed = random(2, 5);
 
 }
