@@ -22,7 +22,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 340,
+        y: 500,
         w: 123,
         h: 163,
         color: "#8A5431",
@@ -175,8 +175,8 @@ function moveTongue() {
     // If the tongue is inbound, it moves down
     else if (frog.tongue.state === "inbound") {
         frog.tongue.y += frog.tongue.speed;
-        // The tongue stops if it hits the bottom
-        if (frog.tongue.y >= height) {
+        // The tongue stops if it reaches back to the frog location Y
+        if (frog.tongue.y === frog.body.y) {
             frog.tongue.state = "idle";
         }
     }
