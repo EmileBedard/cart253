@@ -22,10 +22,11 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 500,
+        y: 300,
         w: 123,
         h: 163,
         color: "#8A5431",
+        step: -5,
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -295,6 +296,7 @@ function moveFrog() {
  * Handles moving the tongue based on its state
  */
 function moveTongue() {
+    console.log(frog.tongue.state);
     // Tongue matches the frog's x
     frog.tongue.x = frog.body.x;
     // If the tongue is idle, it doesn't do anything
@@ -313,7 +315,7 @@ function moveTongue() {
     else if (frog.tongue.state === "inbound") {
         frog.tongue.y += frog.tongue.speed;
         // The tongue stops if it reaches back to the frog location Y
-        if (frog.tongue.y === frog.body.y) {
+        if (frog.tongue.y === frog.body.y || frog.tongue.y > frog.body.y) {
             frog.tongue.state = "idle";
         }
     }
@@ -367,8 +369,10 @@ function checkTongueInsectOverlap(insect) {
 
     if (eaten) {
 
+
         checkWichInsect(); //check wich insect was caught only if an insect is eaten
-        console.log(ateResult);
+        frog.tongue.state = "inbound";
+
 
         if (gameState === "intro") {
 
@@ -390,14 +394,17 @@ function checkTongueInsectOverlap(insect) {
 
         if (ateResult === "ateAnt") {
 
+
             // Reset a new ant
             resetInsect(ant);
             // Bring back the tongue
             frog.tongue.state = "inbound";
+            frog.body.y += frog.body.step;
         }
 
         if (ateResult === "ateFly") {
 
+            frog.body.y += frog.body.step;
             // Reset a new fly
             resetInsect(fly);
             // Bring back the tongue
@@ -406,6 +413,7 @@ function checkTongueInsectOverlap(insect) {
 
         if (ateResult === "ateSpider") {
 
+            frog.body.y += frog.body.step;
             // Reset a new fly
             resetInsect(spider);
             // Bring back the tongue
