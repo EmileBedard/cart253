@@ -67,6 +67,7 @@ const fly = {
     wingColor: 300,
     wingSize: 7,
     wingAmplitude: 3,
+    flightAmplitude: 30,
 };
 
 // Our ant
@@ -75,8 +76,7 @@ const ant = {
     x: 40,
     y: 200, // Will be random
     size: 10,
-    speed: 3,
-    stepAmplitude: 2,
+    speed: 2,
 };
 
 // Our spider
@@ -85,7 +85,7 @@ const spider = {
     x: 0,
     y: 200, // Will be random
     size: 10,
-    speed: 3
+    speed: 1
 };
 
 
@@ -116,10 +116,9 @@ function draw() {
     if (gameState === "main") {
         background("#87ceeb");
 
-        moveInsect(fly);
-        moveInsect(ant);
-        moveInsect(spider);
+        moveSpider();
         moveAnt();
+        moveFly();
 
         drawFly();
         drawAnt();
@@ -154,28 +153,45 @@ function draw() {
 }
 
 /**
+ * Moves the spider according to its speed and double wave with sine and cosine on x and y axis
+ * Resets the spider if it gets all the way to the right
+ */
+function moveSpider() {
+
+    // used Google AI Gemini here to figure out the functions needed to make the spiral
+    // successfully made a spider goi in circles forward to reach the other end of the canvas
+    spider.x += ((spider.speed * 0.5) * sin(frameCount * 0.05) + 1 * (spider.speed * 0.3));
+    spider.y += ((spider.speed * 0.5) * cos(frameCount * 0.05));
+
+    if (spider.x > width) {
+        resetInsect(spider);
+    }
+}
+
+/**
  * Moves the insects according to its speed
  * Resets the insects if it gets all the way to the right
  */
-function moveInsect() {
-    // // Move the insects
-    // insect.x += insect.speed;
-    // // Handle the insect going off the canvas
-    // if (fly.x > width) {
-    //     resetInsect(fly);
-    // }
-
-    // if (spider.x > width) {
-    //     resetInsect(spider);
-    // }
-}
-
 function moveAnt() {
 
-    ant.x += (ant.stepAmplitude * sin(frameCount * 0.05) + 1) + 0;
-    console.log(ant.x);
+    ant.x += (ant.speed * sin(frameCount * 0.05) + 1);
+
     if (ant.x > width) {
         resetInsect(ant);
+    }
+}
+
+/**
+ * Moves the insects according to its speed
+ * Resets the insects if it gets all the way to the right
+ */
+function moveFly() {
+
+    fly.x += fly.speed
+    fly.y = (fly.flightAmplitude * sin(frameCount * 0.05) + 200);
+
+    if (fly.x > width) {
+        resetInsect(fly);
     }
 }
 
@@ -264,7 +280,7 @@ function resetInsect(insect) {
 
     insect.x = 0;
     insect.y = random(0, 300);
-    insect.speed = random(2, 6);
+    insect.speed = random(2, 5);
 
 }
 
