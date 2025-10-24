@@ -22,11 +22,11 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 300,
+        y: 500,
         w: 123,
         h: 163,
         color: "#8A5431",
-        step: -5,
+        step: -15,
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -350,8 +350,11 @@ function drawFrog() {
     ellipse(frog.body.x - 40, frog.body.y + 40, 85) // frog left thigh
     pop();
 
-    // draw the frog's eyes
-
+    push();
+    fill('black');
+    ellipse(frog.body.x + 40, frog.body.y - 55, 20)// draw the frog's right eyes
+    ellipse(frog.body.x - 40, frog.body.y - 55, 20)// draw the frog's left eyes
+    pop();
 
 
 
@@ -387,8 +390,6 @@ function checkTongueInsectOverlap(insect) {
                 resetInsect(fly);
                 resetInsect(ant);
                 resetInsect(spider);
-                //sets the frog tongue to idle because it reached back down
-                frog.tongue.state = "idle";
             }
         }
 
