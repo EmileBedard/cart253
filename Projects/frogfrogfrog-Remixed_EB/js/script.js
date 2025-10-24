@@ -251,16 +251,20 @@ function checkTongueFlyOverlap(insect) {
 
         if (gameState === "intro") {
 
-            // sets the game state to main game
-            gameState = "main"
-            // Reset the first insect of the game
-            resetInsect(fly);
+            bigFly.y = frog.tongue.y;
             // Bring back the tongue
             frog.tongue.state = "inbound";
+
+            if (bigFly.y === frog.body.y) {
+                // sets the game state to main game
+                gameState = "main"
+                // Reset the first insect of the game
+                resetInsect();
+            }
         }
 
         // Reset a new insect
-        resetInsect(fly);
+        resetInsect();
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
