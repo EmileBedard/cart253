@@ -46,13 +46,16 @@ const bigFly = {
     wingColor: 300,
     wingSize: 30,
     wingAmplitude: 6,
-}
+};
 
 // creates the gameState variable to later store what state are we in
-let gameState
+let gameState;
 
 // creates the font variable for the custom font
-let spaceMonoFont
+let spaceMonoFont;
+
+// creates an undefined variable to later store an index number for picking randomly generated insects
+let insectIndex = undefined;
 
 
 
@@ -72,7 +75,7 @@ const fly = {
  */
 function preload() {
     spaceMonoFont = loadFont('/assets/fonts/SpaceMono-Bold.ttf');
-}
+};
 
 
 /**
@@ -83,7 +86,7 @@ function setup() {
 
     // sets the initial state of the game to intro before starting the game
     gameState = "intro";
-}
+};
 
 function draw() {
 
@@ -113,7 +116,7 @@ function draw() {
         drawFrog();
         checkTongueFlyOverlap(bigFly);
 
-    }
+    };
 
 }
 
@@ -126,7 +129,7 @@ function moveInsect(insect) {
     insect.x += insect.speed;
     // Handle the fly going off the canvas
     if (insect.x > width) {
-        resetInsect(fly);
+        resetInsect();
     }
 }
 
@@ -144,9 +147,24 @@ function drawFly() {
 /**
  * Resets the fly to the left with a random y
  */
-function resetInsect(insect) {
-    insect.x = 0;
-    insect.y = random(0, 300);
+function resetInsect() {
+
+    // insectIndex = random(1, 3);
+    // if (insectIndex === 1) {
+    fly.x = 0
+    fly.y = random(0, 300);
+    // }
+
+    // else if (insectIndex === 2) {
+    //     spider.x = 0;
+    //     spider.y = random(0, 300);
+    // }
+
+    // else {
+    //     ant.x = 0;
+    //     ant.y = random(0, 300);
+    // }
+
 }
 
 /**
