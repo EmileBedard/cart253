@@ -208,18 +208,19 @@ function drawAnt() {
     strokeWeight(2);
     fill("#000000");
 
+
     ellipse(ant.x, ant.y, ant.size - 3);//main ant body
-    ellipse(ant.x, ant.y + 7, ant.size);//head
-    ellipse(ant.x, ant.y - 7, ant.size);//abdomen
+    ellipse(ant.x + 7, ant.y, ant.size);//head
+    ellipse(ant.x - 7, ant.y, ant.size);//abdomen
 
-    line(ant.x, ant.y, ant.x + 10, ant.y + 3);//right legs
-    line(ant.x, ant.y, ant.x + 10, ant.y - 3);
+    line(ant.x, ant.y, ant.x + 3, ant.y + 10);//right legs
+    line(ant.x, ant.y, ant.x - 3, ant.y + 10);
 
-    line(ant.x, ant.y, ant.x - 10, ant.y + 3);//left legs
-    line(ant.x, ant.y, ant.x - 10, ant.y - 3);
+    line(ant.x, ant.y, ant.x + 3, ant.y - 10);//left legs
+    line(ant.x, ant.y, ant.x - 3, ant.y - 10);
 
-    line(ant.x, ant.y, ant.x + 2, ant.y + 16);//antennas
-    line(ant.x, ant.y, ant.x - 2, ant.y + 16);
+    line(ant.x, ant.y, ant.x + 16, ant.y + 2);//antennas
+    line(ant.x, ant.y, ant.x + 16, ant.y - 2);
 
     pop();
 }
@@ -235,13 +236,13 @@ function drawSpider() {
 
     ellipse(spider.x, spider.y, spider.size - 1);//main body
 
-    line(spider.x, spider.y, spider.x + 10, spider.y - 6);
-    line(spider.x, spider.y, spider.x + 10, spider.y);//right legs
-    line(spider.x, spider.y, spider.x + 10, spider.y + 6);
+    line(spider.x, spider.y, spider.x - 6, spider.y + 10);
+    line(spider.x, spider.y, spider.x, spider.y + 10);//right legs
+    line(spider.x, spider.y, spider.x + 6, spider.y + 10);
 
-    line(spider.x, spider.y, spider.x - 10, spider.y - 6);
-    line(spider.x, spider.y, spider.x - 10, spider.y);//left legs
-    line(spider.x, spider.y, spider.x - 10, spider.y + 6);
+    line(spider.x, spider.y, spider.x - 6, spider.y - 10);
+    line(spider.x, spider.y, spider.x, spider.y - 10);//left legs
+    line(spider.x, spider.y, spider.x + 6, spider.y - 10);
 
     pop();
 }
