@@ -40,9 +40,12 @@ const frog = {
 
 const bigFly = {
     color: 'black',
+    x: 348,
+    y: 250,
     size: 50,
     wingColor: 300,
     wingSize: 30,
+    wingAmplitude: 6,
 }
 
 // creates the gameState variable to later store what state are we in
@@ -80,27 +83,25 @@ function setup() {
 
     // sets the initial state of the game to intro before starting the game
     gameState = "intro";
-
-
-
-    // Give the fly its first random position
-    resetFly();
 }
 
 function draw() {
 
     if (gameState === "main") {
         background("#87ceeb");
-        moveFly();
+        moveInsect(fly);
         drawFly();
-        checkTongueFlyOverlap();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkTongueFlyOverlap(fly);
     }
 
     else if (gameState === "ending") {
 
     }
 
-    // if we are not in the game and or in the ending, we must be in the intro with the title screen
+    // if we are not in the game or the ending, we must be in the intro with the title screen
     else {
 
         background("#87ceeb");
@@ -110,6 +111,7 @@ function draw() {
         moveFrog();
         moveTongue();
         drawFrog();
+        checkTongueFlyOverlap(bigFly);
 
     }
 
@@ -119,12 +121,12 @@ function draw() {
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
  */
-function moveFly() {
+function moveInsect(insect) {
     // Move the fly
-    fly.x += fly.speed;
+    insect.x += insect.speed;
     // Handle the fly going off the canvas
-    if (fly.x > width) {
-        resetFly();
+    if (insect.x > width) {
+        resetInsect(fly);
     }
 }
 
@@ -142,9 +144,9 @@ function drawFly() {
 /**
  * Resets the fly to the left with a random y
  */
-function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
+function resetInsect(insect) {
+    insect.x = 0;
+    insect.y = random(0, 300);
 }
 
 /**
@@ -220,16 +222,27 @@ function drawFrog() {
 }
 
 /**
- * Handles the tongue overlapping the fly
+ * Handles the tongue overlapping any insect. param here control which insect to check for overlap
  */
-function checkTongueFlyOverlap() {
-    // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+function checkTongueFlyOverlap(insect) {
+    // Get distance from tongue to ANY insect
+    const d = dist(frog.tongue.x, frog.tongue.y, insect.x, insect.y);
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+    const eaten = (d < frog.tongue.size / 2 + insect.size / 2);
     if (eaten) {
-        // Reset the fly
-        resetFly();
+
+        if (gameState === "intro") {
+
+            // sets the game state to main game
+            gameState = "main"
+            // Reset the first insect of the game
+            resetInsect(fly);
+            // Bring back the tongue
+            frog.tongue.state = "inbound";
+        }
+
+        // Reset a new insect
+        resetInsect(fly);
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
@@ -274,24 +287,24 @@ function drawText(string, x, y, s) {
 
 function drawBigFly() {
 
-    let wingBuzz = 6 * sin(frameCount * 1) + 240;
+    let wingBuzz = bigFly.wingAmplitude * sin(frameCount * 1) + bigFly.y - 10;
 
     // draws the buzzing wings of the big fly
     push();
     fill(bigFly.wingColor);
     noStroke();
-    ellipse(370, wingBuzz, bigFly.wingSize)
+    ellipse(bigFly.x + 22, wingBuzz, bigFly.wingSize)
     pop();
 
     push();
     fill(bigFly.wingColor);
     noStroke();
-    ellipse(325, wingBuzz, bigFly.wingSize)
+    ellipse(bigFly.x - 22, wingBuzz, bigFly.wingSize)
     pop();
 
     // draws the main body of the big fly
     push();
     fill(bigFly.color);
-    ellipse(348, 250, bigFly.size)
+    ellipse(bigFly.x, bigFly.y, bigFly.size)
     pop();
 }
