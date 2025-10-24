@@ -26,7 +26,7 @@ const frog = {
         w: 123,
         h: 163,
         color: "#8A5431",
-        step: -15,
+        step: -400,
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -135,6 +135,10 @@ function draw() {
     }
 
     else if (gameState === "ending") {
+        background("#D3E4ED");
+        drawFrog();
+        drawFrogSnowy();
+        drawEndingScreen(); // draws ending screen to finish
 
     }
 
@@ -144,7 +148,6 @@ function draw() {
         background("#87ceeb");
         drawTitleScreen(); // draws title screen to start    
         drawBigFly();
-        drawText();
         moveFrog();
         moveTongue();
         drawFrog();
@@ -290,6 +293,10 @@ function resetInsect(insect) {
  */
 function moveFrog() {
     frog.body.x = mouseX;
+
+    if (frog.body.y < 110) {
+        gameState = "ending"
+    }
 }
 
 /**
@@ -359,6 +366,17 @@ function drawFrog() {
 
 
 
+}
+
+/** 
+ * a function to draw a snow layer on top of the frog for the ending
+ */
+function drawFrogSnowy() {
+    push();
+    fill('#D3E4ED');
+    noStroke();
+    ellipse(frog.body.x, frog.body.y + 10, frog.body.w - 5, frog.body.h - 30);
+    pop();
 }
 
 /**
@@ -483,6 +501,23 @@ function drawTitleScreen() {
 
 
 }
+/**
+ * a function to draw all the text for the ending screen
+ */
+function drawEndingScreen() {
+
+    // main announcement
+    drawText("WINTER ARRIVED", 320, 250, 50);
+
+    //subtext to explain the phenomenon
+    drawText("Wood frog reached maximum glycogen.", 320, 320, 20)
+    drawText("It can now survive winter completely frozen,", 320, 350, 20)
+    drawText("see you in spring", 320, 400, 14)
+
+
+
+}
+
 
 function drawText(string, x, y, s) {
     push();
