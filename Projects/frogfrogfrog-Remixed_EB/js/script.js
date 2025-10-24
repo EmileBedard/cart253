@@ -54,13 +54,13 @@ let gameState;
 // creates the font variable for the custom font
 let spaceMonoFont;
 
-// creates an undefined variable to later store an index number for picking randomly generated insects
-let insectIndex = undefined;
+// creates an undefined variable to later store wich insect was caught
+let ateResult = undefined;
 
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
-    x: 60,
+    x: 0,
     y: 200, // Will be random
     size: 10,
     speed: 3,
@@ -72,7 +72,7 @@ const fly = {
 // Our ant
 // Has a position, size, and speed of horizontal movement
 const ant = {
-    x: 40,
+    x: 0,
     y: 200, // Will be random
     size: 10,
     speed: 3
@@ -81,7 +81,7 @@ const ant = {
 // Our spider
 // Has a position, size, and speed of horizontal movement
 const spider = {
-    x: 20,
+    x: 0,
     y: 200, // Will be random
     size: 10,
     speed: 3
@@ -119,14 +119,17 @@ function draw() {
         moveInsect(ant);
         moveInsect(spider);
 
-        drawInsect(fly);
-        drawInsect(ant);
-        drawInsect(spider);
+        drawFly();
+        drawAnt();
+        drawSpider();
 
         moveFrog();
         moveTongue();
         drawFrog();
-        checkTongueFlyOverlap(fly);
+
+        checkTongueInsectOverlap(fly);
+        checkTongueInsectOverlap(ant);
+        checkTongueInsectOverlap(spider);
     }
 
     else if (gameState === "ending") {
@@ -143,11 +146,7 @@ function draw() {
         moveFrog();
         moveTongue();
         drawFrog();
-        checkTongueFlyOverlap(bigFly);
-        drawSpider();
-        drawAnt();
-        drawFly();
-
+        checkTongueInsectOverlap(bigFly);
     };
 
 }
@@ -160,8 +159,14 @@ function moveInsect(insect) {
     // Move the insects
     insect.x += insect.speed;
     // Handle the insect going off the canvas
-    if (insect.x > width) {
-        resetInsect();
+    if (fly.x > width) {
+        resetInsect(fly);
+    }
+    if (ant.x > width) {
+        resetInsect(ant);
+    }
+    if (spider.x > width) {
+        resetInsect(spider);
     }
 }
 
@@ -242,25 +247,12 @@ function drawSpider() {
 }
 
 /**
- * Resets the fly to the left with a random y
+ * Resets the insects to the left with a random y
  */
-function resetInsect() {
+function resetInsect(insect) {
 
-    // insectIndex = random(1, 3);
-    // if (insectIndex === 1) {
-    fly.x = 0
-    fly.y = random(0, 300);
-    // }
-
-    // else if (insectIndex === 2) {
-    //     spider.x = 0;
-    //     spider.y = random(0, 300);
-    // }
-
-    // else {
-    //     ant.x = 0;
-    //     ant.y = random(0, 300);
-    // }
+    insect.x = 0;
+    insect.y = random(0, 300);
 
 }
 
@@ -339,12 +331,16 @@ function drawFrog() {
 /**
  * Handles the tongue overlapping any insect. param here control which insect to check for overlap
  */
-function checkTongueFlyOverlap(insect) {
+function checkTongueInsectOverlap(insect) {
     // Get distance from tongue to ANY insect
     const d = dist(frog.tongue.x, frog.tongue.y, insect.x, insect.y);
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + insect.size / 2);
+
     if (eaten) {
+
+        checkWichInsect(); //check wich insect was caught only if an insect is eaten
+        console.log(ateResult);
 
         if (gameState === "intro") {
 
@@ -355,20 +351,72 @@ function checkTongueFlyOverlap(insect) {
             if (bigFly.y === frog.body.y && frog.tongue.y === frog.body.y) {
                 // sets the game state to main game
                 gameState = "main"
-                // Reset the first insect of the game
-                resetInsect();
+                // Reset the first three insects of the game
+                resetInsect(fly);
+                resetInsect(ant);
+                resetInsect(spider);
                 //sets the frog tongue to idle because it reached back down
                 frog.tongue.state = "idle";
             }
         }
 
-        else {
+        if (ateResult === "ateAnt") {
 
-            // Reset a new insect
-            resetInsect();
+            // Reset a new ant
+            resetInsect(ant);
             // Bring back the tongue
             frog.tongue.state = "inbound";
         }
+
+        if (ateResult === "ateFly") {
+
+            // Reset a new fly
+            resetInsect(fly);
+            // Bring back the tongue
+            frog.tongue.state = "inbound";
+        }
+
+        if (ateResult === "ateSpider") {
+
+            // Reset a new fly
+            resetInsect(spider);
+            // Bring back the tongue
+            frog.tongue.state = "inbound";
+        }
+    }
+}
+
+
+
+function checkWichInsect() {
+    // Get distance from tongue to fly
+    const distFly = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+    // Check if it's an overlap
+    const ateFly = (distFly < frog.tongue.size / 2 + fly.size / 2);
+
+    // check wich insect was caught and return a string to be used later in the if function of tongue overlap
+    if (ateFly) {
+        ateResult = "ateFly"
+    }
+
+    // Get distance from tongue to ant
+    const distAnt = dist(frog.tongue.x, frog.tongue.y, ant.x, ant.y);
+    // Check if it's an overlap
+    const ateAnt = (distAnt < frog.tongue.size / 2 + ant.size / 2);
+
+    if (ateAnt) {
+        ateResult = "ateAnt"
+
+    }
+
+    // Get distance from tongue to spider
+    const distSpider = dist(frog.tongue.x, frog.tongue.y, spider.x, spider.y);
+    // Check if it's an overlap
+    const ateSpider = (distSpider < frog.tongue.size / 2 + spider.size / 2);
+
+    if (ateSpider) {
+        ateResult = "ateSpider"
+
     }
 }
 
