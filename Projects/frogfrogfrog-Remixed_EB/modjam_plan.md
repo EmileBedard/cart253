@@ -57,10 +57,10 @@ i want to display the score by the frog movement up the y axis. once it reaches 
 good question here, i think it would be interesting to have 3 sine waves for every bug but make them act a different way depending on the insect. so the fly is going to stick to flying but in the sine motion. the ant will have a sine wave on x that makes it go a few steps forward, reverse and come back a few steps before going back again and reaching further. the spider could combine both axis to move in small circles. spider should be slower maybe to make it manageable to catch ? need to figure this out.
 
 > To do:
-- implement the three sine waves, unique for every bug
-- fly: sine on y axis
-- ant: sine on x axis (add also the drawing of the ant reversed when it is going backwards)
-- spider: sine on both axis
+- X implement the three sine waves, unique for every bug
+- X fly: sine on y axis
+- X ant: sine on x axis (add also the drawing of the ant reversed when it is going backwards)
+- spider: ~~sine on both axis~~ turns out i needed a sine and a cosine for my circles idea. used Gemini AI for this, will credit in my readme contributions
 
 
 ### 5. new visual effect

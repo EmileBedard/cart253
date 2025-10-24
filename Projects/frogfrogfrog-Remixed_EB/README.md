@@ -7,3 +7,5 @@ A game about catching flies.
 - [Ideas](./ideas.md)
 - [Planning](./planning.md)
 - [Pseudocode](./pseudocode.md)
+
+contributions: gemini ai for sine cosine spider movement
