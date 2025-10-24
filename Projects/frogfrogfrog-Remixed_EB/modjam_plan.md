@@ -47,10 +47,10 @@ same enfing basically but we are ditching the light rays. will add a snow veil t
 i want to display the score by the frog movement up the y axis. once it reaches a certain height where it is no longer able to catch bugs, it triggers the ending and the winning text.
 
 > To do:
-- adjust the bug regenaration to be over the frog so it can catch them
-- find the y location that is the threshold for victory
-- find the y steps for every bug that is caught
-- add up the y step value to the grog body y location
+- X adjust the bug regenaration to be over the frog so it can catch them
+- find the y location that is the threshold for victory (106?)
+- X find the y steps for every bug that is caught (ans: 15 up the y)
+- X add up the y step value to the frog body y location
 
 ### 4. new fly movement
 
@@ -60,7 +60,7 @@ good question here, i think it would be interesting to have 3 sine waves for eve
 - X implement the three sine waves, unique for every bug
 - X fly: sine on y axis
 - X ant: sine on x axis (add also the drawing of the ant reversed when it is going backwards)
-- spider: ~~sine on both axis~~ turns out i needed a sine and a cosine for my circles idea. used Gemini AI for this, will credit in my readme contributions
+- X spider: ~~sine on both axis~~ turns out i needed a sine and a cosine for my circles idea. used Gemini AI for this, will credit in my readme contributions
 
 
 ### 5. new visual effect
