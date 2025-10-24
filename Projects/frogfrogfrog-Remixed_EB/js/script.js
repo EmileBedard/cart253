@@ -72,10 +72,11 @@ const fly = {
 // Our ant
 // Has a position, size, and speed of horizontal movement
 const ant = {
-    x: 0,
+    x: 40,
     y: 200, // Will be random
     size: 10,
-    speed: 3
+    speed: 3,
+    stepAmplitude: 2,
 };
 
 // Our spider
@@ -118,6 +119,7 @@ function draw() {
         moveInsect(fly);
         moveInsect(ant);
         moveInsect(spider);
+        moveAnt();
 
         drawFly();
         drawAnt();
@@ -155,20 +157,28 @@ function draw() {
  * Moves the insects according to its speed
  * Resets the insects if it gets all the way to the right
  */
-function moveInsect(insect) {
-    // Move the insects
-    insect.x += insect.speed;
-    // Handle the insect going off the canvas
-    if (fly.x > width) {
-        resetInsect(fly);
-    }
+function moveInsect() {
+    // // Move the insects
+    // insect.x += insect.speed;
+    // // Handle the insect going off the canvas
+    // if (fly.x > width) {
+    //     resetInsect(fly);
+    // }
+
+    // if (spider.x > width) {
+    //     resetInsect(spider);
+    // }
+}
+
+function moveAnt() {
+
+    ant.x += (ant.stepAmplitude * sin(frameCount * 0.05) + 1) + 0;
+    console.log(ant.x);
     if (ant.x > width) {
         resetInsect(ant);
     }
-    if (spider.x > width) {
-        resetInsect(spider);
-    }
 }
+
 
 /**
  * Draws the fly as a black circle with two itty bitty flapping wings
