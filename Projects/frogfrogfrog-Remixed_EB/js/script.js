@@ -22,7 +22,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 350,
+        y: 500,
         w: 123,
         h: 163,
         color: "#8A5431",
@@ -57,13 +57,31 @@ let spaceMonoFont;
 // creates an undefined variable to later store an index number for picking randomly generated insects
 let insectIndex = undefined;
 
-
-
-
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
-    x: 0,
+    x: 60,
+    y: 200, // Will be random
+    size: 10,
+    speed: 3,
+    wingColor: 300,
+    wingSize: 7,
+    wingAmplitude: 3,
+};
+
+// Our ant
+// Has a position, size, and speed of horizontal movement
+const ant = {
+    x: 40,
+    y: 200, // Will be random
+    size: 10,
+    speed: 3
+};
+
+// Our spider
+// Has a position, size, and speed of horizontal movement
+const spider = {
+    x: 20,
     y: 200, // Will be random
     size: 10,
     speed: 3
@@ -89,14 +107,22 @@ function setup() {
 
     // sets the initial frog tongue y to its body location on y
     frog.tongue.y = frog.body.y;
+
 };
 
 function draw() {
 
     if (gameState === "main") {
         background("#87ceeb");
+
         moveInsect(fly);
-        drawFly();
+        moveInsect(ant);
+        moveInsect(spider);
+
+        drawInsect(fly);
+        drawInsect(ant);
+        drawInsect(spider);
+
         moveFrog();
         moveTongue();
         drawFrog();
@@ -118,32 +144,100 @@ function draw() {
         moveTongue();
         drawFrog();
         checkTongueFlyOverlap(bigFly);
+        drawSpider();
+        drawAnt();
+        drawFly();
 
     };
-    console.log(frog.tongue.state);
+
 }
 
 /**
- * Moves the fly according to its speed
- * Resets the fly if it gets all the way to the right
+ * Moves the insects according to its speed
+ * Resets the insects if it gets all the way to the right
  */
 function moveInsect(insect) {
-    // Move the fly
+    // Move the insects
     insect.x += insect.speed;
-    // Handle the fly going off the canvas
+    // Handle the insect going off the canvas
     if (insect.x > width) {
         resetInsect();
     }
 }
 
 /**
- * Draws the fly as a black circle
+ * Draws the fly as a black circle with two itty bitty flapping wings
  */
 function drawFly() {
     push();
     noStroke();
     fill("#000000");
+
+    //creates a variable proper to the small fly to flap the wings
+    let wingBuzz = fly.wingAmplitude * sin(frameCount * 1) + fly.y - 2;
+
+    // draws the buzzing wings of the fly
+    push();
+    fill(bigFly.wingColor);
+    noStroke();
+    ellipse(fly.x + 5, wingBuzz, fly.wingSize)
+    pop();
+
+    push();
+    fill(fly.wingColor);
+    noStroke();
+    ellipse(fly.x - 5, wingBuzz, fly.wingSize)
+    pop();
+
+
     ellipse(fly.x, fly.y, fly.size);
+    pop();
+}
+
+/**
+ * Draws the ant as three black circle with small antennas and legs
+ */
+function drawAnt() {
+    push();
+    stroke("#000000");
+    strokeWeight(2);
+    fill("#000000");
+
+    ellipse(ant.x, ant.y, ant.size - 3);//main ant body
+    ellipse(ant.x, ant.y + 7, ant.size);//head
+    ellipse(ant.x, ant.y - 7, ant.size);//abdomen
+
+    line(ant.x, ant.y, ant.x + 10, ant.y + 3);//right legs
+    line(ant.x, ant.y, ant.x + 10, ant.y - 3);
+
+    line(ant.x, ant.y, ant.x - 10, ant.y + 3);//left legs
+    line(ant.x, ant.y, ant.x - 10, ant.y - 3);
+
+    line(ant.x, ant.y, ant.x + 2, ant.y + 16);//antennas
+    line(ant.x, ant.y, ant.x - 2, ant.y + 16);
+
+    pop();
+}
+
+/**
+ * Draws the spider as a black circle with legs
+ */
+function drawSpider() {
+    push();
+    stroke("#000000");
+    strokeWeight(2);
+    fill("#000000");
+
+    ellipse(spider.x, spider.y, spider.size - 1);//main body
+
+    line(spider.x, spider.y, spider.x + 10, spider.y - 6);
+    line(spider.x, spider.y, spider.x + 10, spider.y);//right legs
+    line(spider.x, spider.y, spider.x + 10, spider.y + 6);
+
+    line(spider.x, spider.y, spider.x - 10, spider.y - 6);
+    line(spider.x, spider.y, spider.x - 10, spider.y);//left legs
+    line(spider.x, spider.y, spider.x - 10, spider.y + 6);
+
     pop();
 }
 
