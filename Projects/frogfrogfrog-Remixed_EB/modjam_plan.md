@@ -19,10 +19,10 @@ etc.
 I want to do a simple and design title screen. My idea is to use orange and a code like monospace typo with the title displayed on 3 rows. My idea is that the second "O" is a big fly with buzzing wings (sine wave movement) that you need to eat to start the game. the instructions would be written on top and the call to action to start the game would be on the bottom. 
 
 > To do:
-- add title object with all details
-- add buzzing fly with sine wave animation for the wings
-- add game states to stay on the title screen until it starts, holding off the main game
-- add trigger if big initial fly is eaten, then, start the game and thus change the game state after hiding the title screen
+- X add title object with all details 
+- X add buzzing fly with sine wave animation for the wings
+- X add game states to stay on the title screen until it starts, holding off the main game
+- X add trigger if big initial fly is eaten, then, start the game and thus change the game state after hiding the title screen
 - make the trigger add one to the initial score (built later on)
 
 I think that's all ? might modifiy or add up later on
@@ -44,15 +44,32 @@ same enfing basically but we are ditching the light rays. will add a snow veil t
 
 ### 3. Scoring system
 
+i want to display the score by the frog movement up the y axis. once it reaches a certain height where it is no longer able to catch bugs, it triggers the ending and the winning text.
+
+> To do:
+- adjust the bug regenaration to be over the frog so it can catch them
+- find the y location that is the threshold for victory
+- find the y steps for every bug that is caught
+- add up the y step value to the grog body y location
+
 ### 4. new fly movement
+
+good question here, i think it would be interesting to have 3 sine waves for every bug but make them act a different way depending on the insect. so the fly is going to stick to flying but in the sine motion. the ant will have a sine wave on x that makes it go a few steps forward, reverse and come back a few steps before going back again and reaching further. the spider could combine both axis to move in small circles. spider should be slower maybe to make it manageable to catch ? need to figure this out.
+
+> To do:
+- implement the three sine waves, unique for every bug
+- fly: sine on y axis
+- ant: sine on x axis (add also the drawing of the ant reversed when it is going backwards)
+- spider: sine on both axis
+
 
 ### 5. new visual effect
 
 my idea here is to do a complete remix of the game theme, basing it on the wood frog found in quebec that is know to be one of the only species to completely freeze in winter on the ground. i would change the frog appearance, color and maybe color pattern if i have time. i would change the ending for hibernation instead of frog heaven. add maybe fun facts on screen about the wood frog at the ending? if i have time only. i would also change the flies for a multitude of food like insects, ants and flies. i will add a random picker for which insect to generate avery flyreset is called (this is also a great opportunity ti implement parameters in my code)
 
 > to do (only for new visual effects):
-- add random generator for insects (ants, flies and small spiders)
-- create and make the draw functions for all the small insects
+- X ~~add random generator for insects (ants, flies and small spiders)~~ replaced this with all 3 three bugs present at all time 
+- X create and make the draw functions for all the small insects
 - change appearance: background, frog color and pattern **ONLY IF I HAVE TIME**
 - add fun fact on ending screen to explain the hibernation freezinf frog part
 
