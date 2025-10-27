@@ -22,7 +22,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 500,
+        y: 400,
         w: 123,
         h: 163,
         color: "#8A5431",
@@ -49,6 +49,14 @@ const bigFly = {
     wingSize: 30,
     wingAmplitude: 6,
 };
+
+
+// an object to store the rgb value of our background
+let fillBack = {
+    r: 135,
+    g: 206,
+    b: 235,
+}
 
 // creates the gameState variable to later store what state are we in
 let gameState;
@@ -95,7 +103,7 @@ const spider = {
  * preload the specific font used for texts
  */
 function preload() {
-    spaceMonoFont = loadFont('assets/fonts/SpaceMono-Bold.ttf');
+    spaceMonoFont = loadFont('assets/fonts/SpaceMono-Bold.ttf'); // removed a slash here for the filepath to become relative
 };
 
 
@@ -113,10 +121,13 @@ function setup() {
 
 };
 
+/**
+ * a function that continuously draws the game depending on wich gamestate we are
+ */
 function draw() {
 
     if (gameState === "main") {
-        background("#87ceeb");
+        background(fillBack.r, fillBack.g, fillBack.b);
 
         moveSpider();
         moveAnt();
@@ -136,7 +147,9 @@ function draw() {
     }
 
     else if (gameState === "ending") {
-        background("#D3E4ED");
+        drawSnow();
+        background(fillBack.r, fillBack.g, fillBack.b);
+        moveFrogEnding();
         drawFrog();
         drawEndingScreen(); // draws ending screen to finish
 
@@ -145,7 +158,7 @@ function draw() {
     // if we are not in the game or the ending, we must be in the intro with the title screen
     else {
 
-        background("#87ceeb");
+        background(fillBack.r, fillBack.g, fillBack.b);
         drawTitleScreen(); // draws title screen to start    
         drawBigFly();
         moveFrog();
@@ -173,7 +186,7 @@ function moveSpider() {
 }
 
 /**
- * Moves the insects according to its speed
+ * Moves the ants according to their speed
  * Resets the insects if it gets all the way to the right
  */
 function moveAnt() {
@@ -186,7 +199,7 @@ function moveAnt() {
 }
 
 /**
- * Moves the insects according to its speed
+ * Moves the flies according to their speed
  * Resets the insects if it gets all the way to the right
  */
 function moveFly() {
@@ -310,7 +323,7 @@ function moveFrog() {
  * Handles moving the tongue based on its state
  */
 function moveTongue() {
-    console.log(frog.tongue.state);
+
     // Tongue matches the frog's x
     frog.tongue.x = frog.body.x;
     // If the tongue is idle, it doesn't do anything
@@ -369,10 +382,6 @@ function drawFrog() {
     ellipse(frog.body.x + 40, frog.body.y - 55, 20)// draw the frog's right eyes
     ellipse(frog.body.x - 40, frog.body.y - 55, 20)// draw the frog's left eyes
     pop();
-
-
-
-
 }
 
 
@@ -549,3 +558,24 @@ function drawBigFly() {
     ellipse(bigFly.x, bigFly.y, bigFly.size)
     pop();
 }
+
+function drawSnow() {
+
+
+    let rValue = constrain(fillBack.r, 0, 200);
+    rValue += 0.7;
+
+    let gValue = constrain(fillBack.g, 0, 240);
+    gValue += 0.7;
+
+    fillBack.r = rValue;
+    fillBack.g = gValue;
+    fillBack.b += 0.7;
+    console.log(rValue);
+}
+
+function moveFrogEnding() {
+    frog.body.y += (frog.body.step / 6);
+    frog.tongue.y += (frog.body.step / 6);
+}
+
