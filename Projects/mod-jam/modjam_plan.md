@@ -23,7 +23,7 @@ I want to do a simple and design title screen. My idea is to use orange and a co
 - X add buzzing fly with sine wave animation for the wings
 - X add game states to stay on the title screen until it starts, holding off the main game
 - X add trigger if big initial fly is eaten, then, start the game and thus change the game state after hiding the title screen
-- make the trigger add one to the initial score (built later on)
+- X make the trigger add one to the initial score (built later on)
 
 I think that's all ? might modifiy or add up later on
 
@@ -34,12 +34,12 @@ I think that's all ? might modifiy or add up later on
 
 ### latest idea based on the new wood frog theme
 
-same enfing basically but we are ditching the light rays. will add a snow veil to the whole screen and write out that it's winter, the frog froze and maxed out the glycogen needed to survive winter in icecube mode haha. still need scoring system to be frog moving up. still need the game state to change and the displaying of the text, though, it'll be different.
+same ending basically but we are ditching the light rays. will add a snow veil to the whole screen and write out that it's winter, the frog froze and maxed out the glycogen needed to survive winter in icecube mode haha. still need scoring system to be frog moving up. still need the game state to change and the displaying of the text, though, it'll be different.
 
 > To do:
-- build the scoring system before, this will let me use the fact that the frog is out of bounds to tell if the game is finished or not
-- add the "game finished" game state
-- add text to display victory
+- X build the scoring system before, this will let me use the fact that the frog is out of bounds to tell if the game is finished or not
+- X add the "game finished" game state
+- X add text to display victory
 - ~~maybe some kind of effect ? I'm thinking of light rays rotating to signify that the summit/heaven was reached~~
 
 ### 3. Scoring system
@@ -48,7 +48,7 @@ i want to display the score by the frog movement up the y axis. once it reaches 
 
 > To do:
 - X adjust the bug regenaration to be over the frog so it can catch them
-- find the y location that is the threshold for victory (106?)
+- X find the y location that is the threshold for victory ~~(106?)~~ (it is 110)
 - X find the y steps for every bug that is caught (ans: 15 up the y)
 - X add up the y step value to the frog body y location
 
@@ -70,7 +70,9 @@ my idea here is to do a complete remix of the game theme, basing it on the wood 
 > to do (only for new visual effects):
 - X ~~add random generator for insects (ants, flies and small spiders)~~ replaced this with all 3 three bugs present at all time 
 - X create and make the draw functions for all the small insects
-- change appearance: background, frog color and pattern **ONLY IF I HAVE TIME**
-- add fun fact on ending screen to explain the hibernation freezinf frog part
+- X change appearance: background, frog color and pattern **ONLY IF I HAVE TIME**
+- X add fun fact on ending screen to explain the hibernation freezing frog part
 
 ### ++ perfect score extras after
+
+added many little extras in the process and a new control system with the keys. pretty satisfied !
