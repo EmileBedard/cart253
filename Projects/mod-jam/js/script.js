@@ -27,7 +27,7 @@ const frog = {
         h: 163,
         color: "#8A5431",
         step: -15, // frog moves 15 pixels up every time it eats
-        xSpeed: 2 // speed to move when key A and key L are pressed to controll horizontal movement
+        xSpeed: 6 // speed to move when key A and key L are pressed to controll horizontal movement
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -138,7 +138,6 @@ function draw() {
     else if (gameState === "ending") {
         background("#D3E4ED");
         drawFrog();
-        drawFrogSnowy();
         drawEndingScreen(); // draws ending screen to finish
 
     }
@@ -376,16 +375,6 @@ function drawFrog() {
 
 }
 
-/** 
- * a function to draw a snow layer on top of the frog for the ending
- */
-function drawFrogSnowy() {
-    push();
-    fill('#D3E4ED');
-    noStroke();
-    ellipse(frog.body.x, frog.body.y + 10, frog.body.w - 5, frog.body.h - 30);
-    pop();
-}
 
 /**
  * Handles the tongue overlapping any insect. param here control which insect to check for overlap
@@ -484,10 +473,10 @@ function checkWichInsect() {
 }
 
 /**
- * Launch the tongue on click (if it's not launched yet)
+ * Launch the tongue when spacebar key "32" is pressed
  */
-function mousePressed() {
-    if (frog.tongue.state === "idle") {
+function keyPressed() {
+    if (keyIsDown(32)) { // spacebar = 32
         frog.tongue.state = "outbound";
     }
 }
