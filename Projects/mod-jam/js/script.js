@@ -94,7 +94,7 @@ const spider = {
  * preload the specific font used for texts
  */
 function preload() {
-    spaceMonoFont = loadFont('/assets/fonts/SpaceMono-Bold.ttf');
+    spaceMonoFont = loadFont('assets/fonts/SpaceMono-Bold.ttf');
 };
 
 
