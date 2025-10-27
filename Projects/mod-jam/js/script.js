@@ -27,6 +27,7 @@ const frog = {
         h: 163,
         color: "#8A5431",
         step: -15, // frog moves 15 pixels up every time it eats
+        xSpeed: 2 // speed to move when key A and key L are pressed to controll horizontal movement
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -289,12 +290,19 @@ function resetInsect(insect) {
 }
 
 /**
- * Moves the frog to the mouse position on x
+ * Moves the frog with "A" and "L" keys on horizontal axis
  */
 function moveFrog() {
-    frog.body.x = mouseX;
 
-    if (frog.body.y < 110) {
+    if (keyIsDown(65)) {
+        frog.body.x -= frog.body.xSpeed;
+    }
+
+    if (keyIsDown(76)) {
+        frog.body.x += frog.body.xSpeed;
+    }
+
+    if (frog.body.y < 110) {  // sets the game state if the frog moved above finishing game threshold
         gameState = "ending"
     }
 }
