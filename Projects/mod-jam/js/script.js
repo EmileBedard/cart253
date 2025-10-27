@@ -26,7 +26,7 @@ const frog = {
         w: 123,
         h: 163,
         color: "#8A5431",
-        step: -400,
+        step: -15, // frog moves 15 pixels up every time it eats
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
