@@ -22,7 +22,7 @@ body {
   overflow: hidden;
   /* Hide anything that goes off the window size */
 
-  /* scale differnece to visualize on mobile */
+  /* scale difference to visualize on mobile */
   @media (max-width: 1000px) {
     scale: 75%;
 
