@@ -15,8 +15,8 @@ let leaves = []; // this array will store the leaves we create
  * creates canvas HD resolution
 */
 function setup() {
-    createCanvas(1080, 1920)
-    angleMode(DEGREES)
+    createCanvas(1080, 1920);
+    angleMode(DEGREES);
 }
 
 /**
@@ -48,14 +48,17 @@ function draw() {
 
 function drawLeaf(leafIndex) {
     push();
+    translate(leafIndex.x, leafIndex.y);
+    rotate(leafIndex.angle);
     fill(leafIndex.colorR, leafIndex.colorG, leafIndex.colorB);
     noStroke();
-    ellipse(leafIndex.x, leafIndex.y, 250);
-    arc(leafIndex.x, leafIndex.y, 400, 400, leafIndex.angle, leafIndex.angle + 10);
+    bezier(0, 0, 500, -540, -500, -540, 0, 0);
+    arc(0, -300, 400, 400, 265, 275);
+
     pop();
 }
 
-// function generateLeaf(leafIndex) {
+// function generateLeaf(leafIndex) { // not useful anymore, was something i tried.
 //     leafIndex.x = random(0, width);
 //     leafIndex.y = random(0, height);
 //     leafIndex.angle = random();
