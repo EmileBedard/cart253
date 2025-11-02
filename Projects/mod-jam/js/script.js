@@ -651,9 +651,13 @@ function drawBigFly() {
     pop();
 }
 
+<<<<<<< Updated upstream
 /**
  * moves the frog out of frame when the game threshold is reached
  */
+=======
+
+>>>>>>> Stashed changes
 function moveFrogEnding() {
     frog.body.y += (frog.body.step / 6);
     frog.tongue.y += (frog.body.step / 6);
@@ -664,7 +668,10 @@ function moveFrogEnding() {
  */
 function drawBackground() {
     push();
+<<<<<<< Updated upstream
     translate(280, 110,);
+=======
+>>>>>>> Stashed changes
     noStroke();
     fill(fillBack.r, fillBack.g, fillBack.b);
     rect(0, 0, playZone.x, playZone.y);
