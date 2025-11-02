@@ -22,7 +22,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 400,
+        y: 500, // 500 on y
         w: 123,
         h: 163,
         color: "#8A5431",
@@ -67,6 +67,9 @@ let spaceMonoFont;
 // creates an undefined variable to later store wich insect was caught
 let ateResult = undefined;
 
+// a variable to store the device type of the user. this lets the user control the game accordingly after
+let deviceType = undefined;
+
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
@@ -98,6 +101,12 @@ const spider = {
     speed: 1
 };
 
+// object to store coordinates of touch by mobile users
+let touch = {
+    x: 320, // later updates according to touch
+    y: undefined, // will stay unused
+};
+
 
 /**
  * preload the specific font used for texts
@@ -119,6 +128,13 @@ function setup() {
     // sets the initial frog tongue y to its body location on y
     frog.tongue.y = frog.body.y;
 
+    if (navigator.userAgent.match(/Android|iPhone/i)) { // checks user's device and stores the data in the varaible
+        deviceType = "mobile";
+    }
+    else {
+        deviceType = "desktop";
+    }
+    console.log(deviceType);
 };
 
 /**
@@ -127,7 +143,7 @@ function setup() {
 function draw() {
 
     if (gameState === "main") {
-        background(fillBack.r, fillBack.g, fillBack.b);
+        drawBackground();
 
         moveSpider();
         moveAnt();
@@ -148,7 +164,7 @@ function draw() {
 
     else if (gameState === "ending") {
         drawSnow();
-        background(fillBack.r, fillBack.g, fillBack.b);
+        drawBackground();
         moveFrogEnding();
         drawFrog();
         drawEndingScreen(); // draws ending screen to finish
@@ -158,7 +174,7 @@ function draw() {
     // if we are not in the game or the ending, we must be in the intro with the title screen
     else {
 
-        background(fillBack.r, fillBack.g, fillBack.b);
+        drawBackground();
         drawTitleScreen(); // draws title screen to start    
         drawBigFly();
         moveFrog();
@@ -306,16 +322,53 @@ function resetInsect(insect) {
  */
 function moveFrog() {
 
-    if (keyIsDown(65)) {
-        frog.body.x -= frog.body.xSpeed;
+    if (deviceType === "desktop") {
+        if (keyIsDown(65)) {
+            frog.body.x -= frog.body.xSpeed;
+        }
+
+        if (keyIsDown(76)) {
+            frog.body.x += frog.body.xSpeed;
+        }
+
+        if (frog.body.y < 110) {  // sets the game state if the frog moved above finishing game threshold
+            gameState = "ending"
+        }
     }
 
-    if (keyIsDown(76)) {
-        frog.body.x += frog.body.xSpeed;
-    }
+    if (deviceType === "mobile") {
+        frog.body.x = touch.x;
 
-    if (frog.body.y < 110) {  // sets the game state if the frog moved above finishing game threshold
-        gameState = "ending"
+        if (frog.body.y < 110) {  // sets the game state if the frog moved above finishing game threshold
+            gameState = "ending"
+        }
+    }
+}
+
+/**
+ * a function to check if the mobile user started a touch action. when called, stores the coordinate in a variable
+ */
+function touchStarted() {
+    touch.x = mouseX;
+    touch.y = mouseY; //unused
+
+}
+
+/**
+ * a function that stores the x coordinate of the touch action whenever the user moves.
+ */
+function touchMoved() {
+    touch.x = mouseX;
+    touch.y = mouseY; // unsused
+
+}
+
+/**
+ * a function to start the tongue launch when the user stops a touch action
+ */
+function touchEnded() {
+    if (deviceType === "mobile") {
+        frog.tongue.state = "outbound";
     }
 }
 
@@ -485,7 +538,7 @@ function checkWichInsect() {
  * Launch the tongue when spacebar key "32" is pressed
  */
 function keyPressed() {
-    if (keyIsDown(32)) { // spacebar = 32
+    if (keyIsDown(32) && deviceType === "desktop") { // spacebar = 32, only for desktop users
         frog.tongue.state = "outbound";
     }
 }
@@ -577,5 +630,13 @@ function drawSnow() {
 function moveFrogEnding() {
     frog.body.y += (frog.body.step / 6);
     frog.tongue.y += (frog.body.step / 6);
+}
+
+function drawBackground() {
+    push();
+    fill(fillBack.r, fillBack.g, fillBack.b);
+    rect(0, 0, 640, 480);
+    pop();
+
 }
 

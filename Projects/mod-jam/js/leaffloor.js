@@ -68,6 +68,6 @@ function drawLeaf(leafIndex) {
 /**
  * adds a leaf to the array everytime the user click's mouse button
  */
-function mousePressed() {
+function keyPressed() {
     leaves.push(createLeaf());
 }
