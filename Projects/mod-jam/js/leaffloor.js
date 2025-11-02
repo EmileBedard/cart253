@@ -53,17 +53,10 @@ function drawLeaf(leafIndex) {
     fill(leafIndex.colorR, leafIndex.colorG, leafIndex.colorB);
     noStroke();
     bezier(0, 0, 500, -540, -500, -540, 0, 0);
-    arc(0, -300, 400, 400, 265, 275);
+    arc(0, -300, 400, 400, 266, 275);
 
     pop();
 }
-
-// function generateLeaf(leafIndex) { // not useful anymore, was something i tried.
-//     leafIndex.x = random(0, width);
-//     leafIndex.y = random(0, height);
-//     leafIndex.angle = random();
-//     leafIndex.colorG = random(60, 200);
-// }
 
 /**
  * adds a leaf to the array everytime the user click's mouse button

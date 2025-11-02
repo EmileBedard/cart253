@@ -50,6 +50,12 @@ const bigFly = {
     wingAmplitude: 6,
 };
 
+//defines the area of the main play zone
+const playZone = {
+    x: 640,
+    y: 480,
+}
+
 
 // an object to store the rgb value of our background
 let fillBack = {
@@ -69,6 +75,8 @@ let ateResult = undefined;
 
 // a variable to store the device type of the user. this lets the user control the game accordingly after
 let deviceType = undefined;
+
+let leaves = []; // this array will store the leaves we create for the background
 
 // Our fly
 // Has a position, size, and speed of horizontal movement
@@ -120,7 +128,8 @@ function preload() {
  * Creates the canvas and initializes the fly
  */
 function setup() {
-    createCanvas(640, 480);
+    createCanvas(1200, 700);
+    angleMode(DEGREES);
 
     // sets the initial state of the game to intro before starting the game
     gameState = "intro";
@@ -141,6 +150,11 @@ function setup() {
  * a function that continuously draws the game depending on wich gamestate we are
  */
 function draw() {
+
+
+    for (let newLeaf of leaves) {
+        drawLeaf(newLeaf);
+    };
 
     if (gameState === "main") {
         drawBackground();
@@ -182,6 +196,7 @@ function draw() {
         drawFrog();
         checkTongueInsectOverlap(bigFly);
     };
+    drawMask();
 
 }
 
@@ -234,6 +249,7 @@ function moveFly() {
  */
 function drawFly() {
     push();
+    translate(280, 110,);
     noStroke();
     fill("#000000");
 
@@ -263,6 +279,7 @@ function drawFly() {
  */
 function drawAnt() {
     push();
+    translate(280, 110,);
     stroke("#000000");
     strokeWeight(2);
     fill("#000000");
@@ -289,6 +306,7 @@ function drawAnt() {
  */
 function drawSpider() {
     push();
+    translate(280, 110,);
     stroke("#000000");
     strokeWeight(2);
     fill("#000000");
@@ -346,21 +364,32 @@ function moveFrog() {
 }
 
 /**
- * a function to check if the mobile user started a touch action. when called, stores the coordinate in a variable
+ * a function to check if the mobile user started a touch action. when called, stores the coordinate in a variable. Also adds a leaf to the array everytime the user on mobile touches.
  */
 function touchStarted() {
-    touch.x = mouseX;
-    touch.y = mouseY; //unused
 
+    if (deviceType === "mobile") {
+        push();
+        // translate(280, 110,);
+        touch.x = mouseX - 280;
+        touch.y = mouseY - 110; //unused
+        leaves.push(createLeaf());
+        pop();
+
+    }
 }
 
 /**
  * a function that stores the x coordinate of the touch action whenever the user moves.
  */
 function touchMoved() {
-    touch.x = mouseX;
-    touch.y = mouseY; // unsused
-
+    if (deviceType === "mobile") {
+        push();
+        // translate(280, 110,);
+        touch.x = mouseX - 280;
+        touch.y = mouseY - 110; //unused
+        pop();
+    }
 }
 
 /**
@@ -407,6 +436,7 @@ function moveTongue() {
 function drawFrog() {
     // Draw the tongue tip
     push();
+    translate(280, 110,);
     fill("#ff0000");
     noStroke();
     ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
@@ -414,6 +444,7 @@ function drawFrog() {
 
     // Draw the rest of the tongue
     push();
+    translate(280, 110,);
     stroke("#ff0000");
     strokeWeight(frog.tongue.size);
     line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
@@ -421,6 +452,7 @@ function drawFrog() {
 
     // Draw the frog's body
     push();
+    translate(280, 110,);
     fill(frog.body.color);
     noStroke();
     ellipse(frog.body.x, frog.body.y, frog.body.w, frog.body.h); // frog main body
@@ -431,6 +463,7 @@ function drawFrog() {
     pop();
 
     push();
+    translate(280, 110,);
     fill('black');
     ellipse(frog.body.x + 40, frog.body.y - 55, 20)// draw the frog's right eyes
     ellipse(frog.body.x - 40, frog.body.y - 55, 20)// draw the frog's left eyes
@@ -540,7 +573,9 @@ function checkWichInsect() {
 function keyPressed() {
     if (keyIsDown(32) && deviceType === "desktop") { // spacebar = 32, only for desktop users
         frog.tongue.state = "outbound";
+
     }
+    leaves.push(createLeaf());
 }
 
 function drawTitleScreen() {
@@ -580,6 +615,7 @@ function drawEndingScreen() {
 
 function drawText(string, x, y, s) {
     push();
+    translate(280, 110,);
     textAlign(CENTER, CENTER);
     fill("#E66800");
     textSize(s);
@@ -590,16 +626,18 @@ function drawText(string, x, y, s) {
 
 function drawBigFly() {
 
-    let wingBuzz = bigFly.wingAmplitude * sin(frameCount * 1) + bigFly.y - 10;
+    let wingBuzz = bigFly.wingAmplitude * sin(frameCount * 40) + bigFly.y - 10;
 
     // draws the buzzing wings of the big fly
     push();
+    translate(280, 110,);
     fill(bigFly.wingColor);
     noStroke();
     ellipse(bigFly.x + 22, wingBuzz, bigFly.wingSize)
     pop();
 
     push();
+    translate(280, 110,);
     fill(bigFly.wingColor);
     noStroke();
     ellipse(bigFly.x - 22, wingBuzz, bigFly.wingSize)
@@ -607,36 +645,73 @@ function drawBigFly() {
 
     // draws the main body of the big fly
     push();
+    translate(280, 110,);
     fill(bigFly.color);
     ellipse(bigFly.x, bigFly.y, bigFly.size)
     pop();
 }
 
-function drawSnow() {
-
-
-    let rValue = constrain(fillBack.r, 0, 200);
-    rValue += 0.7;
-
-    let gValue = constrain(fillBack.g, 0, 240);
-    gValue += 0.7;
-
-    fillBack.r = rValue;
-    fillBack.g = gValue;
-    fillBack.b += 0.7;
-    console.log(rValue);
-}
-
+/**
+ * moves the frog out of frame when the game threshold is reached
+ */
 function moveFrogEnding() {
     frog.body.y += (frog.body.step / 6);
     frog.tongue.y += (frog.body.step / 6);
 }
 
+/**
+ * draws the background for the game
+ */
 function drawBackground() {
     push();
+    translate(280, 110,);
+    noStroke();
     fill(fillBack.r, fillBack.g, fillBack.b);
-    rect(0, 0, 640, 480);
+    rect(0, 0, playZone.x, playZone.y);
     pop();
 
 }
+
+/**
+ * creates a new leaf
+ */
+function createLeaf() {
+
+    let newLeaf = {
+        x: random(0, width),
+        y: random(0, height),
+        angle: random(0, 360),
+        colorR: 190,
+        colorG: random(60, 200), //  between 60 and 200 to choose tint of leaf between yellow-ish and red-ish and everything in between
+        colorB: 0,
+    }
+    return newLeaf;
+}
+
+/**
+ * a function to draw the leaves according to the leaf object and array
+ */
+function drawLeaf(leafIndex) {
+    push();
+    translate(leafIndex.x, leafIndex.y);
+    rotate(leafIndex.angle);
+    fill(leafIndex.colorR, leafIndex.colorG, leafIndex.colorB);
+    noStroke();
+    bezier(0, 0, 250, -270, -250, -270, 0, 0);
+    arc(0, -50, 400, 400, 268, 273);
+
+    pop();
+}
+
+function drawMask() {
+    push();
+    noStroke();
+    fill(150, 142, 161); // 120,142,161
+    rect(0, 0, 1200, 110);
+    rect(0, 0, 280, 700);
+    rect(0, 590, 1200, 110);
+    rect(920, 0, 280, 700);
+    pop();
+}
+
 
