@@ -1,6 +1,6 @@
 # WOOD FROG FROG FROG
-Original game by Pippin Barr
-Adaptation by Émile Bédard
+- Original game by Pippin Barr 
+- Adaptation by Émile Bédard
 
 
 [View this project online](https://emilebedard.github.io/cart253/Projects/mod-jam/)
@@ -15,8 +15,10 @@ This game lets you be a wood frog for a moment and enjoy the thrill of eating in
 
 > This program is utilizing the [p5.js](https://p5js.org) library and functions
 
-> This game is adapting the original **Frog Frog Frog** game by Pippin Barr. Here is every modification that was implemented:
-- 
+### This game is adapting the original **Frog Frog Frog** game by Pippin Barr. Here is every modification that was implemented:
+- The new wood frog theme was added! This adds a new objective, reaching maximum glycogen and freezing hibernation. It also affected the visual aspect of the frog. I drew the complete brown body with the two eyes to mimic the real wood frogs.
+- New insects appeared with new moving patterns! The fly got some new buzzing wings and a wavy flying pattern, an unsure ant appeared that goes back and forth and finally a twirly spider that moves in circles.
+- A new starting and ending screen was added! with the big fly in the title screen that you have to eat to start the game.
 ## Screenshot(s)
 
 Still of main menu of the game

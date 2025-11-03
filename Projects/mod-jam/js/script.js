@@ -577,9 +577,13 @@ function drawEndingScreen() {
     drawText("WINTER ARRIVED", 320, 250, 50);
 
     //subtext to explain the phenomenon of freezing wood frog.
-    drawText("Wood frog reached maximum glycogen.", 320, 320, 20)
-    drawText("It can now survive winter completely frozen,", 320, 350, 20)
-    drawText("see you in spring", 320, 400, 14)
+    drawText("Wood frog reached maximum glycogen.", 320, 320, 20);
+    drawText("It can now survive winter completely frozen,", 320, 350, 20);
+    drawText("Wood frogs have an astonishing ability to tolerate freezing", 320, 360, 10);
+    drawText("They can survive the freezing of 60 to 70 percent of the", 320, 370, 10);
+    drawText("water in their body and sustained temperatures of - 6°C.", 320, 380, 10);
+    drawText("see you in spring", 320, 400, 14);
+    drawText("Source: ontarionature.org", 320, 430, 10);
 }
 
 /**
