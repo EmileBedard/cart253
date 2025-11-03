@@ -569,7 +569,7 @@ function drawTitleScreen() {
 }
 
 /**
- * a function to draw all the text for the ending screen
+ * a function to draw all the text for the ending screen including the ontario nature org quote
  */
 function drawEndingScreen() {
 
@@ -580,7 +580,7 @@ function drawEndingScreen() {
     drawText("Wood frog reached maximum glycogen.", 320, 240, 22);
     drawText("It can now survive winter completely frozen.", 320, 265, 22);
 
-    push();
+    push(); // orange rect to emphasize the ontario nature org quote
     noFill();
     stroke("#E66800");
     strokeWeight(2);
@@ -588,7 +588,7 @@ function drawEndingScreen() {
     pop();
 
 
-    push();
+    push(); // rect to hide the orange line under the "Did you know?"" text
     fill(fillBack.r, fillBack.g, fillBack.b);
     noStroke();
     rect(55, 295, 130, 26);
@@ -596,7 +596,7 @@ function drawEndingScreen() {
 
     drawText("Did you know?", 120, 305, 15);
 
-    drawText("Wood frogs have an astonishing ability to tolerate freezing", 320, 330, 12);
+    drawText("Wood frogs have an astonishing ability to tolerate freezing", 320, 330, 12); // quote from ontarionature.org
     drawText("They can survive the freezing of 60 to 70 percent of the", 320, 345, 12);
     drawText("water in their body and sustained temperatures of - 6°C.", 320, 360, 12);
 
