@@ -19,6 +19,8 @@ This game lets you be a wood frog for a moment and enjoy the thrill of eating in
 - The new wood frog theme was added! This adds a new objective, reaching maximum glycogen and freezing hibernation. It also affected the visual aspect of the frog. I drew the complete brown body with the two eyes to mimic the real wood frogs.
 - New insects appeared with new moving patterns! The fly got some new buzzing wings and a wavy flying pattern, an unsure ant appeared that goes back and forth and finally a twirly spider that moves in circles.
 - A new starting and ending screen was added! with the big fly in the title screen that you have to eat to start the game.
+- I added mobile compatibility and touch control to have a wider target audience and let the game be enjoyed way more!
+- And finally added a new control system. touch for mobile and "A", "L" and spacebar to play on desktop. I am very satisfied with this new modified version of the original game!
 ## Screenshot(s)
 
 Still of main menu of the game
@@ -27,8 +29,10 @@ Still of main menu of the game
 
 ## Attribution
 
-> - This project uses [p5.js](https://p5js.org).
-> - The image is a screenshot of the program running
+- This project uses [p5.js](https://p5js.org).
+- The image is a screenshot of the program running
+- [This project includes a quote at the ending screen from the Ontario Nature organization website](https://ontarionature.org/programs/community-science/reptile-amphibian-atlas/wood-frog/) all rights reserved. 2025.
+
 
 ## License
 
