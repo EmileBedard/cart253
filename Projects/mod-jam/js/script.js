@@ -26,7 +26,7 @@ const frog = {
         w: 123,
         h: 163,
         color: "#8A5431",
-        step: -15, // frog moves 15 pixels up every time it eats
+        step: -400, // frog moves 15 pixels up every time it eats
         xSpeed: 6 // speed to move when key A and key L are pressed to controll horizontal movement
     },
     // The frog's tongue has a position, size, speed, and state
@@ -574,15 +574,34 @@ function drawTitleScreen() {
 function drawEndingScreen() {
 
     // main announcement
-    drawText("WINTER ARRIVED", 320, 250, 50);
+    drawText("WINTER ARRIVED", 320, 180, 50);
 
     //subtext to explain the phenomenon of freezing wood frog.
-    drawText("Wood frog reached maximum glycogen.", 320, 320, 20);
-    drawText("It can now survive winter completely frozen,", 320, 350, 20);
-    drawText("Wood frogs have an astonishing ability to tolerate freezing", 320, 360, 10);
-    drawText("They can survive the freezing of 60 to 70 percent of the", 320, 370, 10);
-    drawText("water in their body and sustained temperatures of - 6°C.", 320, 380, 10);
-    drawText("see you in spring", 320, 400, 14);
+    drawText("Wood frog reached maximum glycogen.", 320, 240, 22);
+    drawText("It can now survive winter completely frozen.", 320, 265, 22);
+
+    push();
+    noFill();
+    stroke("#E66800");
+    strokeWeight(2);
+    rect(94, 310, 453, 78);
+    pop();
+
+
+    push();
+    fill(fillBack.r, fillBack.g, fillBack.b);
+    noStroke();
+    rect(55, 295, 130, 26);
+    pop();
+
+    drawText("Did you know?", 120, 305, 15);
+
+    drawText("Wood frogs have an astonishing ability to tolerate freezing", 320, 330, 12);
+    drawText("They can survive the freezing of 60 to 70 percent of the", 320, 345, 12);
+    drawText("water in their body and sustained temperatures of - 6°C.", 320, 360, 12);
+
+    drawText("see you in spring", 320, 405, 15);
+
     drawText("Source: ontarionature.org", 320, 430, 10);
 }
 
