@@ -22,11 +22,38 @@ body {
   overflow: hidden;
   /* Hide anything that goes off the window size */
 
-  /* scale difference to visualize on mobile */
-  @media (max-width: 1000px) {
-    scale: 75%;
+}
 
+canvas {
 
+  justify-content: center;
+  align-content: center;
+  height: 80vh !important;
+  width: auto !important;
+
+}
+
+/* scale difference to visualize on mobile */
+@media (max-width: 1024px) and (orientation: portrait) {
+
+  canvas {
+
+    justify-content: center;
+    align-content: center;
+    height: auto !important;
+    width: 90vw !important;
+
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+
+  canvas {
+
+    justify-content: center;
+    align-content: center;
+    height: 80vh !important;
+    width: auto !important;
   }
 
 
