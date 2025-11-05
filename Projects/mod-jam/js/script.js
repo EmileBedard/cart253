@@ -26,7 +26,7 @@ const frog = {
         w: 123,
         h: 163,
         color: "#8A5431",
-        step: -400, // frog moves 15 pixels up every time it eats
+        step: -15, // frog moves 15 pixels up every time it eats
         xSpeed: 6 // speed to move when key A and key L are pressed to controll horizontal movement
     },
     // The frog's tongue has a position, size, speed, and state
@@ -553,8 +553,8 @@ function keyPressed() {
 function drawTitleScreen() {
 
     // first draw the instructions
-    drawText("MOVE WITH MOUSE / TOUCH", 320, 40, 25);
-    drawText("CLICK / RELEASE TO EAT", 320, 70, 25);
+    drawText("MOVE WITH A & L / TOUCH", 320, 40, 25);
+    drawText("SPACEBAR / RELEASE TO EAT", 320, 70, 25);
 
     // draws the main title
     drawText("wood", 320, 110, 30);
