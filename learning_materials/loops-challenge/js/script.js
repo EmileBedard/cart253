@@ -12,6 +12,7 @@
  */
 function setup() {
     createCanvas(500, 500);
+    colorMode(HSL);
 }
 
 /**
@@ -19,7 +20,17 @@ function setup() {
  * gradually lightening colour
  */
 function draw() {
-    background("pink");
+
+
+    for (let gradientX = 0; gradientX <= width; gradientX += 1) {
+        const gradientHue = map(gradientX, 0, width, 255, 0);
+
+        push();
+        stroke(gradientHue, 100, 70);
+        line(gradientX, 0, gradientX, height);
+        pop();
+    };
+
 
     let lineShadeX = 0;
     let lineShadeY = 0;
@@ -46,36 +57,4 @@ function draw() {
         y += 5;
 
     };
-
-
-
-    // stroke(25);
-    // line(50, 0, 50, height);
-
-    // stroke(50);
-    // line(100, 0, 100, height);
-
-    // stroke(75);
-    // line(150, 0, 150, height);
-
-    // stroke(100);
-    // line(200, 0, 200, height);
-
-    // stroke(125);
-    // line(250, 0, 250, height);
-
-    // stroke(150);
-    // line(300, 0, 300, height);
-
-    // stroke(175);
-    // line(350, 0, 350, height);
-
-    // stroke(200);
-    // line(400, 0, 400, height);
-
-    // stroke(225);
-    // line(450, 0, 450, height);
-
-    // stroke(250);
-    // line(500, 0, 500, height);
 }
