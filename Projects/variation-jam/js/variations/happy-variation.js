@@ -7,22 +7,26 @@
 /**
  * This will be called just before the blue variation starts
  */
-function blueSetup() {
+function happySetup() {
 
 }
 
 /**
  * This will be called every frame when the blue variation is active
  */
-function blueDraw() {
+function happyDraw() {
     background("blue");
+    fill('#fff');
+    textSize(20);
+    textAlign(CENTER, CENTER);
+    text("I am really happy", width / 2, height / 2);
 }
 
 /**
  * This will be called whenever a key is pressed while the blue variation is active
  */
-function blueKeyPressed(event) {
-    if (event.keyCode === 27) {
+function happyKeyPressed(event) {
+    if (event.keyCode === 77) {
         state = "menu";
     }
 }
@@ -30,6 +34,6 @@ function blueKeyPressed(event) {
 /**
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
-function blueMousePressed() {
+function happyMousePressed() {
 
 }

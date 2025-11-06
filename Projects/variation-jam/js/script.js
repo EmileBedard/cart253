@@ -31,8 +31,8 @@ function draw() {
         case "green-variation":
             greenDraw();
             break;
-        case "blue-variation":
-            blueDraw();
+        case "happy-variation":
+            happyDraw();
             break;
     }
 }
@@ -52,8 +52,8 @@ function mousePressed() {
         case "green-variation":
             greenMousePressed();
             break;
-        case "blue-variation":
-            blueMousePressed();
+        case "happy-variation":
+            happyMousePressed();
             break;
     }
 }
@@ -73,8 +73,8 @@ function keyPressed(event) {
         case "green-variation":
             greenKeyPressed(event);
             break;
-        case "blue-variation":
-            blueKeyPressed(event);
+        case "happy-variation":
+            happyKeyPressed(event);
             break;
     }
 }

@@ -39,8 +39,8 @@ function menuKeyPressed(event) {
             break;
 
         case 66:
-            state = "blue-variation";
-            blueSetup();
+            state = "happy-variation";
+            happySetup();
             break;
     }
 }

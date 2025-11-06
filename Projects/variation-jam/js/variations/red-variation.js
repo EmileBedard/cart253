@@ -22,7 +22,7 @@ function redDraw() {
  * This will be called whenever a key is pressed while the red variation is active
  */
 function redKeyPressed(event) {
-    if (event.keyCode === 27) {
+    if (event.keyCode === 77) {
         state = "menu";
     }
 }

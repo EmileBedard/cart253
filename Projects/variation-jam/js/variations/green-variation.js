@@ -22,7 +22,7 @@ function greenDraw() {
  * This will be called whenever a key is pressed while the green variation is active
  */
 function greenKeyPressed(event) {
-    if (event.keyCode === 27) {
+    if (event.keyCode === 77) {
         state = "menu";
     }
 }
