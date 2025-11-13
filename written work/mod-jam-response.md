@@ -3,18 +3,16 @@
 [link to his experience online](https://jakehayduk.github.io/cart253/mod-jam/)
     
 **response:**
-
+At first, Jake's mod jam seems pretty simple and shows minor signs of modifications for the visual aspect. The frog is still eye-less with the half green sphere and the tongue seems original too, the same red tone and speed. But as we get past the starting screen, we notice a few modifications! The flies are moving faster and with a new pattern! This one seems random, maybe combining sine and cosine or anyway trigonometric functions to mimic the buzzing madness of IRL flies. **(I actually just inspected his code and found out that he was using a random noise to move the fly randomly, love this idea and how unique his approach is!)** This touch is really interesting, it makes it fun to visualize the fly and it makes it tricky to catch while offering something different than just a fly going horizontally. Great addition!. My main highlight in Jake's project has to be the death animation of the flies, he uses a **fallRate** value to make them drop once they are caught but the way he manipulates the value is genius, by utilizing real world absolute gravity (9.807) he eases the motion to gain acceleration and drop faster and faster for smooth movement. This adds a wonderful touch of **SATISFACTION**, which is always super important in experiences and games like these.
     
 ## Nerly Cadet mod jam, a new kind of unicorn project! Protect the fortress?
 [link to her experience online](https://nerlylli.github.io/cart253/topics/topics/Mod-Jam/)
     
 **response:**
-
+This one is **Intense**. but really, i'm not joking here. Just like her art-jam, Nerly is exploring the *unicorn* theme here to mandate the player to protect the castle at all costs. The scenario is fun and offers a new narrative arch that feels clearly different from the original frog game or the other student's works. My main complaint here is the saturation of overly present content. I love the idea, the narrative track and the unicorn aspects but the visuals here are just way too much for me, an animated rainbow in the background, full-blown saturated color content and a mix of computer drawn elements that she did with p5 and icons like *emojis*. This overloads the scene and takes my attention and concentration away, I also feel it takes meaning and player involvement away.
     
 ## Jason lee's mod jam, Frog Frog GO! new mechanics, laser tongue ?! AND levels !! WOW!
 [link to his experience online](https://lee-sifu.github.io/cart253-2025-Fall-/mod-jam/)
     
 **response:**
-
-
-    
+A lot to unpack here! Like always, Jason is offering a complex and densely packed experience, **and I'm all here for it!!**. The visual aesthetic leaves a lot to be desired but we are quickly taken over by the game mechanics and narrativity that he offers. The addition of obstacles, laser tongue? and super valued flies are making the game so interesting that we don't really care anymore that the visuals are simple. The first time I tested his mod-jam, I was surprised to be hooked with the gameplay and levels. I reached as far as I could and got better at every level. This aspect of player engagement is well done and I really feel the balance is just right. Nice additions were also made to give value to the game and make it richer with small jokes and quotes in combination with soundeffect, this really tied the knot for me and made the experience complete. **Loved it!**  
