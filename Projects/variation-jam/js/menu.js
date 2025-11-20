@@ -7,7 +7,7 @@
 const menuText = `
 (R) Red variation
 (G) Green variation
-(B) Blue variation`
+(H) Happy variation`
 
 /**
  * Display the main menu
@@ -38,7 +38,7 @@ function menuKeyPressed(event) {
             greenSetup();
             break;
 
-        case 66:
+        case 32:
             state = "happy-variation";
             happySetup();
             break;

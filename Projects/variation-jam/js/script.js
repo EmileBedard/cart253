@@ -58,6 +58,23 @@ function mousePressed() {
     }
 }
 
+function mouseMouved() {
+    switch (state) {
+        case "menu":
+            menuMouseMouved();
+            break;
+        case "red-variation":
+            redMouseMouved();
+            break
+        case "green-variation":
+            greenMouseMouved();
+            break;
+        case "happy-variation":
+            happyMouseMouved();
+            break;
+    }
+}
+
 /**
  * Listen for keypressed and call the function for it in the
  * current state
