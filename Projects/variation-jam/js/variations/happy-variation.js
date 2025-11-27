@@ -1,12 +1,8 @@
 /**
- * This file contains the code to run *only* the blue variation part of the program.
- * Note how it has its own draw, blueDraw(), and its own keyPressed, blueKeyPressed().
- * This keeps the stuff the menu needs to do *separate* from the rest of the program.
+ * This file contains the code to run *only* the pollock variation part of the program.
+ * 
  */
 
-/**
- * This will be called just before the blue variation starts
- */
 
 //this variable controls the color of the paintbrush in HSL mode
 let color = {
@@ -28,16 +24,24 @@ let instructions = {
 let lastMoveTime = 0; // will be called whenever user mouse's moves.
 let inactivityDelay = 500; // 0.5 second
 
+//these variables saves and define the naming of each painting
 let typedWord = ""
 let savedWord = ""
 
+//this variable saves in wich stage are we on, naming our piece or painting it?
 let paintState = "naming"
 
+// this variable stores if the user moved to play a brush sound when it starts moving again
+let usermoved = ""
 
 
+/**
+ * This will be called just before the pollock variation starts
+ */
 function happySetup() {
     background("#F8E5D0");
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
+    sfxBrush.play();
 }
 
 /**
@@ -69,6 +73,7 @@ function happyDraw() {
         drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
     }
 
+    //displays the naming of painting instructions if we are not yet painting
     else {
         background("#F8E5D0");
 
@@ -79,21 +84,29 @@ function happyDraw() {
         textFont(pixelfont);
         text("Name your masterpiece:", width / 2, height / 2);
         text(typedWord, width / 2, 270);
+        text("press -enter- to save", width / 2, 350);
         pop();
 
     }
     console.log(paintState);
 }
 
-
+/**
+ * This will be called when user is inactive to change hue and say it is inactive
+ */
 function changeHue() {
 
     if (millis() - lastMoveTime > inactivityDelay) {
         color.hue = random(0, 360);
         strokeWeight(0);
+        usermoved = false;
+
     }
 }
 
+/**
+ * This will be called every frame to display the main controls
+ */
 function drawInstructions() {
     push();
     fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
@@ -104,6 +117,9 @@ function drawInstructions() {
     pop();
 }
 
+/**
+ * This will be called when user presses S and saves the canvas, it write the painting name
+ */
 function drawPaintingTitle() {
 
     //draws the white rectangle to place the title
@@ -124,6 +140,7 @@ function drawPaintingTitle() {
 
 }
 
+
 /**
  * This will be called whenever a key is pressed while the pollock variation is active
  */
@@ -135,14 +152,15 @@ function happyKeyPressed(event) {
         }
 
         if (event.keyCode === 78) { // brings a new blank canvas when "N" is pressed
+            sfxCanvas.play();
             background("#F8E5D0");
         }
 
         if (event.keyCode === 83) { // saves the current canvas and downloads it when "s" is pressed! adds the name of the painting too. supersupersuper fun!
             drawPaintingTitle();
             saveCanvas('pollock_style_painting.png');
+            sfxCanvas.play();
             background("#F8E5D0");
-
         }
     }
     else {
@@ -166,8 +184,12 @@ function happyKeyPressed(event) {
  * This will be called whenever the mouse moved and the pollock variation is active
  */
 function happyMouseMoved() {
+    if (usermoved === false) {
+        sfxrush.play();
+        usermoved = true;
+    }
     lastMoveTime = millis()
-    console.log(lastMoveTime);
+
 
 }
 
@@ -176,5 +198,6 @@ function happyMouseMoved() {
  */
 function happyMousePressed() {
 
+    //empty, don't need, but i need it empty to function, existentialism...
 
 }

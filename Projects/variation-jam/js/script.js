@@ -9,12 +9,18 @@
 
 let state = "menu";
 let pixelfont = "undefined";
+let sfxBrush = "undefined";
+let sfxCanvas = "undefined";
+
 
 /**
  * preload the specific font used for texts
  */
 function preload() {
     pixelfont = loadFont('assets/fonts/VCR_OSD_MONO_1.001.ttf'); //loads my pixel font
+    sfxBrush = loadSound('assets/sounds/paintsplash.mp3'); //loads the brush sfx
+    sfxCanvas = loadSound('assets/sounds/pageturn.mp3'); //loads the new canvas page turn sfx
+
 };
 
 /**
