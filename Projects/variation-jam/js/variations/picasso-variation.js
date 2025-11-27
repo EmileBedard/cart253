@@ -1,5 +1,5 @@
 /**
- * This file contains the code to run *only* the pollock variation part of the program.
+ * This file contains the code to run *only* the picasso variation part of the program.
  * 
  */
 
@@ -8,18 +8,18 @@
 
 
 /**
- * This will be called just before the pollock variation starts
+ * This will be called just before the picasso variation starts
  */
-function pollockSetup() {
+function picassoSetup() {
     background("#F8E5D0");
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
     sfxBrush.play();
 }
 
 /**
- * This will be called every frame when the pollock variation is active
+ * This will be called every frame when the picasso variation is active
  */
-function pollockDraw() {
+function picassoDraw() {
 
     if (paintState === "painting") {
 
@@ -114,9 +114,9 @@ function drawPaintingTitle() {
 
 
 /**
- * This will be called whenever a key is pressed while the pollock variation is active
+ * This will be called whenever a key is pressed while the picasso variation is active
  */
-function pollockKeyPressed(event) {
+function picassoKeyPressed(event) {
     if (paintState === "painting") {
 
         if (event.keyCode === 77) { // returns to main menu when "M" is pressed
@@ -153,9 +153,9 @@ function pollockKeyPressed(event) {
 }
 
 /**
- * This will be called whenever the mouse moved and the pollock variation is active
+ * This will be called whenever the mouse moved and the picasso variation is active
  */
-function pollockMouseMoved() {
+function picassoMouseMoved() {
     if (usermoved === false) {
         sfxBrush.play();
         usermoved = true;
@@ -168,7 +168,7 @@ function pollockMouseMoved() {
 /**
  * This will be called whenever the mouse is pressed while the picasso variation is active
  */
-function pollockMousePressed() {
+function picassoMousePressed() {
 
     //empty, don't need, but i need it empty to function, existentialism...
 

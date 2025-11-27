@@ -43,8 +43,8 @@ function menuKeyPressed(event) {
             break;
 
         case 71:
-            state = "green-variation";
-            greenSetup();
+            state = "picasso-variation";
+            picassoSetup();
             menuState = "mainMenu"
             break;
 

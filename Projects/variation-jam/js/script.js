@@ -16,6 +16,39 @@ let playbutton = "undefined";
 let menuNoText = "undefined"
 
 
+
+//this variable controls the color of the paintbrush in HSL mode
+let color = {
+    hue: 0,
+    saturation: 100,
+    luminance: 50,
+    alpha: 1,
+};
+
+//this variable controls the color of instruction text. alpha value is used here to make it disappear when user wnats to save painting
+let instructions = {
+    hue: 0,
+    saturation: 100,
+    luminance: 0,
+    alpha: 1,
+};
+
+//these variables control if the user is inactive and store the lastest active time in a data way with millis()
+let lastMoveTime = 0; // will be called whenever user mouse's moves.
+let inactivityDelay = 500; // 0.5 second
+
+//these variables saves and define the naming of each painting
+let typedWord = ""
+let savedWord = ""
+
+//this variable saves in wich stage are we on, naming our piece or painting it?
+let paintState = "naming"
+
+// this variable stores if the user moved to play a brush sound when it starts moving again
+let usermoved = ""
+
+
+
 /**
  * preload the specific font used for texts
  */
@@ -48,8 +81,8 @@ function draw() {
         case "red-variation":
             redDraw();
             break
-        case "green-variation":
-            greenDraw();
+        case "picasso-variation":
+            picassoDraw();
             break;
         case "pollock-variation":
             pollockDraw();
@@ -69,8 +102,8 @@ function mousePressed() {
         case "red-variation":
             redMousePressed();
             break
-        case "green-variation":
-            greenMousePressed();
+        case "picasso-variation":
+            picassoMousePressed();
             break;
         case "pollock-variation":
             pollockMousePressed();
@@ -90,8 +123,8 @@ function mouseMoved() {
         case "red-variation":
             redMouseMoved();
             break
-        case "green-variation":
-            greenMouseMoved();
+        case "picasso-variation":
+            picassoMouseMoved();
             break;
         case "pollock-variation":
             pollockMouseMoved();
@@ -111,8 +144,8 @@ function keyPressed(event) {
         case "red-variation":
             redKeyPressed(event);
             break
-        case "green-variation":
-            greenKeyPressed(event);
+        case "picasso-variation":
+            picassoKeyPressed(event);
             break;
         case "pollock-variation":
             pollockKeyPressed(event);

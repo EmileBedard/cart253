@@ -22,8 +22,8 @@
 + color palette
 
 ### Plan!
-[] set up the canvas and the drawing function
-[] add reset option to erase canvas
-[] test first varaiation --> neoplasticism with hard lines and primary color zones
+~~[] set up the canvas and the drawing function~~
+~~[] add reset option to erase canvas~~
+[] test first variation --> neoplasticism with hard lines and primary color zones
 - for mondrian, use a threshold to check if the line turns 90 or not ? try and asjust if it doesn't work..
 
