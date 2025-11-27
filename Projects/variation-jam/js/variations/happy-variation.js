@@ -8,15 +8,20 @@
  * This will be called just before the blue variation starts
  */
 
-let move = undefined;
+let color = {
+    hue: 0,
+    saturation: 200,
+    luminance: 50,
+};
 
 
 function happySetup() {
     background("#F8E5D0");
+    colorMode(HSL);
 }
 
 /**
- * This will be called every frame when the blue variation is active
+ * This will be called every frame when the pollock variation is active
  */
 function happyDraw() {
     push();
@@ -30,8 +35,8 @@ function happyDraw() {
 
 
     // Set the stroke *saturation* based on the distance
-    const strokeColor = map(d, -width / 2, width / 2, 0, 100);
-    stroke(strokeColor);
+    color.saturation = map(d, -width / 2, width / 2, 0, 100);
+    stroke(color.hue, color.saturation, color.luminance);
 
     // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
     line(pmouseX, pmouseY, mouseX + random(1, 40), mouseY + random(1, 40));
@@ -39,10 +44,10 @@ function happyDraw() {
 }
 
 /**
- * This will be called whenever a key is pressed while the blue variation is active
+ * This will be called whenever a key is pressed while the pollock variation is active
  */
 function happyKeyPressed(event) {
-    if (event.keyCode === 77) {
+    if (event.keyCode === 77) { // returns to main menu when "M" is pressed
         state = "menu";
     }
 }
