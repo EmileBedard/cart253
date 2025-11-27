@@ -11,8 +11,17 @@
 //this variable controls the color of the paintbrush in HSL mode
 let color = {
     hue: 0,
-    saturation: 200,
+    saturation: 100,
     luminance: 50,
+    alpha: 1,
+};
+
+//this variable controls the color of instruction text. alpha value is used here to make it disappear when user wnats to save painting
+let instructions = {
+    hue: 0,
+    saturation: 100,
+    luminance: 0,
+    alpha: 1,
 };
 
 //these variables control if the user is inactive and store the lastest active time in a data way with millis()
@@ -23,7 +32,7 @@ let inactivityDelay = 500; // 0.5 second
 
 function happySetup() {
     background("#F8E5D0");
-    colorMode(HSL);
+    colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
 }
 
 /**
@@ -39,17 +48,17 @@ function happyDraw() {
     // with this line, we set the distance in a variable called "d"
     const d = dist(mouseX, mouseY, width / 2, height / 2);
 
-    changeHue() // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
+    changeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
 
     // Set the stroke *saturation* based on the distance
     color.saturation = map(d, -width / 2, width / 2, 0, 100);
-    stroke(color.hue, color.saturation, color.luminance);
+    stroke(color.hue, color.saturation, color.luminance, color.alpha);
 
     // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
     line(pmouseX, pmouseY, mouseX + random(-40, 40), mouseY + random(-40, 40));
     pop();
 
-
+    drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
 }
 
 function changeHue() {
@@ -58,6 +67,16 @@ function changeHue() {
         color.hue = random(0, 360);
         strokeWeight(0);
     }
+}
+
+function drawInstructions() {
+    push();
+    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    textFont(pixelfont);
+    text("Main Menu:M | New Canvas:N | Save Painting:S", 320, 460);
+    pop();
 }
 
 /**

@@ -8,6 +8,14 @@
 "use strict";
 
 let state = "menu";
+let pixelfont = "undefined";
+
+/**
+ * preload the specific font used for texts
+ */
+function preload() {
+    pixelfont = loadFont('assets/fonts/VCR_OSD_MONO_1.001.ttf'); //loads my pixel font
+};
 
 /**
  * Create the canvas
