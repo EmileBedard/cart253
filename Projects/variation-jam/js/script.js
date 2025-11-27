@@ -11,6 +11,9 @@ let state = "menu";
 let pixelfont = "undefined";
 let sfxBrush = "undefined";
 let sfxCanvas = "undefined";
+let mainSplashScreen = "undefined";
+let playbutton = "undefined";
+let menuNoText = "undefined"
 
 
 /**
@@ -20,6 +23,9 @@ function preload() {
     pixelfont = loadFont('assets/fonts/VCR_OSD_MONO_1.001.ttf'); //loads my pixel font
     sfxBrush = loadSound('assets/sounds/paintsplash.mp3'); //loads the brush sfx
     sfxCanvas = loadSound('assets/sounds/pageturn.mp3'); //loads the new canvas page turn sfx
+    mainSplashScreen = loadImage('assets/images/mainmenu.png');
+    playbutton = loadImage('assets/images/playbutton.png');
+    menuNoText = loadImage('assets/images/menu_no_text.png');
 
 };
 
@@ -45,8 +51,8 @@ function draw() {
         case "green-variation":
             greenDraw();
             break;
-        case "happy-variation":
-            happyDraw();
+        case "pollock-variation":
+            pollockDraw();
             break;
     }
 }
@@ -66,12 +72,16 @@ function mousePressed() {
         case "green-variation":
             greenMousePressed();
             break;
-        case "happy-variation":
-            happyMousePressed();
+        case "pollock-variation":
+            pollockMousePressed();
             break;
     }
 }
 
+/**
+ * Listen for mouse movement and call the function for it in the
+ * current state
+ */
 function mouseMoved() {
     switch (state) {
         case "menu":
@@ -83,8 +93,8 @@ function mouseMoved() {
         case "green-variation":
             greenMouseMoved();
             break;
-        case "happy-variation":
-            happyMouseMoved();
+        case "pollock-variation":
+            pollockMouseMoved();
             break;
     }
 }
@@ -104,8 +114,8 @@ function keyPressed(event) {
         case "green-variation":
             greenKeyPressed(event);
             break;
-        case "happy-variation":
-            happyKeyPressed(event);
+        case "pollock-variation":
+            pollockKeyPressed(event);
             break;
     }
 }

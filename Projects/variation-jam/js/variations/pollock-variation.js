@@ -38,7 +38,7 @@ let usermoved = ""
 /**
  * This will be called just before the pollock variation starts
  */
-function happySetup() {
+function pollockSetup() {
     background("#F8E5D0");
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
     sfxBrush.play();
@@ -47,7 +47,7 @@ function happySetup() {
 /**
  * This will be called every frame when the pollock variation is active
  */
-function happyDraw() {
+function pollockDraw() {
 
     if (paintState === "painting") {
 
@@ -144,7 +144,7 @@ function drawPaintingTitle() {
 /**
  * This will be called whenever a key is pressed while the pollock variation is active
  */
-function happyKeyPressed(event) {
+function pollockKeyPressed(event) {
     if (paintState === "painting") {
 
         if (event.keyCode === 77) { // returns to main menu when "M" is pressed
@@ -183,9 +183,9 @@ function happyKeyPressed(event) {
 /**
  * This will be called whenever the mouse moved and the pollock variation is active
  */
-function happyMouseMoved() {
+function pollockMouseMoved() {
     if (usermoved === false) {
-        sfxrush.play();
+        sfxBrush.play();
         usermoved = true;
     }
     lastMoveTime = millis()
@@ -196,7 +196,7 @@ function happyMouseMoved() {
 /**
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
-function happyMousePressed() {
+function pollockMousePressed() {
 
     //empty, don't need, but i need it empty to function, existentialism...
 
