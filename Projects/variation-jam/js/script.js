@@ -152,3 +152,39 @@ function keyPressed(event) {
             break;
     }
 }
+
+/**
+ * This will be called when user presses S and saves the canvas, it write the painting name
+ */
+function drawPaintingTitle() {
+
+    //draws the white rectangle to place the title
+    push();
+    fill('white');
+    noStroke();
+    rect(0, 420, 640, 60);
+    pop();
+
+    //draws the painting title
+    push();
+    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    textFont(pixelfont);
+    text(savedWord, width / 2, 450);
+    pop();
+
+}
+
+/**
+ * This will be called every frame to display the main controls
+ */
+function drawInstructions() {
+    push();
+    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    textFont(pixelfont);
+    text("Main Menu:M | New Canvas:N | Save Painting:S", 320, 460);
+    pop();
+}

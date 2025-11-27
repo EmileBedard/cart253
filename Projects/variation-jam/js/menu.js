@@ -8,7 +8,7 @@
 let menuState = "mainMenu"
 
 const menuText = `
-(R) VanGogh variation
+(R) VanGogh variation (wip!)
 (G) Picasso variation
 (P) Pollock variation`
 

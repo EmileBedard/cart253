@@ -31,7 +31,7 @@ function vangoghDraw() {
 
         dashedLine() // this sets the width of the stroke to make dashed lines
 
-        changeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
+        vangoghchangeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
 
         // Set the stroke *saturation* based on the distance
         color.saturation = map(d, -width / 2, width / 2, 0, 100);
@@ -67,13 +67,13 @@ function vangoghDraw() {
 /**
  * This will be called when user is inactive to change hue and say it is inactive
  */
-function changeHue() {
+function vangoghchangeHue() {
 
     if (millis() - lastMoveTime > inactivityDelay) {
         color.hue = random(190, 260);
         strokeWeight(0);
         usermoved = false;
-
+        console.log(color.hue);
     }
 }
 
@@ -84,47 +84,11 @@ function dashedLine() {
         dashed = false
     }
 
-    if (dashed === false) {
+    else if (dashed === false) {
         const weight = 20;
         strokeWeight(weight);
         dashed = true
     }
-}
-
-/**
- * This will be called every frame to display the main controls
- */
-function drawInstructions() {
-    push();
-    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
-    textAlign(CENTER, CENTER);
-    textSize(24);
-    textFont(pixelfont);
-    text("Main Menu:M | New Canvas:N | Save Painting:S", 320, 460);
-    pop();
-}
-
-/**
- * This will be called when user presses S and saves the canvas, it write the painting name
- */
-function drawPaintingTitle() {
-
-    //draws the white rectangle to place the title
-    push();
-    fill('white');
-    noStroke();
-    rect(0, 420, 640, 60);
-    pop();
-
-    //draws the painting title
-    push();
-    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
-    textAlign(CENTER, CENTER);
-    textSize(20);
-    textFont(pixelfont);
-    text(savedWord, width / 2, 450);
-    pop();
-
 }
 
 
@@ -136,6 +100,9 @@ function vangoghKeyPressed(event) {
 
         if (event.keyCode === 77) { // returns to main menu when "M" is pressed
             state = "menu";
+            savedWord = "";
+            paintState = "naming"
+
         }
 
         if (event.keyCode === 78) { // brings a new blank canvas when "N" is pressed
@@ -148,6 +115,8 @@ function vangoghKeyPressed(event) {
             saveCanvas('VanGogh_style_painting.png');
             sfxCanvas.play();
             background("#F8E5D0");
+
+
         }
     }
     else {

@@ -34,7 +34,7 @@ function pollockDraw() {
         // with this line, we set the distance in a variable called "d"
         const d = dist(mouseX, mouseY, width / 2, height / 2);
 
-        changeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
+        pollockchangeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
 
         // Set the stroke *saturation* based on the distance
         color.saturation = map(d, -width / 2, width / 2, 0, 100);
@@ -68,7 +68,7 @@ function pollockDraw() {
 /**
  * This will be called when user is inactive to change hue and say it is inactive
  */
-function changeHue() {
+function pollockchangeHue() {
 
     if (millis() - lastMoveTime > inactivityDelay) {
         color.hue = random(0, 360);
@@ -78,41 +78,6 @@ function changeHue() {
     }
 }
 
-/**
- * This will be called every frame to display the main controls
- */
-function drawInstructions() {
-    push();
-    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
-    textAlign(CENTER, CENTER);
-    textSize(24);
-    textFont(pixelfont);
-    text("Main Menu:M | New Canvas:N | Save Painting:S", 320, 460);
-    pop();
-}
-
-/**
- * This will be called when user presses S and saves the canvas, it write the painting name
- */
-function drawPaintingTitle() {
-
-    //draws the white rectangle to place the title
-    push();
-    fill('white');
-    noStroke();
-    rect(0, 420, 640, 60);
-    pop();
-
-    //draws the painting title
-    push();
-    fill(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
-    textAlign(CENTER, CENTER);
-    textSize(20);
-    textFont(pixelfont);
-    text(savedWord, width / 2, 450);
-    pop();
-
-}
 
 
 /**
@@ -123,6 +88,9 @@ function pollockKeyPressed(event) {
 
         if (event.keyCode === 77) { // returns to main menu when "M" is pressed
             state = "menu";
+            savedWord = "";
+            paintState = "naming"
+
         }
 
         if (event.keyCode === 78) { // brings a new blank canvas when "N" is pressed
