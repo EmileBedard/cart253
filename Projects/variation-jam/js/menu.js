@@ -8,9 +8,11 @@
 let menuState = "mainMenu"
 
 const menuText = `
-(R) VanGogh variation (wip!)
-(G) Picasso variation
-(P) Pollock variation`
+(V) Paint like Vincent Van Gogh
+(G) Paint like Pablo Picasso
+(P) Paint like Jackson Pollock
+(M) Paint like Kasimir malevitch
+(C) Sculpt like Alexander calder`
 
 /**
  * Display the main menu
@@ -36,12 +38,11 @@ function menuDraw() {
  */
 function menuKeyPressed(event) {
     switch (event.keyCode) {
-        case 82:
+        case 86:
             state = "vangogh-variation";
             vangoghSetup();
             menuState = "mainMenu"
             break;
-
         case 71:
             state = "picasso-variation";
             picassoSetup();
@@ -51,6 +52,16 @@ function menuKeyPressed(event) {
         case 80:
             state = "pollock-variation";
             pollockSetup();
+            menuState = "mainMenu"
+            break;
+        case 77:
+            state = "malevitch-variation";
+            malevitchSetup();
+            menuState = "mainMenu"
+            break;
+        case 67:
+            state = "calder-variation";
+            calderSetup();
             menuState = "mainMenu"
             break;
     }

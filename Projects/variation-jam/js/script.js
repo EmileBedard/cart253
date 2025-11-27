@@ -87,6 +87,12 @@ function draw() {
         case "pollock-variation":
             pollockDraw();
             break;
+        case "malevitch-variation":
+            malevitchDraw();
+            break;
+        case "calder-variation":
+            calderDraw();
+            break;
     }
 }
 
@@ -107,6 +113,12 @@ function mousePressed() {
             break;
         case "pollock-variation":
             pollockMousePressed();
+            break;
+        case "malevitch-variation":
+            malevitchMousePressed();
+            break;
+        case "calder-variation":
+            calderMousePressed();
             break;
     }
 }
@@ -129,6 +141,12 @@ function mouseMoved() {
         case "pollock-variation":
             pollockMouseMoved();
             break;
+        case "malevitch-variation":
+            malevitchMouseMoved();
+            break;
+        case "calder-variation":
+            calderMouseMoved();
+            break;
     }
 }
 
@@ -149,6 +167,12 @@ function keyPressed(event) {
             break;
         case "pollock-variation":
             pollockKeyPressed(event);
+            break;
+        case "malevitch-variation":
+            malevitchKeyPressed(event);
+            break;
+        case "calder-variation":
+            calderKeyPressed(event);
             break;
     }
 }

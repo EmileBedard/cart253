@@ -16,6 +16,7 @@ function picassoSetup() {
     sfxBrush.play();
     frameRate(10);
     cursor('grab');
+    color.luminance = 50;
 
 }
 

@@ -15,6 +15,7 @@ function vangoghSetup() {
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
     sfxBrush.play();
     cursor('grab');
+    color.luminance = 50;
 }
 
 /**
