@@ -14,6 +14,9 @@ function picassoSetup() {
     background("#F8E5D0");
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
     sfxBrush.play();
+    frameRate(10);
+    cursor('grab');
+
 }
 
 /**
@@ -39,7 +42,7 @@ function picassoDraw() {
         stroke(color.hue, color.saturation, color.luminance, color.alpha);
 
         // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
-        line(pmouseX, pmouseY, mouseX + random(-40, 40), mouseY + random(-40, 40));
+        line(pmouseX, pmouseY, mouseX, mouseY);
         pop();
 
         drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
@@ -130,7 +133,7 @@ function picassoKeyPressed(event) {
 
         if (event.keyCode === 83) { // saves the current canvas and downloads it when "s" is pressed! adds the name of the painting too. supersupersuper fun!
             drawPaintingTitle();
-            saveCanvas('pollock_style_painting.png');
+            saveCanvas('picasso_style_painting.png');
             sfxCanvas.play();
             background("#F8E5D0");
         }

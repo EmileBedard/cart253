@@ -8,8 +8,8 @@
 let menuState = "mainMenu"
 
 const menuText = `
-(R) Red variation
-(G) Green variation
+(R) VanGogh variation
+(G) Picasso variation
 (P) Pollock variation`
 
 /**
@@ -37,8 +37,8 @@ function menuDraw() {
 function menuKeyPressed(event) {
     switch (event.keyCode) {
         case 82:
-            state = "red-variation";
-            redSetup();
+            state = "vangogh-variation";
+            vangoghSetup();
             menuState = "mainMenu"
             break;
 

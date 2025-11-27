@@ -1,38 +1,35 @@
 /**
- * This file contains the code to run *only* the pollock variation part of the program.
+ * This file contains the code to run *only* the vangogh variation part of the program.
  * 
  */
 
 
-
+let dashed = false
 
 
 /**
- * This will be called just before the pollock variation starts
+ * This will be called just before the vangogh variation starts
  */
-function pollockSetup() {
+function vangoghSetup() {
     background("#F8E5D0");
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
     sfxBrush.play();
     cursor('grab');
-
 }
 
 /**
- * This will be called every frame when the pollock variation is active
+ * This will be called every frame when the vangogh variation is active
  */
-function pollockDraw() {
+function vangoghDraw() {
 
     if (paintState === "painting") {
 
         push();
-        // using movedX here to calculate the distance the mouse moved to fix the stroke weight
-        const weight = map(abs(movedX), 0, 30, 10, 6);
-        strokeWeight(weight);
-
         // calculate stroke saturation here with the distance from the center. HSL color mode in this variation
         // with this line, we set the distance in a variable called "d"
         const d = dist(mouseX, mouseY, width / 2, height / 2);
+
+        dashedLine() // this sets the width of the stroke to make dashed lines
 
         changeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
 
@@ -41,10 +38,12 @@ function pollockDraw() {
         stroke(color.hue, color.saturation, color.luminance, color.alpha);
 
         // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
-        line(pmouseX, pmouseY, mouseX + random(-40, 40), mouseY + random(-40, 40));
+        line(pmouseX, pmouseY, mouseX, mouseY);
         pop();
 
         drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
+
+
     }
 
     //displays the naming of painting instructions if we are not yet painting
@@ -71,10 +70,24 @@ function pollockDraw() {
 function changeHue() {
 
     if (millis() - lastMoveTime > inactivityDelay) {
-        color.hue = random(0, 360);
+        color.hue = random(190, 260);
         strokeWeight(0);
         usermoved = false;
 
+    }
+}
+
+function dashedLine() {
+    if (dashed === true) {
+        const weight = 0;
+        strokeWeight(weight);
+        dashed = false
+    }
+
+    if (dashed === false) {
+        const weight = 20;
+        strokeWeight(weight);
+        dashed = true
     }
 }
 
@@ -116,9 +129,9 @@ function drawPaintingTitle() {
 
 
 /**
- * This will be called whenever a key is pressed while the pollock variation is active
+ * This will be called whenever a key is pressed while the vangogh variation is active
  */
-function pollockKeyPressed(event) {
+function vangoghKeyPressed(event) {
     if (paintState === "painting") {
 
         if (event.keyCode === 77) { // returns to main menu when "M" is pressed
@@ -132,7 +145,7 @@ function pollockKeyPressed(event) {
 
         if (event.keyCode === 83) { // saves the current canvas and downloads it when "s" is pressed! adds the name of the painting too. supersupersuper fun!
             drawPaintingTitle();
-            saveCanvas('pollock_style_painting.png');
+            saveCanvas('VanGogh_style_painting.png');
             sfxCanvas.play();
             background("#F8E5D0");
         }
@@ -155,9 +168,9 @@ function pollockKeyPressed(event) {
 }
 
 /**
- * This will be called whenever the mouse moved and the pollock variation is active
+ * This will be called whenever the mouse moved and the vangogh variation is active
  */
-function pollockMouseMoved() {
+function vangoghMouseMoved() {
     if (usermoved === false) {
         sfxBrush.play();
         usermoved = true;
@@ -168,9 +181,9 @@ function pollockMouseMoved() {
 }
 
 /**
- * This will be called whenever the mouse is pressed while the picasso variation is active
+ * This will be called whenever the mouse is pressed while the vangogh variation is active
  */
-function pollockMousePressed() {
+function vangoghMousePressed() {
 
     //empty, don't need, but i need it empty to function, existentialism...
 

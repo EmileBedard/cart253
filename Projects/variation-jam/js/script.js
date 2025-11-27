@@ -78,8 +78,8 @@ function draw() {
         case "menu":
             menuDraw();
             break;
-        case "red-variation":
-            redDraw();
+        case "vangogh-variation":
+            vangoghDraw();
             break
         case "picasso-variation":
             picassoDraw();
@@ -99,8 +99,8 @@ function mousePressed() {
         case "menu":
             menuMousePressed();
             break;
-        case "red-variation":
-            redMousePressed();
+        case "vangogh-variation":
+            vangoghMousePressed();
             break
         case "picasso-variation":
             picassoMousePressed();
@@ -120,8 +120,8 @@ function mouseMoved() {
         case "menu":
             menuMouseMoved();
             break;
-        case "red-variation":
-            redMouseMoved();
+        case "vangogh-variation":
+            vangoghMouseMoved();
             break
         case "picasso-variation":
             picassoMouseMoved();
@@ -141,8 +141,8 @@ function keyPressed(event) {
         case "menu":
             menuKeyPressed(event);
             break;
-        case "red-variation":
-            redKeyPressed(event);
+        case "vangogh-variation":
+            vangoghKeyPressed(event);
             break
         case "picasso-variation":
             picassoKeyPressed(event);
