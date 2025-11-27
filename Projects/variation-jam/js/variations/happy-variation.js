@@ -8,11 +8,17 @@
  * This will be called just before the blue variation starts
  */
 
+//this variable controls the color of the paintbrush in HSL mode
 let color = {
     hue: 0,
     saturation: 200,
     luminance: 50,
 };
+
+//these variables control if the user is inactive and store the lastest active time in a data way with millis()
+let lastMoveTime = 0; // will be called whenever user mouse's moves.
+let inactivityDelay = 1000; // 1 second
+
 
 
 function happySetup() {
@@ -43,6 +49,10 @@ function happyDraw() {
     pop();
 }
 
+// function changeHue() {
+//     if ()
+// }
+
 /**
  * This will be called whenever a key is pressed while the pollock variation is active
  */
@@ -53,10 +63,11 @@ function happyKeyPressed(event) {
 }
 
 /**
- * This will be called whenever the mouse is pressed while the blue variation is active
+ * This will be called whenever the mouse moved and the pollock variation is active
  */
 function happyMouseMoved() {
-
+    lastMoveTime = millis()
+    console.log(lastMoveTime);
 
 }
 

@@ -58,19 +58,19 @@ function mousePressed() {
     }
 }
 
-function mouseMouved() {
+function mouseMoved() {
     switch (state) {
         case "menu":
-            menuMouseMouved();
+            menuMouseMoved();
             break;
         case "red-variation":
-            redMouseMouved();
+            redMouseMoved();
             break
         case "green-variation":
-            greenMouseMouved();
+            greenMouseMoved();
             break;
         case "happy-variation":
-            happyMouseMouved();
+            happyMouseMoved();
             break;
     }
 }
