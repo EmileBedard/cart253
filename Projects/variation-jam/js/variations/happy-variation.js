@@ -19,29 +19,21 @@ function happySetup() {
  * This will be called every frame when the blue variation is active
  */
 function happyDraw() {
-    // Figure out all the fun settings!
-
-    // Let's use map() to convert between mouse-related numbers
-    // and colour and other numbers!
-    // https://p5js.org/reference/p5/map/
-
     push();
-    // Calculate the stroke weight based on how far the mouse moved
-    // We're using abs() (absolute value) to ignore negatives
-    // The stroke weight will be thinner the faster (further) the
-    // mouse moved
+    // using movedX here to calculate the distance the mouse moved to fix the stroke weight
     const weight = map(abs(movedX), 0, 30, 10, 6);
     strokeWeight(weight);
 
-    // Calculate the stroke color based on the mouse's distance
-    // from the centre of the canvas
+    // calculate stroke saturation here with the distance from the center. HSL color mode in this variation
+    // with this line, we set the distance in a variable called "d"
     const d = dist(mouseX, mouseY, width / 2, height / 2);
-    // Set the stroke color based on the distance
-    // Make the stroke lighter when it's closer to the edges
+
+
+    // Set the stroke *saturation* based on the distance
     const strokeColor = map(d, -width / 2, width / 2, 0, 100);
     stroke(strokeColor);
 
-    // Draw a line from the previous mouse position to the current one
+    // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
     line(pmouseX, pmouseY, mouseX + random(1, 40), mouseY + random(1, 40));
     pop();
 }
@@ -59,11 +51,7 @@ function happyKeyPressed(event) {
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
 function happyMouseMoved() {
-    move = random();
-    push();
-    fill('#ffB');
-    ellipse(random(0, width), random(0, height), 100);
-    pop();
+
 
 }
 
@@ -71,10 +59,6 @@ function happyMouseMoved() {
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
 function happyMousePressed() {
-    move = random();
-    push();
-    fill('#ffB');
-    ellipse(random(0, width), random(0, height), 100);
-    pop();
+
 
 }
