@@ -62,7 +62,7 @@ function vangoghDraw() {
         pop();
 
     }
-    console.log(paintState);
+
 }
 
 /**

@@ -25,12 +25,12 @@ function malevitchDraw() {
 
 
         color.saturation = 0;
-        color.luminance = 0;
+        color.luminance = 0; // sets the color to pure black
 
         fill(color.hue, color.saturation, color.luminance, color.alpha);
         rect(0, 0, 640, 480);
 
-        instructions.luminance = 100;
+        instructions.luminance = 100; // makes the instructions white
         drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
         instructions.luminance = 0;
 
@@ -53,7 +53,7 @@ function malevitchDraw() {
         pop();
 
     }
-    console.log(paintState);
+
 }
 
 
