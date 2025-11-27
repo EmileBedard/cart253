@@ -39,6 +39,7 @@ function happyDraw() {
     // with this line, we set the distance in a variable called "d"
     const d = dist(mouseX, mouseY, width / 2, height / 2);
 
+    changeHue() // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
 
     // Set the stroke *saturation* based on the distance
     color.saturation = map(d, -width / 2, width / 2, 0, 100);
@@ -48,17 +49,14 @@ function happyDraw() {
     line(pmouseX, pmouseY, mouseX + random(1, 40), mouseY + random(1, 40));
     pop();
 
-    changeHue()
+
 }
 
 function changeHue() {
 
     if (millis() - lastMoveTime > inactivityDelay) {
         color.hue = random(0, 360);
-
-        if (millis() - lastMoveTime > inactivityDelay + 200) {
-
-        }
+        strokeWeight(0);
     }
 }
 
@@ -69,11 +67,14 @@ function happyKeyPressed(event) {
     if (event.keyCode === 77) { // returns to main menu when "M" is pressed
         state = "menu";
     }
+
+
     if (event.keyCode === 78) { // brings a new blank canvas when "N" is pressed
         background("#F8E5D0");
     }
-    if (event.keyCode === 77) { // returns to main menu when "M" is pressed
-        state = "menu";
+
+    if (event.keyCode === 83) { // brings a new blank canvas when "N" is pressed
+        saveCanvas('pollock_style_painting.png');
     }
 }
 
