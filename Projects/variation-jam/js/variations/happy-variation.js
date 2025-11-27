@@ -46,7 +46,7 @@ function happyDraw() {
     stroke(color.hue, color.saturation, color.luminance);
 
     // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
-    line(pmouseX, pmouseY, mouseX + random(1, 40), mouseY + random(1, 40));
+    line(pmouseX, pmouseY, mouseX + random(-40, 40), mouseY + random(-40, 40));
     pop();
 
 
@@ -73,7 +73,7 @@ function happyKeyPressed(event) {
         background("#F8E5D0");
     }
 
-    if (event.keyCode === 83) { // brings a new blank canvas when "N" is pressed
+    if (event.keyCode === 83) { // saves the current canvas and downloads it when "s" is pressed!
         saveCanvas('pollock_style_painting.png');
     }
 }
