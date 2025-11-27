@@ -17,7 +17,7 @@ let color = {
 
 //these variables control if the user is inactive and store the lastest active time in a data way with millis()
 let lastMoveTime = 0; // will be called whenever user mouse's moves.
-let inactivityDelay = 1000; // 1 second
+let inactivityDelay = 500; // 0.5 second
 
 
 
@@ -47,16 +47,31 @@ function happyDraw() {
     // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
     line(pmouseX, pmouseY, mouseX + random(1, 40), mouseY + random(1, 40));
     pop();
+
+    changeHue()
 }
 
-// function changeHue() {
-//     if ()
-// }
+function changeHue() {
+
+    if (millis() - lastMoveTime > inactivityDelay) {
+        color.hue = random(0, 360);
+
+        if (millis() - lastMoveTime > inactivityDelay + 200) {
+
+        }
+    }
+}
 
 /**
  * This will be called whenever a key is pressed while the pollock variation is active
  */
 function happyKeyPressed(event) {
+    if (event.keyCode === 77) { // returns to main menu when "M" is pressed
+        state = "menu";
+    }
+    if (event.keyCode === 78) { // brings a new blank canvas when "N" is pressed
+        background("#F8E5D0");
+    }
     if (event.keyCode === 77) { // returns to main menu when "M" is pressed
         state = "menu";
     }
