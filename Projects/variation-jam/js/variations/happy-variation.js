@@ -12,19 +12,38 @@ let move = undefined;
 
 
 function happySetup() {
-    background('blue');
+    background("#F8E5D0");
 }
 
 /**
  * This will be called every frame when the blue variation is active
  */
 function happyDraw() {
-    noStroke();
-    fill('#fff');
-    textSize(20);
-    textAlign(CENTER, CENTER);
-    text("I am really happy", width / 2, height / 2);
-    console.log(move);
+    // Figure out all the fun settings!
+
+    // Let's use map() to convert between mouse-related numbers
+    // and colour and other numbers!
+    // https://p5js.org/reference/p5/map/
+
+    push();
+    // Calculate the stroke weight based on how far the mouse moved
+    // We're using abs() (absolute value) to ignore negatives
+    // The stroke weight will be thinner the faster (further) the
+    // mouse moved
+    const weight = map(abs(movedX), 0, 30, 10, 6);
+    strokeWeight(weight);
+
+    // Calculate the stroke color based on the mouse's distance
+    // from the centre of the canvas
+    const d = dist(mouseX, mouseY, width / 2, height / 2);
+    // Set the stroke color based on the distance
+    // Make the stroke lighter when it's closer to the edges
+    const strokeColor = map(d, -width / 2, width / 2, 0, 100);
+    stroke(strokeColor);
+
+    // Draw a line from the previous mouse position to the current one
+    line(pmouseX, pmouseY, mouseX + random(1, 40), mouseY + random(1, 40));
+    pop();
 }
 
 /**
