@@ -3,7 +3,7 @@
  * 
  */
 
-
+// this variable initializes the dashed lines of van gogh
 let dashed = false
 
 
@@ -66,7 +66,7 @@ function vangoghDraw() {
 }
 
 /**
- * This will be called when user is inactive to change hue and say it is inactive
+ * This will be called when user is inactive to change hue and say it is inactive, in vangogh var. this changes hue for different shades of blue
  */
 function vangoghchangeHue() {
 
@@ -78,6 +78,9 @@ function vangoghchangeHue() {
     }
 }
 
+/**
+ * This functions alternate the weight of the line every frame to make a dashed lines like in the starry night painting by vangogh
+ */
 function dashedLine() {
     if (dashed === true) {
         const weight = 0;

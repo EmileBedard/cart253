@@ -7,6 +7,7 @@
 
 let menuState = "mainMenu"
 
+// menu of 5 different variations
 const menuText = `
 (V) Paint like Vincent Van Gogh
 (G) Paint like Pablo Picasso
@@ -34,7 +35,7 @@ function menuDraw() {
 }
 
 /**
- * Listen to the keyboard
+ * Listen to the keyboard and calls each variation's setup
  */
 function menuKeyPressed(event) {
     switch (event.keyCode) {
