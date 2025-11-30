@@ -1,8 +1,9 @@
 /**
  * Variation Jam
- * Émile Bédard
+ * By Émile Bédard
  * 
- *
+ *Paint Shop Specialist!
+ This program is a painting simulator that explores different eras of art history and movements to influence the way the user draws. Using your mouse, you can draw like Vincent Van Gogh, Pablo Picasso, Kasimir Malevitch, Alexander Calder and Jackson Pollock. Save your paintings and build your own mini gallery with Paint Shop Specialist!
  */
 
 "use strict";

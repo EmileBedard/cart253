@@ -1,24 +1,22 @@
-# TITLE OF PROJECT
-
-AUTHOR NAME
+# Paint Shop Specialist!
+ 
+Émile Bédard
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
-
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
-
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
-
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
-
+This program is a painting simulator that explores different eras of art history and movements to influence the way the user draws. Using your mouse, you can draw like Vincent Van Gogh, Pablo Picasso, Kasimir Malevitch, Alexander Calder and Jackson Pollock. Save your paintings and build your own mini gallery with Paint Shop Specialist!
+ 
 ## Screenshot(s)
 
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
+images of main menu, and three paintings
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![Image of Paint Shop Specialist"](assets/images/mainmenu.png)
+> ![Image of Paint Shop Specialist"](assets/images/pollock_style_painting.png)
+> ![Image of Paint Shop Specialist"](assets/images/calder_style_painting.png)
+> ![Image of Paint Shop Specialist"](assets/images/picasso_style_painting.png)
+
 
 ## Attribution
 
