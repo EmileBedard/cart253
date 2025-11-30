@@ -27,12 +27,12 @@ function malevitchDraw() {
         color.saturation = 0;
         color.luminance = 0; // sets the color to pure black
 
-        fill(color.hue, color.saturation, color.luminance, color.alpha);
+        fill(color.hue, color.saturation, color.luminance, color.alpha); // fills the canvas with black every frame, a joke! to mimic malevitch's paintings.
         rect(0, 0, 640, 480);
 
         instructions.luminance = 100; // makes the instructions white
         drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
-        instructions.luminance = 0;
+        instructions.luminance = 0; // this is making sure we bring the instructions black after for other variations since they share the same color js object
 
 
 

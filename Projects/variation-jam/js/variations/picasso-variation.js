@@ -14,7 +14,7 @@ function picassoSetup() {
     background("#F8E5D0");
     colorMode(HSL, 360, 100, 100, 1); // (colormode, MAX HUE RANGE, MAX SATURATION RANGE, MAX LUMINANCE RANGE, MAX ALPHA RANGE)
     sfxBrush.play();
-    frameRate(10);
+    frameRate(10); // this makes the whole "cubism" effect for the picasso var.
     cursor('grab');
     color.luminance = 50;
 
@@ -42,7 +42,7 @@ function picassoDraw() {
         color.saturation = map(d, -width / 2, width / 2, 0, 100);
         stroke(color.hue, color.saturation, color.luminance, color.alpha);
 
-        // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
+        // Draw a line from the previous mouse position to the current one.
         line(pmouseX, pmouseY, mouseX, mouseY);
         pop();
 

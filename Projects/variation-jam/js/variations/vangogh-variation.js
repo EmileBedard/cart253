@@ -38,7 +38,7 @@ function vangoghDraw() {
         color.saturation = map(d, -width / 2, width / 2, 0, 100);
         stroke(color.hue, color.saturation, color.luminance, color.alpha);
 
-        // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
+        // Draw a line from the previous mouse position to the current one.
         line(pmouseX, pmouseY, mouseX, mouseY);
         pop();
 

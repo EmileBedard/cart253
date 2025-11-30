@@ -2,16 +2,21 @@
  * This file contains the code to run *only* the calder variation part of the program.
  * 
  */
+
+// these arrays store the shapes data and collection of shapes to diplay them on canvas
 let shape = []
 let shapes = []
 
-
+// this object stores the x and y coordinates of every vertex that are making the shapes
 let point = {
     X: 0,
     Y: 0,
 }
+
+// this variable is stating if the shaped is finished or not to stop filling or not, stop adding vertices or not. 
 let shapeFinished = true
 
+// this object if for placing the first point of the mobile at the centered top, letting the rods branch out after from the top
 let mobile = {
     x: 320,
     y: 0,
@@ -40,21 +45,20 @@ function calderDraw() {
 
 
         push();
+
         calderchangeHue(); // calls it here to check if the user is inactive and change strokeweight and hue before drawing the line
         stroke(color.hue, color.saturation, color.luminance, color.alpha);
         fill(color.hue, color.saturation, color.luminance, color.alpha);
 
-        if (shapeFinished === false) {
+        if (shapeFinished === false) { // only starts the vertex loop when shape is being drawn
             beginShape();
             for (let i = 0; i < shape.length; i++) {
-                vertex(shape[i][0], shape[i][1])
+                vertex(shape[i][0], shape[i][1]) // adds x and y of the vertex to the shape array
             }
-            endShape(CLOSE);
+            endShape(CLOSE); // is always closing the shape gradually to visualize result
         }
+        calderStartShape(); // assigns x&y of mouse to vertex x&y if shape is being drawn, after includes the shape to the array
 
-        // Draw a line from the previous mouse position to the current one AND add randomized position to have the "pollock" effect
-        (pmouseX, pmouseY, mouseX, mouseY);
-        calderStartShape();
         pop();
 
         drawInstructions(); // this calls the instructions to be drawn on top, m, n & s for different use
@@ -84,10 +88,10 @@ function calderStartShape() {
     if (shapeFinished === false) {
         point.X = mouseX;
         point.Y = mouseY;
-        shape.push([point.X, point.Y]);
+        shape.push([point.X, point.Y]); // adds to shape array
 
     }
-    else {
+    else { // if shape is done, does nothing
 
     }
 }
@@ -102,7 +106,7 @@ function calderInstructions() {
         text("click to start shape and click to end shape. make a mobile!", width / 2, 40);
         pop();
     }
-    else if (shapes.length === 1) {
+    else if (shapes.length === 1) { // after 1 shape, the user should understand how it works and hides the instructions to have clean layout when painting is saved with S
         push();
         fill('#F8E5D0');
         textAlign(CENTER, CENTER);
@@ -117,7 +121,7 @@ function calderInstructions() {
 }
 
 /**
- * This will be called when user is inactive to change hue and say it is inactive
+ * This will be called when user is inactive to change hue and say it is inactive, only picks prinary colors like calder tended to do for his mobiles.
  */
 function calderchangeHue() {
 
@@ -203,20 +207,19 @@ function calderMouseMoved() {
  */
 function calderMousePressed() {
     if (shapeFinished === false) {
-        shapes.push(shape);
-        line
-        shape = [];
+        shapes.push(shape); // adds shape to shapes collection array
+        shape = []; // empties the shape array for next one
         mobile.x = mouseX
-        mobile.y = mouseY
-        shapeFinished = true
+        mobile.y = mouseY // set last coordinates
+        shapeFinished = true // close shape and flip the state for next mouse click
     }
     else if (shapeFinished === true) {
         push();
         stroke(instructions.hue, instructions.saturation, instructions.luminance, instructions.alpha);
-        line(mobile.x, mobile.y, mouseX, mouseY);
+        line(mobile.x, mobile.y, mouseX, mouseY); // adds the black line to draw the mobile rod between last point and new point
         pop();
 
-        shapeFinished = false
+        shapeFinished = false // sets the shape to "open" to add vertices to "shape" array
     }
 
 }
