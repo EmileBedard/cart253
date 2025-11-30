@@ -26,7 +26,7 @@ let color = {
     alpha: 1,
 };
 
-//this variable controls the color of instruction text. alpha value is used here to make it disappear when user wnats to save painting
+//this variable controls the color of instruction text. alpha value is not used here
 let instructions = {
     hue: 0,
     saturation: 100,
@@ -179,7 +179,7 @@ function keyPressed(event) {
 }
 
 /**
- * This will be called when user presses S and saves the canvas, it write the painting name
+ * This will be called when user presses S and saves the canvas, it writes the painting name
  */
 function drawPaintingTitle() {
 

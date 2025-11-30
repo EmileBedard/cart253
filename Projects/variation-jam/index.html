@@ -28,8 +28,41 @@
   <script src="js/script.js"></script>
 </head>
 
-<body>
-  <!-- HTML would go here if needed. -->
+<!-- Minimal buttons -->
+<div id="buttons">
+  <button data-key="86">V</button>
+  <button data-key="80">P</button>
+  <button data-key="83">S</button>
+  <button data-key="77">M</button>
+  <button data-key="78">N</button>
+  <button data-key="71">G</button>
+  <button data-key="67">C</button>
+  <button data-key="13">Enter</button>
+</div>
+
+<script>
+  // simulate keypress for your existing p5 key handlers
+  function simulateKey(keyCodeNumber) {
+    if (typeof keyPressed === "function") {
+      keyPressed({ keyCode: keyCodeNumber });
+    } else {
+      window.dispatchEvent(
+        new KeyboardEvent("keydown", { keyCode: keyCodeNumber, which: keyCodeNumber })
+      );
+    }
+  }
+
+  // connect all buttons
+  document.querySelectorAll("button[data-key]").forEach(btn => {
+    const key = Number(btn.dataset.key);
+    btn.addEventListener("click", () => simulateKey(key));
+    btn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      simulateKey(key);
+    });
+  });
+</script>
+
 </body>
 
 </html>
