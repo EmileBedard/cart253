@@ -2,7 +2,7 @@
  
 Émile Bédard
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://emilebedard.github.io/cart253/Projects/variation-jam/)
 
 ## Description
 
@@ -20,14 +20,12 @@ images of main menu, and three paintings
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
-
-> - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+- This project uses [p5.js](https://p5js.org).
+- The images are screenshots of the program running
+- The interpretation of painters are for entertainment and humorous purposes.
+- [This project includes a turning page sound effect from Mathew Aleman Lim's Youtube channel ](https://www.youtube.com/watch?v=-9lky-djA7w/) all rights reserved. 2025.
+- [This project includes a paint splash sound effect from GFX Sounds Youtube channel ](https://www.youtube.com/watch?v=Yjfoev49rRE) all rights reserved. 2025.
 
 ## License
-
-This bit should include the license you want to apply to your work. For example:
 
 > This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
