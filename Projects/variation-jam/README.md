@@ -1,5 +1,6 @@
-# Paint Shop Specialist!
- 
+# Paint Shop Specialist! 
+### -For Desktop only-
+
 Émile Bédard
 
 [View this project online](https://emilebedard.github.io/cart253/Projects/variation-jam/)
@@ -7,6 +8,21 @@
 ## Description
 
 This program is a painting simulator that explores different eras of art history and movements to influence the way the user draws. Using your mouse, you can draw like Vincent Van Gogh, Pablo Picasso, Kasimir Malevitch, Alexander Calder and Jackson Pollock. Save your paintings and build your own mini gallery with Paint Shop Specialist!
+
+## Variations!
+
+This simulator offers 5 different way to draw:
+
+- **Paint like Vincent Van Gogh**: You can draw blue dashed lines, just like we see in *starry night*! experiment and have fun to draw, save your masterpiece locally after.
+
+- **Paint like Pablo Picasso**: In this variation, your color is changing everytime you pause for more than half a second, it also slows down the frame rate to draw like the cubists did, geometric abstraction! Have fun!
+
+- **Paint like Jackson Pollock**: Mayhem! Chaos! Pollock! draw like the abstract american expressionism movement with this variation
+
+- **Paint like Kasimir malevitch**: Little joke here ! The canvas is always black, just like the tortured paintings by malevitch.
+
+- **Sculpt like Alexander calder**: This one is different! You can use your mouse with movement clicks to draw mobiles and shapes with primary colors! Make something balanced for best results, but mainly, have fun!
+
  
 ## Screenshot(s)
 
